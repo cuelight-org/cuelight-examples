@@ -72,6 +72,30 @@ try {
     }
   }
   say(failed ? `\n${failed} of ${shaders.length} refused` : `\nall ${shaders.length} accepted`, failed ? "bad" : "ok");
+  // When the GPU refuses some, variants of the smallest of them narrow it
+  // down to the construct the driver cannot build.
+  if (failed || new URLSearchParams(location.search).has("variants")) {
+    const variants = await (await fetch("gpu-probe-variants.json")).json();
+    say(`\n${variants.length} variants of pathtag_reduce, to find what is refused:`);
+    for (const variant of variants) {
+      try {
+        device.pushErrorScope("validation");
+        device.pushErrorScope("internal");
+        const module = device.createShaderModule({ label: variant.name, code: variant.wgsl });
+        const compiled = await module.getCompilationInfo();
+        const errors = compiled.messages.filter((m) => m.type === "error");
+        if (errors.length) throw new Error(errors.map((m) => `${m.lineNum}:${m.linePos} ${m.message}`).join("; "));
+        await device.createComputePipelineAsync({ label: variant.name, layout: "auto", compute: { module, entryPoint: "main" } });
+        const internal = await device.popErrorScope();
+        const validation = await device.popErrorScope();
+        const error = internal ?? validation;
+        if (error) throw new Error(`${error.constructor.name}: ${error.message}`);
+        say(`ok    ${esc(variant.name)}: ${esc(variant.why)}`, "ok");
+      } catch (e) {
+        say(`FAIL  ${esc(variant.name)}: ${esc(variant.why)}\n      ${esc(String(e.message ?? e).split("\n")[0])}`, "bad");
+      }
+    }
+  }
 } catch (e) {
   say(`error    ${esc(e.message ?? e)}`, "bad");
 }
