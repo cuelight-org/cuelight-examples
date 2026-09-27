@@ -37,7 +37,8 @@ try {
   const adapter = await navigator.gpu.requestAdapter();
   if (!adapter) throw new Error("no GPU adapter");
   const info = adapter.info;
-  say(`gpu      ${esc([info.vendor, info.architecture, info.device, info.description].filter(Boolean).join(" "))}`);
+  const named = [info.vendor, info.architecture, info.device, info.description].filter(Boolean).join(" ");
+  say(`gpu      ${esc(named || "(this browser does not say)")}`);
   say(`features ${[...adapter.features].sort().join(" ")}`);
   const l = adapter.limits;
   say(`limits   workgroup storage ${l.maxComputeWorkgroupStorageSize}, invocations ${l.maxComputeInvocationsPerWorkgroup}, `

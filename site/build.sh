@@ -40,7 +40,7 @@ PY
 
 rm -rf "$out"
 mkdir -p "$out"
-cp "$site"/*.html "$site"/*.css "$repo/examples.json" "$out"
+cp "$site"/*.html "$site"/*.css "$site"/*.json "$repo/examples.json" "$out"
 cp -r "$site/thumbnails" "$out/thumbnails"
 touch "$out/.nojekyll"
 
