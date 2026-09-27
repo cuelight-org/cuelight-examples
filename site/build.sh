@@ -1,7 +1,8 @@
 #!/bin/sh
 # Build the website into _site/: the gallery pages, the cuelight player
 # compiled to WebAssembly, and every show of examples.json with the
-# manifest a browser needs to fetch it. Serve it with any static file
+# manifest a browser needs to fetch it and packed as one file for the
+# web editor. Serve it with any static file
 # server, e.g. `python3 -m http.server -d _site`.
 #
 #   site/build.sh
@@ -58,6 +59,12 @@ for show in $shows; do
     mkdir -p "$out/shows/$show"
     cp -r "$repo/$show/." "$out/shows/$show"
     rm -rf "$out/shows/$show/README.md" "$out/shows/$show/licenses"
+done
+# Each show also as one packed file, `<show>.cuelight` next to its folder:
+# the one URL the web editor opens a show from.
+for show in $shows; do
+    cargo run --manifest-path "$cuelight/Cargo.toml" -q -p cuelight-loader \
+        --bin cuelight-pack -- "$out/shows/$show" "$out/shows/$show.cuelight"
 done
 # shellcheck disable=SC2046 # show paths have no spaces
 cargo run --manifest-path "$cuelight/Cargo.toml" -q -p cuelight-loader \
