@@ -90,6 +90,15 @@ const log = (text, error) => {
   $("log").prepend(line);
   while ($("log").childElementCount > 200) $("log").lastChild.remove();
 };
+// What the browser would only say in its console (a GPU error, a panic,
+// a rejected promise) goes into the log too: on a phone there is no
+// console to open.
+for (const level of ["error", "warn"]) {
+  const original = console[level].bind(console);
+  console[level] = (...args) => { original(...args); log(args.map(String).join(" "), level === "error"); };
+}
+addEventListener("error", (e) => log(e.message, true));
+addEventListener("unhandledrejection", (e) => log(e.reason?.message ?? String(e.reason), true));
 
 // The catalog says what there is; ?show=path picks one.
 const catalog = await (await fetch("examples.json")).json();
@@ -261,6 +270,10 @@ try {
       code("dom.webgpu.enabled"), " in ", code("about:config"), ".");
     throw new Error("this browser has no WebGPU, which the cuelight player needs");
   }
+  // Which GPU this is, for a report when the show does not draw.
+  const adapter = await navigator.gpu.requestAdapter();
+  const info = adapter?.info;
+  if (info) log(`gpu    ${[info.vendor, info.architecture, info.device, info.description].filter(Boolean).join(" ")}`);
   const module = await import("./pkg/cuelight_web.js");
   await module.default();
   CuelightPlayer = module.CuelightPlayer;
