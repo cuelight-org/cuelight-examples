@@ -2,8 +2,10 @@
 """Render one thumbnail per show listed in examples.json.
 
 Each show is rendered by cuelight-render at its entry's `thumbnail_at`
-seconds (2 by default), with its driver playing, as a host would show it
-about 640 pixels wide, and written to site/thumbnails/<path>.png.
+seconds (2 by default), with its driver playing and after the entry's
+`thumbnail_triggers` (`"time:trigger"` each, for a show that waits for
+its reader), as a host would show it about 640 pixels wide, and written
+to site/thumbnails/<path>.png.
 
     tools/thumbnails.py [path ...]
 
@@ -46,10 +48,11 @@ def main():
         if wanted and path not in wanted:
             continue
         at = example.get("thumbnail_at", 2.0)
+        triggers = [arg for fired in example.get("thumbnail_triggers", []) for arg in ("--trigger", fired)]
         out = repo / "site/thumbnails" / f"{path}.png"
         with tempfile.TemporaryDirectory() as frames:
             subprocess.run(
-                [render, repo / path, "--at", str(at), "--width", str(WIDTH), "-o", frames],
+                [render, repo / path, "--at", str(at), "--width", str(WIDTH), *triggers, "-o", frames],
                 check=True, stdout=subprocess.DEVNULL,
             )
             [frame] = Path(frames).glob("*.png")
