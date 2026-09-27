@@ -9,6 +9,7 @@ publish = false
 
 [dependencies]
 cuelight = { path = "../../../cuelight/crates/cuelight", default-features = false, features = ["outline-fonts"] }
+cuelight-core = { path = "../../../cuelight/crates/cuelight-core" }
 cuelight-loader = { path = "../../../cuelight/crates/cuelight-loader" }
 # Only to decode sounds; no sound device.
 cuelight-audio = { path = "../../../cuelight/crates/cuelight-audio", default-features = false }

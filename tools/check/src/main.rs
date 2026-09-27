@@ -11,8 +11,9 @@
 //! is not used by any layer, or when its driver script fires a trigger or
 //! sets a variable the show does not have. Needs no GPU.
 
-use cuelight::{DigitDisplay, Engine, Layer, LayerKind, ReelCells};
+use cuelight::Engine;
 use cuelight_audio::Sound;
+use cuelight_core::{DigitDisplay, Layer, LayerKind, ReelCells};
 use cuelight_loader::{Driver, Step};
 use std::collections::BTreeSet;
 use std::path::Path;
