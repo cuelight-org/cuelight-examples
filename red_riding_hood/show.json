@@ -13,6 +13,7 @@
     "running": {"file": "IMFellEnglish-Italic", "size": 18, "color": "#7A6A58"},
     "folio": {"file": "IMFellEnglish-Regular", "size": 18, "color": "#7A6A58"}
   },
+  "input": {"keys": {"ArrowRight": "next", "PageDown": "next", " ": "next", "ArrowLeft": "prev", "PageUp": "prev", "Home": "cover"}},
   "layers": [
     {"name": "table", "type": "image", "image": "table", "size": [1280, 720]},
     {"name": "shadow", "type": "shape", "x": 78, "y": 60, "shape": {"rect": [0, 0, 1140, 632]}, "fill": "#00000070"},
@@ -57,18 +58,24 @@
   "scenes": [
     {
       "name": "cover",
-      "trigger": "cover",
+      "trigger": ["cover", "cover_back"],
       "layers": [
+        {
+          "name": "nav",
+          "type": "shape",
+          "shape": {"rect": [0, 0, 1, 1]},
+          "fill": "#00000000",
+          "timelines": [{"name": "next", "trigger": "next", "on_end": "page_1", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]}]
+        },
         {
           "name": "left_page",
           "type": "group",
           "x": 0,
           "y": 0,
-          "opacity": 0,
           "timelines": [
             {
               "name": "appear",
-              "autoplay": true,
+              "trigger": "cover",
               "hold": true,
               "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
             }
@@ -94,6 +101,16 @@
               "text": "A fairy tale for young readers",
               "size": [570, 40],
               "align": "center"
+            },
+            {
+              "name": "hint",
+              "type": "text",
+              "x": 70,
+              "y": 560,
+              "font": "running",
+              "text": "Press the folded corner to turn the page.",
+              "size": [570, 30],
+              "align": "center"
             }
           ]
         },
@@ -103,6 +120,14 @@
           "x": 690,
           "y": 96,
           "clip": {"rect": [0, 0, 470, 520]},
+          "timelines": [
+            {
+              "name": "appear_back",
+              "trigger": "cover_back",
+              "hold": true,
+              "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
+            }
+          ],
           "children": [
             {"name": "backdrop", "type": "vector", "vector": "bg_woods", "x": 0, "y": 0},
             {
@@ -396,7 +421,7 @@
           "timelines": [
             {
               "name": "turn",
-              "autoplay": true,
+              "trigger": "cover",
               "tracks": [
                 {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
                 {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
@@ -414,7 +439,7 @@
               "timelines": [
                 {
                   "name": "shade",
-                  "autoplay": true,
+                  "trigger": "cover",
                   "tracks": [
                     {
                       "property": "opacity",
@@ -426,24 +451,105 @@
             }
           ]
         },
+        {
+          "name": "leaf_back",
+          "type": "group",
+          "x": 640,
+          "y": 48,
+          "opacity": 0,
+          "timelines": [
+            {
+              "name": "turn",
+              "trigger": "cover_back",
+              "tracks": [
+                {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
+                {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
+              ]
+            }
+          ],
+          "children": [
+            {"name": "sheet", "type": "shape", "shape": {"rect": [-570, 0, 570, 632]}, "fill": "#EFE3C6"},
+            {
+              "name": "shade",
+              "type": "shape",
+              "shape": {"rect": [-570, 0, 570, 632]},
+              "fill": "#2B211C",
+              "opacity": 0,
+              "timelines": [
+                {
+                  "name": "shade",
+                  "trigger": "cover_back",
+                  "tracks": [
+                    {
+                      "property": "opacity",
+                      "keys": [{"t": 0, "v": 0}, {"t": 0.35, "v": 0.14, "ease": "quad_out"}, {"t": 0.7, "v": 0.03, "ease": "quad_in"}]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ear_forward",
+          "type": "group",
+          "x": 1210,
+          "y": 680,
+          "scale_x": 1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "next"}
+            }
+          ]
+        },
         {"name": "paper", "type": "image", "image": "paper", "x": 70, "y": 48, "size": [1140, 632], "blend": "multiply"},
         {"name": "rustle", "type": "audio", "sound": ["turn1", "turn2"], "autoplay": true, "gain": 0.3}
       ]
     },
     {
       "name": "page_1",
-      "trigger": "page_1",
+      "trigger": ["page_1", "page_1_back"],
       "layers": [
+        {
+          "name": "nav",
+          "type": "shape",
+          "shape": {"rect": [0, 0, 1, 1]},
+          "fill": "#00000000",
+          "timelines": [
+            {"name": "next", "trigger": "next", "on_end": "page_2", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]},
+            {"name": "prev", "trigger": "prev", "on_end": "cover_back", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]}
+          ]
+        },
         {
           "name": "left_page",
           "type": "group",
           "x": 0,
           "y": 0,
-          "opacity": 0,
           "timelines": [
             {
               "name": "appear",
-              "autoplay": true,
+              "trigger": "page_1",
               "hold": true,
               "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
             }
@@ -498,6 +604,14 @@
           "x": 690,
           "y": 96,
           "clip": {"rect": [0, 0, 470, 520]},
+          "timelines": [
+            {
+              "name": "appear_back",
+              "trigger": "page_1_back",
+              "hold": true,
+              "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
+            }
+          ],
           "children": [
             {"name": "backdrop", "type": "vector", "vector": "bg_cottage", "x": 0, "y": 0},
             {
@@ -849,7 +963,7 @@
           "timelines": [
             {
               "name": "turn",
-              "autoplay": true,
+              "trigger": "page_1",
               "tracks": [
                 {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
                 {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
@@ -867,7 +981,7 @@
               "timelines": [
                 {
                   "name": "shade",
-                  "autoplay": true,
+                  "trigger": "page_1",
                   "tracks": [
                     {
                       "property": "opacity",
@@ -879,24 +993,138 @@
             }
           ]
         },
+        {
+          "name": "leaf_back",
+          "type": "group",
+          "x": 640,
+          "y": 48,
+          "opacity": 0,
+          "timelines": [
+            {
+              "name": "turn",
+              "trigger": "page_1_back",
+              "tracks": [
+                {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
+                {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
+              ]
+            }
+          ],
+          "children": [
+            {"name": "sheet", "type": "shape", "shape": {"rect": [-570, 0, 570, 632]}, "fill": "#EFE3C6"},
+            {
+              "name": "shade",
+              "type": "shape",
+              "shape": {"rect": [-570, 0, 570, 632]},
+              "fill": "#2B211C",
+              "opacity": 0,
+              "timelines": [
+                {
+                  "name": "shade",
+                  "trigger": "page_1_back",
+                  "tracks": [
+                    {
+                      "property": "opacity",
+                      "keys": [{"t": 0, "v": 0}, {"t": 0.35, "v": 0.14, "ease": "quad_out"}, {"t": 0.7, "v": 0.03, "ease": "quad_in"}]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ear_back",
+          "type": "group",
+          "x": 70,
+          "y": 680,
+          "scale_x": -1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "prev"}
+            }
+          ]
+        },
+        {
+          "name": "ear_forward",
+          "type": "group",
+          "x": 1210,
+          "y": 680,
+          "scale_x": 1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "next"}
+            }
+          ]
+        },
         {"name": "paper", "type": "image", "image": "paper", "x": 70, "y": 48, "size": [1140, 632], "blend": "multiply"},
         {"name": "rustle", "type": "audio", "sound": ["turn1", "turn2"], "autoplay": true, "gain": 0.3}
       ]
     },
     {
       "name": "page_2",
-      "trigger": "page_2",
+      "trigger": ["page_2", "page_2_back"],
       "layers": [
+        {
+          "name": "nav",
+          "type": "shape",
+          "shape": {"rect": [0, 0, 1, 1]},
+          "fill": "#00000000",
+          "timelines": [
+            {"name": "next", "trigger": "next", "on_end": "page_3", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]},
+            {"name": "prev", "trigger": "prev", "on_end": "page_1_back", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]}
+          ]
+        },
         {
           "name": "left_page",
           "type": "group",
           "x": 0,
           "y": 0,
-          "opacity": 0,
           "timelines": [
             {
               "name": "appear",
-              "autoplay": true,
+              "trigger": "page_2",
               "hold": true,
               "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
             }
@@ -949,6 +1177,14 @@
           "x": 690,
           "y": 96,
           "clip": {"rect": [0, 0, 470, 520]},
+          "timelines": [
+            {
+              "name": "appear_back",
+              "trigger": "page_2_back",
+              "hold": true,
+              "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
+            }
+          ],
           "children": [
             {"name": "backdrop", "type": "vector", "vector": "bg_cottage", "x": 0, "y": 0},
             {
@@ -1220,7 +1456,7 @@
           "timelines": [
             {
               "name": "turn",
-              "autoplay": true,
+              "trigger": "page_2",
               "tracks": [
                 {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
                 {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
@@ -1238,7 +1474,7 @@
               "timelines": [
                 {
                   "name": "shade",
-                  "autoplay": true,
+                  "trigger": "page_2",
                   "tracks": [
                     {
                       "property": "opacity",
@@ -1250,24 +1486,138 @@
             }
           ]
         },
+        {
+          "name": "leaf_back",
+          "type": "group",
+          "x": 640,
+          "y": 48,
+          "opacity": 0,
+          "timelines": [
+            {
+              "name": "turn",
+              "trigger": "page_2_back",
+              "tracks": [
+                {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
+                {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
+              ]
+            }
+          ],
+          "children": [
+            {"name": "sheet", "type": "shape", "shape": {"rect": [-570, 0, 570, 632]}, "fill": "#EFE3C6"},
+            {
+              "name": "shade",
+              "type": "shape",
+              "shape": {"rect": [-570, 0, 570, 632]},
+              "fill": "#2B211C",
+              "opacity": 0,
+              "timelines": [
+                {
+                  "name": "shade",
+                  "trigger": "page_2_back",
+                  "tracks": [
+                    {
+                      "property": "opacity",
+                      "keys": [{"t": 0, "v": 0}, {"t": 0.35, "v": 0.14, "ease": "quad_out"}, {"t": 0.7, "v": 0.03, "ease": "quad_in"}]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ear_back",
+          "type": "group",
+          "x": 70,
+          "y": 680,
+          "scale_x": -1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "prev"}
+            }
+          ]
+        },
+        {
+          "name": "ear_forward",
+          "type": "group",
+          "x": 1210,
+          "y": 680,
+          "scale_x": 1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "next"}
+            }
+          ]
+        },
         {"name": "paper", "type": "image", "image": "paper", "x": 70, "y": 48, "size": [1140, 632], "blend": "multiply"},
         {"name": "rustle", "type": "audio", "sound": ["turn1", "turn2"], "autoplay": true, "gain": 0.3}
       ]
     },
     {
       "name": "page_3",
-      "trigger": "page_3",
+      "trigger": ["page_3", "page_3_back"],
       "layers": [
+        {
+          "name": "nav",
+          "type": "shape",
+          "shape": {"rect": [0, 0, 1, 1]},
+          "fill": "#00000000",
+          "timelines": [
+            {"name": "next", "trigger": "next", "on_end": "page_4", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]},
+            {"name": "prev", "trigger": "prev", "on_end": "page_2_back", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]}
+          ]
+        },
         {
           "name": "left_page",
           "type": "group",
           "x": 0,
           "y": 0,
-          "opacity": 0,
           "timelines": [
             {
               "name": "appear",
-              "autoplay": true,
+              "trigger": "page_3",
               "hold": true,
               "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
             }
@@ -1321,6 +1671,14 @@
           "x": 690,
           "y": 96,
           "clip": {"rect": [0, 0, 470, 520]},
+          "timelines": [
+            {
+              "name": "appear_back",
+              "trigger": "page_3_back",
+              "hold": true,
+              "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
+            }
+          ],
           "children": [
             {"name": "backdrop", "type": "vector", "vector": "bg_woods", "x": 0, "y": 0},
             {"name": "pine_back", "type": "vector", "vector": "tree_pine", "x": 180, "y": 110, "scale": 0.9},
@@ -1582,7 +1940,7 @@
           "timelines": [
             {
               "name": "turn",
-              "autoplay": true,
+              "trigger": "page_3",
               "tracks": [
                 {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
                 {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
@@ -1600,7 +1958,7 @@
               "timelines": [
                 {
                   "name": "shade",
-                  "autoplay": true,
+                  "trigger": "page_3",
                   "tracks": [
                     {
                       "property": "opacity",
@@ -1612,24 +1970,138 @@
             }
           ]
         },
+        {
+          "name": "leaf_back",
+          "type": "group",
+          "x": 640,
+          "y": 48,
+          "opacity": 0,
+          "timelines": [
+            {
+              "name": "turn",
+              "trigger": "page_3_back",
+              "tracks": [
+                {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
+                {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
+              ]
+            }
+          ],
+          "children": [
+            {"name": "sheet", "type": "shape", "shape": {"rect": [-570, 0, 570, 632]}, "fill": "#EFE3C6"},
+            {
+              "name": "shade",
+              "type": "shape",
+              "shape": {"rect": [-570, 0, 570, 632]},
+              "fill": "#2B211C",
+              "opacity": 0,
+              "timelines": [
+                {
+                  "name": "shade",
+                  "trigger": "page_3_back",
+                  "tracks": [
+                    {
+                      "property": "opacity",
+                      "keys": [{"t": 0, "v": 0}, {"t": 0.35, "v": 0.14, "ease": "quad_out"}, {"t": 0.7, "v": 0.03, "ease": "quad_in"}]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ear_back",
+          "type": "group",
+          "x": 70,
+          "y": 680,
+          "scale_x": -1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "prev"}
+            }
+          ]
+        },
+        {
+          "name": "ear_forward",
+          "type": "group",
+          "x": 1210,
+          "y": 680,
+          "scale_x": 1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "next"}
+            }
+          ]
+        },
         {"name": "paper", "type": "image", "image": "paper", "x": 70, "y": 48, "size": [1140, 632], "blend": "multiply"},
         {"name": "rustle", "type": "audio", "sound": ["turn1", "turn2"], "autoplay": true, "gain": 0.3}
       ]
     },
     {
       "name": "page_4",
-      "trigger": "page_4",
+      "trigger": ["page_4", "page_4_back"],
       "layers": [
+        {
+          "name": "nav",
+          "type": "shape",
+          "shape": {"rect": [0, 0, 1, 1]},
+          "fill": "#00000000",
+          "timelines": [
+            {"name": "next", "trigger": "next", "on_end": "page_5", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]},
+            {"name": "prev", "trigger": "prev", "on_end": "page_3_back", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]}
+          ]
+        },
         {
           "name": "left_page",
           "type": "group",
           "x": 0,
           "y": 0,
-          "opacity": 0,
           "timelines": [
             {
               "name": "appear",
-              "autoplay": true,
+              "trigger": "page_4",
               "hold": true,
               "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
             }
@@ -1681,6 +2153,14 @@
           "x": 690,
           "y": 96,
           "clip": {"rect": [0, 0, 470, 520]},
+          "timelines": [
+            {
+              "name": "appear_back",
+              "trigger": "page_4_back",
+              "hold": true,
+              "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
+            }
+          ],
           "children": [
             {"name": "backdrop", "type": "vector", "vector": "bg_meadow", "x": 0, "y": 0},
             {
@@ -2486,7 +2966,7 @@
           "timelines": [
             {
               "name": "turn",
-              "autoplay": true,
+              "trigger": "page_4",
               "tracks": [
                 {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
                 {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
@@ -2504,7 +2984,7 @@
               "timelines": [
                 {
                   "name": "shade",
-                  "autoplay": true,
+                  "trigger": "page_4",
                   "tracks": [
                     {
                       "property": "opacity",
@@ -2516,24 +2996,138 @@
             }
           ]
         },
+        {
+          "name": "leaf_back",
+          "type": "group",
+          "x": 640,
+          "y": 48,
+          "opacity": 0,
+          "timelines": [
+            {
+              "name": "turn",
+              "trigger": "page_4_back",
+              "tracks": [
+                {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
+                {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
+              ]
+            }
+          ],
+          "children": [
+            {"name": "sheet", "type": "shape", "shape": {"rect": [-570, 0, 570, 632]}, "fill": "#EFE3C6"},
+            {
+              "name": "shade",
+              "type": "shape",
+              "shape": {"rect": [-570, 0, 570, 632]},
+              "fill": "#2B211C",
+              "opacity": 0,
+              "timelines": [
+                {
+                  "name": "shade",
+                  "trigger": "page_4_back",
+                  "tracks": [
+                    {
+                      "property": "opacity",
+                      "keys": [{"t": 0, "v": 0}, {"t": 0.35, "v": 0.14, "ease": "quad_out"}, {"t": 0.7, "v": 0.03, "ease": "quad_in"}]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ear_back",
+          "type": "group",
+          "x": 70,
+          "y": 680,
+          "scale_x": -1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "prev"}
+            }
+          ]
+        },
+        {
+          "name": "ear_forward",
+          "type": "group",
+          "x": 1210,
+          "y": 680,
+          "scale_x": 1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "next"}
+            }
+          ]
+        },
         {"name": "paper", "type": "image", "image": "paper", "x": 70, "y": 48, "size": [1140, 632], "blend": "multiply"},
         {"name": "rustle", "type": "audio", "sound": ["turn1", "turn2"], "autoplay": true, "gain": 0.3}
       ]
     },
     {
       "name": "page_5",
-      "trigger": "page_5",
+      "trigger": ["page_5", "page_5_back"],
       "layers": [
+        {
+          "name": "nav",
+          "type": "shape",
+          "shape": {"rect": [0, 0, 1, 1]},
+          "fill": "#00000000",
+          "timelines": [
+            {"name": "next", "trigger": "next", "on_end": "page_6", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]},
+            {"name": "prev", "trigger": "prev", "on_end": "page_4_back", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]}
+          ]
+        },
         {
           "name": "left_page",
           "type": "group",
           "x": 0,
           "y": 0,
-          "opacity": 0,
           "timelines": [
             {
               "name": "appear",
-              "autoplay": true,
+              "trigger": "page_5",
               "hold": true,
               "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
             }
@@ -2586,6 +3180,14 @@
           "x": 690,
           "y": 96,
           "clip": {"rect": [0, 0, 470, 520]},
+          "timelines": [
+            {
+              "name": "appear_back",
+              "trigger": "page_5_back",
+              "hold": true,
+              "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
+            }
+          ],
           "children": [
             {"name": "backdrop", "type": "vector", "vector": "bg_room", "x": 0, "y": 0},
             {"name": "window", "type": "vector", "vector": "window_front", "x": 0, "y": 0},
@@ -2814,7 +3416,7 @@
           "timelines": [
             {
               "name": "turn",
-              "autoplay": true,
+              "trigger": "page_5",
               "tracks": [
                 {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
                 {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
@@ -2832,7 +3434,7 @@
               "timelines": [
                 {
                   "name": "shade",
-                  "autoplay": true,
+                  "trigger": "page_5",
                   "tracks": [
                     {
                       "property": "opacity",
@@ -2844,24 +3446,138 @@
             }
           ]
         },
+        {
+          "name": "leaf_back",
+          "type": "group",
+          "x": 640,
+          "y": 48,
+          "opacity": 0,
+          "timelines": [
+            {
+              "name": "turn",
+              "trigger": "page_5_back",
+              "tracks": [
+                {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
+                {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
+              ]
+            }
+          ],
+          "children": [
+            {"name": "sheet", "type": "shape", "shape": {"rect": [-570, 0, 570, 632]}, "fill": "#EFE3C6"},
+            {
+              "name": "shade",
+              "type": "shape",
+              "shape": {"rect": [-570, 0, 570, 632]},
+              "fill": "#2B211C",
+              "opacity": 0,
+              "timelines": [
+                {
+                  "name": "shade",
+                  "trigger": "page_5_back",
+                  "tracks": [
+                    {
+                      "property": "opacity",
+                      "keys": [{"t": 0, "v": 0}, {"t": 0.35, "v": 0.14, "ease": "quad_out"}, {"t": 0.7, "v": 0.03, "ease": "quad_in"}]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ear_back",
+          "type": "group",
+          "x": 70,
+          "y": 680,
+          "scale_x": -1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "prev"}
+            }
+          ]
+        },
+        {
+          "name": "ear_forward",
+          "type": "group",
+          "x": 1210,
+          "y": 680,
+          "scale_x": 1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "next"}
+            }
+          ]
+        },
         {"name": "paper", "type": "image", "image": "paper", "x": 70, "y": 48, "size": [1140, 632], "blend": "multiply"},
         {"name": "rustle", "type": "audio", "sound": ["turn1", "turn2"], "autoplay": true, "gain": 0.3}
       ]
     },
     {
       "name": "page_6",
-      "trigger": "page_6",
+      "trigger": ["page_6", "page_6_back"],
       "layers": [
+        {
+          "name": "nav",
+          "type": "shape",
+          "shape": {"rect": [0, 0, 1, 1]},
+          "fill": "#00000000",
+          "timelines": [
+            {"name": "next", "trigger": "next", "on_end": "page_7", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]},
+            {"name": "prev", "trigger": "prev", "on_end": "page_5_back", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]}
+          ]
+        },
         {
           "name": "left_page",
           "type": "group",
           "x": 0,
           "y": 0,
-          "opacity": 0,
           "timelines": [
             {
               "name": "appear",
-              "autoplay": true,
+              "trigger": "page_6",
               "hold": true,
               "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
             }
@@ -2913,6 +3629,14 @@
           "x": 690,
           "y": 96,
           "clip": {"rect": [0, 0, 470, 520]},
+          "timelines": [
+            {
+              "name": "appear_back",
+              "trigger": "page_6_back",
+              "hold": true,
+              "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
+            }
+          ],
           "children": [
             {"name": "backdrop", "type": "vector", "vector": "bg_room", "x": 0, "y": 0},
             {"name": "window", "type": "vector", "vector": "window_front", "x": 0, "y": 0},
@@ -3138,7 +3862,7 @@
           "timelines": [
             {
               "name": "turn",
-              "autoplay": true,
+              "trigger": "page_6",
               "tracks": [
                 {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
                 {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
@@ -3156,7 +3880,7 @@
               "timelines": [
                 {
                   "name": "shade",
-                  "autoplay": true,
+                  "trigger": "page_6",
                   "tracks": [
                     {
                       "property": "opacity",
@@ -3168,24 +3892,138 @@
             }
           ]
         },
+        {
+          "name": "leaf_back",
+          "type": "group",
+          "x": 640,
+          "y": 48,
+          "opacity": 0,
+          "timelines": [
+            {
+              "name": "turn",
+              "trigger": "page_6_back",
+              "tracks": [
+                {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
+                {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
+              ]
+            }
+          ],
+          "children": [
+            {"name": "sheet", "type": "shape", "shape": {"rect": [-570, 0, 570, 632]}, "fill": "#EFE3C6"},
+            {
+              "name": "shade",
+              "type": "shape",
+              "shape": {"rect": [-570, 0, 570, 632]},
+              "fill": "#2B211C",
+              "opacity": 0,
+              "timelines": [
+                {
+                  "name": "shade",
+                  "trigger": "page_6_back",
+                  "tracks": [
+                    {
+                      "property": "opacity",
+                      "keys": [{"t": 0, "v": 0}, {"t": 0.35, "v": 0.14, "ease": "quad_out"}, {"t": 0.7, "v": 0.03, "ease": "quad_in"}]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ear_back",
+          "type": "group",
+          "x": 70,
+          "y": 680,
+          "scale_x": -1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "prev"}
+            }
+          ]
+        },
+        {
+          "name": "ear_forward",
+          "type": "group",
+          "x": 1210,
+          "y": 680,
+          "scale_x": 1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "next"}
+            }
+          ]
+        },
         {"name": "paper", "type": "image", "image": "paper", "x": 70, "y": 48, "size": [1140, 632], "blend": "multiply"},
         {"name": "rustle", "type": "audio", "sound": ["turn1", "turn2"], "autoplay": true, "gain": 0.3}
       ]
     },
     {
       "name": "page_7",
-      "trigger": "page_7",
+      "trigger": ["page_7", "page_7_back"],
       "layers": [
+        {
+          "name": "nav",
+          "type": "shape",
+          "shape": {"rect": [0, 0, 1, 1]},
+          "fill": "#00000000",
+          "timelines": [
+            {"name": "next", "trigger": "next", "on_end": "page_8", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]},
+            {"name": "prev", "trigger": "prev", "on_end": "page_6_back", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]}
+          ]
+        },
         {
           "name": "left_page",
           "type": "group",
           "x": 0,
           "y": 0,
-          "opacity": 0,
           "timelines": [
             {
               "name": "appear",
-              "autoplay": true,
+              "trigger": "page_7",
               "hold": true,
               "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
             }
@@ -3237,6 +4075,14 @@
           "x": 690,
           "y": 96,
           "clip": {"rect": [0, 0, 470, 520]},
+          "timelines": [
+            {
+              "name": "appear_back",
+              "trigger": "page_7_back",
+              "hold": true,
+              "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
+            }
+          ],
           "children": [
             {"name": "backdrop", "type": "vector", "vector": "bg_room", "x": 0, "y": 0},
             {"name": "window", "type": "vector", "vector": "window_front", "x": 0, "y": 0},
@@ -3476,7 +4322,7 @@
           "timelines": [
             {
               "name": "turn",
-              "autoplay": true,
+              "trigger": "page_7",
               "tracks": [
                 {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
                 {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
@@ -3494,7 +4340,7 @@
               "timelines": [
                 {
                   "name": "shade",
-                  "autoplay": true,
+                  "trigger": "page_7",
                   "tracks": [
                     {
                       "property": "opacity",
@@ -3506,24 +4352,135 @@
             }
           ]
         },
+        {
+          "name": "leaf_back",
+          "type": "group",
+          "x": 640,
+          "y": 48,
+          "opacity": 0,
+          "timelines": [
+            {
+              "name": "turn",
+              "trigger": "page_7_back",
+              "tracks": [
+                {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
+                {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
+              ]
+            }
+          ],
+          "children": [
+            {"name": "sheet", "type": "shape", "shape": {"rect": [-570, 0, 570, 632]}, "fill": "#EFE3C6"},
+            {
+              "name": "shade",
+              "type": "shape",
+              "shape": {"rect": [-570, 0, 570, 632]},
+              "fill": "#2B211C",
+              "opacity": 0,
+              "timelines": [
+                {
+                  "name": "shade",
+                  "trigger": "page_7_back",
+                  "tracks": [
+                    {
+                      "property": "opacity",
+                      "keys": [{"t": 0, "v": 0}, {"t": 0.35, "v": 0.14, "ease": "quad_out"}, {"t": 0.7, "v": 0.03, "ease": "quad_in"}]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ear_back",
+          "type": "group",
+          "x": 70,
+          "y": 680,
+          "scale_x": -1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "prev"}
+            }
+          ]
+        },
+        {
+          "name": "ear_forward",
+          "type": "group",
+          "x": 1210,
+          "y": 680,
+          "scale_x": 1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "next"}
+            }
+          ]
+        },
         {"name": "paper", "type": "image", "image": "paper", "x": 70, "y": 48, "size": [1140, 632], "blend": "multiply"},
         {"name": "rustle", "type": "audio", "sound": ["turn1", "turn2"], "autoplay": true, "gain": 0.3}
       ]
     },
     {
       "name": "page_8",
-      "trigger": "page_8",
+      "trigger": ["page_8", "page_8_back"],
       "layers": [
+        {
+          "name": "nav",
+          "type": "shape",
+          "shape": {"rect": [0, 0, 1, 1]},
+          "fill": "#00000000",
+          "timelines": [{"name": "prev", "trigger": "prev", "on_end": "page_7_back", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]}]
+        },
         {
           "name": "left_page",
           "type": "group",
           "x": 0,
           "y": 0,
-          "opacity": 0,
           "timelines": [
             {
               "name": "appear",
-              "autoplay": true,
+              "trigger": "page_8",
               "hold": true,
               "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
             }
@@ -3588,6 +4545,14 @@
           "x": 690,
           "y": 96,
           "clip": {"rect": [0, 0, 470, 520]},
+          "timelines": [
+            {
+              "name": "appear_back",
+              "trigger": "page_8_back",
+              "hold": true,
+              "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}, {"t": 0.7, "v": 0}, {"t": 0.95, "v": 1}]}]
+            }
+          ],
           "children": [
             {"name": "backdrop", "type": "vector", "vector": "bg_room", "x": 0, "y": 0},
             {
@@ -3992,7 +4957,7 @@
           "timelines": [
             {
               "name": "turn",
-              "autoplay": true,
+              "trigger": "page_8",
               "tracks": [
                 {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
                 {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
@@ -4010,7 +4975,7 @@
               "timelines": [
                 {
                   "name": "shade",
-                  "autoplay": true,
+                  "trigger": "page_8",
                   "tracks": [
                     {
                       "property": "opacity",
@@ -4019,6 +4984,78 @@
                   ]
                 }
               ]
+            }
+          ]
+        },
+        {
+          "name": "leaf_back",
+          "type": "group",
+          "x": 640,
+          "y": 48,
+          "opacity": 0,
+          "timelines": [
+            {
+              "name": "turn",
+              "trigger": "page_8_back",
+              "tracks": [
+                {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
+                {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]}
+              ]
+            }
+          ],
+          "children": [
+            {"name": "sheet", "type": "shape", "shape": {"rect": [-570, 0, 570, 632]}, "fill": "#EFE3C6"},
+            {
+              "name": "shade",
+              "type": "shape",
+              "shape": {"rect": [-570, 0, 570, 632]},
+              "fill": "#2B211C",
+              "opacity": 0,
+              "timelines": [
+                {
+                  "name": "shade",
+                  "trigger": "page_8_back",
+                  "tracks": [
+                    {
+                      "property": "opacity",
+                      "keys": [{"t": 0, "v": 0}, {"t": 0.35, "v": 0.14, "ease": "quad_out"}, {"t": 0.7, "v": 0.03, "ease": "quad_in"}]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ear_back",
+          "type": "group",
+          "x": 70,
+          "y": 680,
+          "scale_x": -1,
+          "timelines": [
+            {
+              "name": "breathe",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                }
+              ]
+            }
+          ],
+          "children": [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
+            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
+            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+            {
+              "name": "flap",
+              "type": "shape",
+              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+              "stroke": {"color": "#B9A67F", "width": 1},
+              "press": {"trigger": "prev"}
             }
           ]
         },

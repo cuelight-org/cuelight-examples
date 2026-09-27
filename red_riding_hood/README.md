@@ -11,12 +11,13 @@ One word on every page is printed red, and it makes the picture do
 something: the girl twirls in her red hood, the basket swings, the wolf
 hops, the flowers bob, Grandma peeks out of the cupboard, the wolf's eyes
 grow and it shows its teeth, the candles on the cake flare up. Pressing
-the word does it, and the driver plays the words too.
+the word does it.
 
 | Part | How it works |
 | --- | --- |
 | Pages | every spread is a scene (`cover`, `page_1` ... `page_8`), entered by its trigger. The table, the cover boards and the edges of the pages are the show's own layers and stay put; everything printed on the pages belongs to the scene |
-| Page turn | entering a scene plays it: a blank leaf over the right page turns on the spine (`scale_x` from 1 to -1), shading as it lifts, lands on the left page and fades into the new text, which only appears then. The sound of a page turning plays with it, one of two takes in turn (`pick`) |
+| Turning the page | a dog-ear at the bottom outer corner of each page: the right one turns forward, the left one back (`press`). The corner is folded over its diagonal, showing the page beneath and the back of the flap, breathes a little so a young reader finds it, and an unseen square around it presses too, so a hand that misses the fold by a bit still turns the page; nowhere else on the page does, so a hand hunting for the red word cannot turn it by accident. ArrowRight, PageDown and Space turn forward, ArrowLeft and PageUp back, Home to the cover (`input.keys`). Each spread routes `next` and `prev` to its neighbours |
+| Page turn | every spread is entered two ways, by its own trigger turning forward and by `<name>_back` from the spread after it turning back. Forward, a blank leaf over the right page turns on the spine (`scale_x` from 1 to -1), shading as it lifts, lands on the left page and fades into the new text, which only appears then. Back, the mirror image: the left page lifts, lands on the right and fades into the new picture. The sound of a page turning plays with either, one of two takes in turn (`pick`) |
 | Paper | one PNG multiplied over both pages and the turning leaf: grain, darker edges, foxing and a deep crease where the pages bend into the binding, so the ink and the pictures look printed on it |
 | Story | IM Fell English at 40 pixels, a line per layer; a page that starts with a letter gets a red initial in IM Fell French Canon, with the first two lines indented beside it |
 | Red words | the lines are laid out by the script, word by word, with the font's advance widths, which is how the engine places glyphs, so each red word is a text layer of its own at a known place. It is anchored at its centre and jumps when its trigger fires; a press on it fires the same trigger (`press`) |
@@ -31,12 +32,12 @@ cd ../../cuelight
 cargo run -p cuelight-player -- ../cuelight-examples/red_riding_hood
 ```
 
-`test-driver.json` is picked up automatically and reads the book: the
-cover, then every page for nine seconds, firing the page's red word
-halfway. Click a red word to fire it yourself. Turn to a page from the
-player's prompt with `page_6`.
+There is no driver: the book opens on its cover and waits for its
+reader. Press the folded corner of the right-hand page to turn it, the
+left one to turn back, and click a red word to make its picture move; or
+from the player's prompt, `page_6` and `tap_eyes`.
 
-The show, the driver and the artwork are written by
+The show and the artwork are written by
 [`tools/red_riding_hood_show.py`](../tools/red_riding_hood_show.py) and
 [`tools/red_riding_hood_art.py`](../tools/red_riding_hood_art.py); the
 page turns by
@@ -61,7 +62,6 @@ Grandma hides in the cupboard and nobody gets eaten.
 
 ## What would make it better
 
-- Turning the page by pressing its corner, and back with the other one.
 - Reading along: narration whose sound carries a marker per word that
   fires a trigger, so each word lights up as it is read aloud.
 - Transitions between scenes: the page turn is played by the new scene

@@ -507,16 +507,20 @@ def plate_frame():
     ]
 
 
-def leaf():
-    """The page that turns: blank paper lifting off the right page and
-    settling on the left, where it fades into the new text."""
+def leaf(trigger, back=False):
+    """The page that turns when `trigger` enters the spread. Forwards,
+    blank paper lifts off the right page and settles on the left, where
+    it fades into the new text; backwards, the left page lifts and
+    settles on the right, where it fades into the new picture."""
     x0, y0, x1, y1 = BOOK
-    return group("leaf", SPINE, y0, [
-        {"name": "sheet", "type": "shape", "shape": {"rect": [0, 0, x1 - SPINE, y1 - y0]}, "fill": PAPER},
-        {"name": "shade", "type": "shape", "shape": {"rect": [0, 0, x1 - SPINE, y1 - y0]}, "fill": INK, "opacity": 0,
+    rect = [-(SPINE - x0), 0, SPINE - x0, y1 - y0] if back else [0, 0, x1 - SPINE, y1 - y0]
+    name = "leaf_back" if back else "leaf"
+    return group(name, SPINE, y0, [
+        {"name": "sheet", "type": "shape", "shape": {"rect": rect}, "fill": PAPER},
+        {"name": "shade", "type": "shape", "shape": {"rect": rect}, "fill": INK, "opacity": 0,
          "timelines": [tl("shade", "opacity", [(0, 0), (0.35, 0.14, "quad_out"), (0.7, 0.03, "quad_in")],
-                          autoplay=True)]},
-    ], opacity=0, timelines=[{"name": "turn", "autoplay": True, "tracks": [
+                          trigger=trigger)]},
+    ], opacity=0, timelines=[{"name": "turn", "trigger": trigger, "tracks": [
         {"property": "scale_x", "keys": [{"t": 0, "v": 1}, {"t": 0.75, "v": -1, "ease": "quad_in_out"}]},
         {"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.72, "v": 1}, {"t": 1.0, "v": 0, "ease": "quad_out"}]},
     ]}])
@@ -532,25 +536,83 @@ def page_numbers(n):
     ]
 
 
-def spread(name, trigger, story, picture, tap=None, n=0, extra_left=()):
+def spread(name, trigger, story, picture, tap=None, n=0, extra_left=(), before=None, after=None):
     x, y, w, h = PLATE
     left = pulse(lay_out(story), tap) if story else []
-    # The left page shows up once the turning leaf has landed on it.
-    left_page = group("left_page", 0, 0, [*page_numbers(n), *left, *extra_left], opacity=0,
-                      timelines=[tl("appear", "opacity", [(0, 0), (0.7, 0), (0.95, 1)], autoplay=True, hold=True)])
+    # A spread is entered two ways: by its own trigger, turning forward,
+    # or by `<name>_back` from the spread after it, turning back. The
+    # page the leaf lands on shows up once it has landed: the left text
+    # on a forward turn, the picture on a back turn. Opened without a
+    # turn (the cover, at load) both are simply there.
+    back = f"{name}_back"
+    landed = [(0, 0), (0.7, 0), (0.95, 1)]
+    left_page = group("left_page", 0, 0, [*page_numbers(n), *left, *extra_left],
+                      timelines=[tl("appear", "opacity", landed, trigger=trigger, hold=True)])
+    # What a page turn means here: `next` and `prev` (from the keys and
+    # the corners) become this spread's neighbours, through timelines of
+    # no length whose end fires them.
+    routes = []
+    if after:
+        routes.append({"name": "next", "trigger": "next", "on_end": after,
+                       "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]})
+    if before:
+        routes.append({"name": "prev", "trigger": "prev", "on_end": f"{before}_back",
+                       "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0}]}]})
+    nav = [{"name": "nav", "type": "shape", "shape": {"rect": [0, 0, 1, 1]}, "fill": "#00000000",
+            "timelines": routes}] if routes else []
     return {
-        "name": name, "trigger": trigger,
+        "name": name, "trigger": [trigger, back],
         "layers": [
+            *nav,
             left_page,
-            group("picture", x, y, picture, clip={"rect": [0, 0, w, h]}),
+            group("picture", x, y, picture, clip={"rect": [0, 0, w, h]},
+                  timelines=[tl("appear_back", "opacity", landed, trigger=back, hold=True)]),
             *plate_frame(),
-            leaf(),
+            leaf(trigger),
+            leaf(back, back=True),
+            *page_turns(before, after),
             # Over the turning leaf too, so it is the same paper.
             {"name": "paper", "type": "image", "image": "paper", "x": BOOK[0], "y": BOOK[1],
              "size": [BOOK[2] - BOOK[0], BOOK[3] - BOOK[1]], "blend": "multiply"},
             {"name": "rustle", "type": "audio", "sound": ["turn1", "turn2"], "autoplay": True, "gain": 0.3},
         ],
     }
+
+
+def page_turns(before, after):
+    """A dog-ear at the bottom outer corner of each page turns it: the
+    right one forward, the left one back. The corner is folded over
+    along its diagonal, showing the page beneath and the back of the
+    flap, and it breathes a little so a young reader finds it. A hand
+    that misses the fold by a bit still lands on it: an unseen square
+    around the corner presses too. Nowhere else on the page does."""
+    x0, y0, x1, y1 = BOOK
+    S = 52          # the fold, in pixels along each edge
+    REACH = 120     # how far off the fold a press still counts
+    beneath = "#E3D4B0"
+    flap_fill = {"linear": {"from": [-S / 2, -S / 2], "to": [-S, -S],
+                            "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}}
+
+    def ear(name, trigger, x, facing):
+        return group(name, x, y1, [
+            {"name": "reach", "type": "shape", "shape": {"rect": [-REACH, -REACH, REACH, REACH]},
+             "fill": "#00000000", "press": {"trigger": trigger}},
+            {"name": "beneath", "type": "shape", "shape": {"path": f"M 0 {-S} L {-S} 0 L 0 0 Z"},
+             "fill": beneath, "press": {"trigger": trigger}},
+            {"name": "shadow", "type": "shape", "shape": {"path": f"M 0 {-S} L {-S} 0 L {-S} {-S} Z"},
+             "fill": "#00000030", "x": 3, "y": 3},
+            {"name": "flap", "type": "shape", "shape": {"path": f"M 0 {-S} L {-S} 0 L {-S} {-S} Z"},
+             "fill": flap_fill, "stroke": {"color": "#B9A67F", "width": 1}, "press": {"trigger": trigger}},
+        ], scale_x=facing, timelines=[{"name": "breathe", "autoplay": True, "loop": True, "tracks": [
+            {"property": "scale", "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"},
+                                            {"t": 2.4, "v": 1, "ease": "quad_in_out"}]}]}])
+
+    out = []
+    if before:
+        out.append(ear("ear_back", "prev", x0, -1))
+    if after:
+        out.append(ear("ear_forward", "next", x1, 1))
+    return out
 
 
 STORY = [
@@ -581,8 +643,9 @@ def cover():
          "shape": {"path": "M -120 0 C -80 -18 -40 18 0 0 C 40 -18 80 18 120 0 M -8 0 L 0 -8 L 8 0 L 0 8 Z"},
          "fill": RED, "stroke": {"color": INK, "width": 1.5}},
         text("subtitle", 70, 420, "subtitle", "A fairy tale for young readers", size=[570, 40], align="center"),
+        text("hint", 70, 560, "running", "Press the folded corner to turn the page.", size=[570, 30], align="center"),
     ]
-    return spread("cover", "cover", None, picture_cover(), extra_left=left)
+    return spread("cover", "cover", None, picture_cover(), extra_left=left, after=STORY[0][0])
 
 
 def the_end():
@@ -597,9 +660,12 @@ def the_end():
 def show():
     x0, y0, x1, y1 = BOOK
     scenes = [cover()]
+    names = ["cover"] + [name for name, _tap, _story, _picture in STORY]
     for n, (name, tap, story, picture) in enumerate(STORY, 1):
         extra = the_end() if n == len(STORY) else ()
-        scenes.append(spread(name, name, story, picture(), tap=tap, n=n, extra_left=extra))
+        after = names[n + 1] if n + 1 < len(names) else None
+        scenes.append(spread(name, name, story, picture(), tap=tap, n=n, extra_left=extra,
+                             before=names[n - 1], after=after))
     book = [
         {"name": "table", "type": "image", "image": "table", "size": [W, H]},
         {"name": "shadow", "type": "shape", "x": x0 + 8, "y": y0 + 12,
@@ -629,17 +695,13 @@ def show():
             "running": {"file": "IMFellEnglish-Italic", "size": 18, "color": MUTED},
             "folio": {"file": "IMFellEnglish-Regular", "size": 18, "color": MUTED},
         },
+        "input": {
+            "keys": {"ArrowRight": "next", "PageDown": "next", " ": "next",
+                     "ArrowLeft": "prev", "PageUp": "prev", "Home": "cover"},
+        },
         "layers": book,
         "scenes": scenes,
     }
-
-
-def driver():
-    steps = [{"trigger": "cover"}, {"wait": 5.0}]
-    for name, tap, _story, _picture in STORY:
-        steps += [{"trigger": name}, {"wait": 4.0}, {"trigger": tap}, {"wait": 5.0}]
-    steps += [{"wait": 3.0}]
-    return {"loop": True, "steps": steps}
 
 
 def compact(value, indent=0, width=150):
@@ -658,4 +720,3 @@ def compact(value, indent=0, width=150):
 if __name__ == "__main__":
     out = Path(sys.argv[1])
     (out / "show.json").write_text(compact(show()) + "\n")
-    (out / "test-driver.json").write_text(json.dumps(driver(), indent=2) + "\n")
