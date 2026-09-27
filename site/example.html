@@ -46,6 +46,7 @@
         <button class="tab" data-file="test-driver.json" id="driver-tab" hidden>test-driver.json</button>
         <span class="spacer"></span>
         <a id="github" href="">on GitHub</a>
+        <a id="editor" href="" title="Open the packed show in the cuelight editor">open in editor</a>
       </h2>
       <pre id="source"></pre>
     </div>
@@ -104,6 +105,9 @@ $("category").textContent = example.category;
 $("title").textContent = example.title;
 $("description").textContent = example.description;
 $("github").href = `https://github.com/francisdb/cuelight-examples/tree/main/${example.path}`;
+// The web editor fetches the show from this site; both are published on
+// the same origin, so that works there (not from a local copy).
+$("editor").href = `https://francisdb.github.io/cuelight-editor/?show=${new URL(`shows/${example.path}.cuelight`, location.href)}`;
 for (const [id, other, text] of [["previous", examples[index - 1], "\u2190 "], ["next", examples[index + 1], " \u2192"]]) {
   if (!other) continue;
   $(id).href = `example.html?show=${other.path}`;
