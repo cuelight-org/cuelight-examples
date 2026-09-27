@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
-  "format": 1, "name": "when_while", "size": [640, 360], "background": "#0E1116",
+  "format": 1, "name": "when_while", "size": [800, 450], "background": "#0E1116",
   "variables": {"lamp": 0, "mode": "", "phase": ""},
   "layers": [
     {
@@ -60,7 +60,7 @@
       ]
     },
     {
-      "name": "phase", "type": "digits", "digits": 40, "size": [461, 16], "x": 24, "y": 300, "text": "",
+      "name": "phase", "type": "digits", "digits": 60, "size": [692, 16], "x": 24, "y": 390, "text": "",
       "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}},
       "bindings": [{"property": "text", "variable": "phase"}]
     }
@@ -149,6 +149,23 @@
         {
           "name": "rule_mode_2", "type": "digits", "digits": 15, "size": [130, 12], "x": 503, "y": 242,
           "text": "IS BONUS: FLASH", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+        },
+        {
+          "name": "out_settled", "type": "shape", "shape": {"circle": [0, 0, 30]}, "x": 728, "y": 178, "fill": "#FFB000", "opacity": 0.08,
+          "timelines": [
+            {
+              "name": "flash", "when": {"variable": "lamp", "debounce": 0.5},
+              "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 0.08, "ease": "quad_in"}]}]
+            }
+          ]
+        },
+        {
+          "name": "rule_settled_1", "type": "digits", "digits": 9, "size": [78, 12], "x": 689, "y": 224, "text": "WHEN LAMP",
+          "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}
+        },
+        {
+          "name": "rule_settled_2", "type": "digits", "digits": 14, "size": [121, 12], "x": 667, "y": 242, "text": "SETTLES: FLASH",
+          "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
         }
       ]
     },
