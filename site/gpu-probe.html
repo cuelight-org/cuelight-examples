@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cuelight GPU probe</title>
+<link rel="stylesheet" href="site.css">
+<style>
+  main { max-width: 900px; margin: 0 auto; padding: 16px; }
+  pre { white-space: pre-wrap; word-break: break-word; font-size: 13px; }
+  .ok { color: #3fb950; } .bad { color: #f85149; }
+</style>
+</head>
+<body>
+<header class="top"><div class="inner">
+  <a class="brand" href="./">cue<span>light</span> examples</a>
+</div></header>
+<main>
+  <h1>GPU probe</h1>
+  <p class="lead">What this browser's GPU makes of the renderer's compute shaders: each one is compiled and made
+    into a pipeline here, on its own, and the ones the GPU refuses are listed with the reason. For a report
+    when a show draws nothing.</p>
+  <pre id="out">starting</pre>
+</main>
+<script type="module">
+const out = document.getElementById("out");
+const lines = [];
+const say = (text, cls) => {
+  lines.push(cls ? `<span class="${cls}">${text}</span>` : text);
+  out.innerHTML = lines.join("\n");
+  console.log(text);
+};
+const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
+try {
+  say(`browser  ${esc(navigator.userAgent)}`);
+  if (!navigator.gpu) throw new Error("no WebGPU in this browser");
+  const adapter = await navigator.gpu.requestAdapter();
+  if (!adapter) throw new Error("no GPU adapter");
+  const info = adapter.info;
+  say(`gpu      ${esc([info.vendor, info.architecture, info.device, info.description].filter(Boolean).join(" "))}`);
+  say(`features ${[...adapter.features].sort().join(" ")}`);
+  const l = adapter.limits;
+  say(`limits   workgroup storage ${l.maxComputeWorkgroupStorageSize}, invocations ${l.maxComputeInvocationsPerWorkgroup}, `
+    + `workgroups/dim ${l.maxComputeWorkgroupsPerDimension}, storage buffers/stage ${l.maxStorageBuffersPerShaderStage}, `
+    + `storage buffer ${l.maxStorageBufferBindingSize}, buffer ${l.maxBufferSize}, texture ${l.maxTextureDimension2D}`);
+  // The same request the renderer makes: default limits, no features.
+  const device = await adapter.requestDevice();
+  device.addEventListener("uncapturederror", (e) => say(`uncaptured ${e.error.constructor.name}: ${esc(e.error.message)}`, "bad"));
+  device.lost.then((i) => say(`device lost (${i.reason}): ${esc(i.message)}`, "bad"));
+  const shaders = await (await fetch("gpu-probe-shaders.json")).json();
+  say(`\n${shaders.length} compute shaders, made one by one:`);
+  let failed = 0;
+  for (const shader of shaders) {
+    const label = `${shader.name} (workgroup ${shader.workgroup_size.join("x")}, ${shader.workgroup_bytes} B shared)`;
+    try {
+      device.pushErrorScope("validation");
+      device.pushErrorScope("internal");
+      const module = device.createShaderModule({ label: shader.name, code: shader.wgsl });
+      const compiled = await module.getCompilationInfo();
+      const errors = compiled.messages.filter((m) => m.type === "error");
+      if (errors.length) throw new Error(errors.map((m) => `${m.lineNum}:${m.linePos} ${m.message}`).join("; "));
+      await device.createComputePipelineAsync({ label: shader.name, layout: "auto", compute: { module, entryPoint: "main" } });
+      const internal = await device.popErrorScope();
+      const validation = await device.popErrorScope();
+      const error = internal ?? validation;
+      if (error) throw new Error(`${error.constructor.name}: ${error.message}`);
+      say(`ok    ${esc(label)}`, "ok");
+    } catch (e) {
+      failed += 1;
+      say(`FAIL  ${esc(label)}\n      ${esc(e.message ?? e)}`, "bad");
+    }
+  }
+  say(failed ? `\n${failed} of ${shaders.length} refused` : `\nall ${shaders.length} accepted`, failed ? "bad" : "ok");
+} catch (e) {
+  say(`error    ${esc(e.message ?? e)}`, "bad");
+}
+</script>
+</body>
+</html>
