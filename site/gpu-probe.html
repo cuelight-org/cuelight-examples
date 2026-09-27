@@ -76,7 +76,7 @@ try {
   // down to the construct the driver cannot build.
   if (failed || new URLSearchParams(location.search).has("variants")) {
     const variants = await (await fetch("gpu-probe-variants.json")).json();
-    say(`\n${variants.length} variants of pathtag_reduce, to find what is refused:`);
+    say(`\n${variants.length} variants of the same reduction, to find what is refused:`);
     for (const variant of variants) {
       try {
         device.pushErrorScope("validation");
