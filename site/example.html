@@ -90,15 +90,31 @@ const log = (text, error) => {
   $("log").prepend(line);
   while ($("log").childElementCount > 200) $("log").lastChild.remove();
 };
+// A failure repeats every frame, and the first message, the one that says
+// why, would scroll out of the log: each distinct message is kept once,
+// with a count of how often it came.
+const repeats = new Map();
+const once = (text, error) => {
+  const line = repeats.get(text);
+  if (line) {
+    line.count += 1;
+    line.counter.textContent = ` (x${line.count})`;
+    return;
+  }
+  const counter = document.createElement("span");
+  log(text, error);
+  $("log").firstChild.append(counter);
+  repeats.set(text, { count: 1, counter });
+};
 // What the browser would only say in its console (a GPU error, a panic,
 // a rejected promise) goes into the log too: on a phone there is no
 // console to open.
 for (const level of ["error", "warn"]) {
   const original = console[level].bind(console);
-  console[level] = (...args) => { original(...args); log(args.map(String).join(" "), level === "error"); };
+  console[level] = (...args) => { original(...args); once(args.map(String).join(" "), level === "error"); };
 }
-addEventListener("error", (e) => log(e.message, true));
-addEventListener("unhandledrejection", (e) => log(e.reason?.message ?? String(e.reason), true));
+addEventListener("error", (e) => once(e.message, true));
+addEventListener("unhandledrejection", (e) => once(e.reason?.message ?? String(e.reason), true));
 // GPU errors do not reach the console hooks: an uncaptured error, a lost
 // device or a shader that did not compile fires on the device the player
 // makes for itself. Listen on every device made on this page.
@@ -106,15 +122,15 @@ if (navigator.gpu) {
   const requestDevice = GPUAdapter.prototype.requestDevice;
   GPUAdapter.prototype.requestDevice = async function (...args) {
     const device = await requestDevice.apply(this, args);
-    device.addEventListener("uncapturederror", (e) => log(`gpu    ${e.error.constructor.name}: ${e.error.message}`, true));
-    device.lost.then((info) => log(`gpu    device lost (${info.reason}): ${info.message}`, true));
+    device.addEventListener("uncapturederror", (e) => once(`gpu    ${e.error.constructor.name}: ${e.error.message}`, true));
+    device.lost.then((info) => once(`gpu    device lost (${info.reason}): ${info.message}`, true));
     return device;
   };
   const createShaderModule = GPUDevice.prototype.createShaderModule;
   GPUDevice.prototype.createShaderModule = function (...args) {
     const module = createShaderModule.apply(this, args);
     module.getCompilationInfo().then((info) => {
-      for (const m of info.messages) if (m.type === "error") log(`shader ${args[0]?.label ?? ""} ${m.lineNum}:${m.linePos} ${m.message}`, true);
+      for (const m of info.messages) if (m.type === "error") once(`shader ${args[0]?.label ?? ""} ${m.lineNum}:${m.linePos} ${m.message}`, true);
     });
     return module;
   };
