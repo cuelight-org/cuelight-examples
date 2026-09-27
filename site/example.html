@@ -111,18 +111,22 @@ const once = (text, error) => {
 // console to open.
 for (const level of ["error", "warn"]) {
   const original = console[level].bind(console);
-  console[level] = (...args) => { original(...args); once(args.map(String).join(" "), level === "error"); };
+  console[level] = (...args) => {
+    original(...args);
+    const text = args.map(String).join(" ");
+    // The player's own lines come through its warnings and onError.
+    if (!text.startsWith("cuelight: ")) once(text, level === "error");
+  };
 }
 addEventListener("error", (e) => once(e.message, true));
 addEventListener("unhandledrejection", (e) => once(e.reason?.message ?? String(e.reason), true));
-// GPU errors do not reach the console hooks: an uncaptured error, a lost
-// device or a shader that did not compile fires on the device the player
-// makes for itself. Listen on every device made on this page.
+// A lost device and a shader that did not compile do not reach the
+// console hooks or the player's onError: they fire on the device the
+// player makes for itself. Listen on every device made on this page.
 if (navigator.gpu) {
   const requestDevice = GPUAdapter.prototype.requestDevice;
   GPUAdapter.prototype.requestDevice = async function (...args) {
     const device = await requestDevice.apply(this, args);
-    device.addEventListener("uncapturederror", (e) => once(`gpu    ${e.error.constructor.name}: ${e.error.message}`, true));
     device.lost.then((info) => once(`gpu    device lost (${info.reason}): ${info.message}`, true));
     return device;
   };
@@ -192,6 +196,9 @@ async function play() {
   warnings.forEach((warning) => log(warning, true));
   $("sound-note").hidden = !warnings.some((warning) => warning.includes("could not be decoded"));
   player.onEvent((event) => log(`event  ${JSON.stringify(event)}`));
+  // A GPU error or a failed frame: the player stops its frames there and
+  // says why, the cause before the frame it failed.
+  player.onError((message) => once(message, true));
 
   for (const action of player.actions()) {
     const button = document.createElement("button");
