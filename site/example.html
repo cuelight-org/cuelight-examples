@@ -228,10 +228,9 @@ async function play() {
   if (example.scrub) $("scrub").max = example.scrub;
 }
 
-// The show's clock. Seeking replays the show from its start at the rate
-// the page plays it at, 60 steps a second, so a scrubbed moment looks the
-// way it does when played.
-const FPS = 60;
+// The show's clock. Seeking replays the show's inputs from its start,
+// each at its own instant, so a scrubbed moment looks the way it does
+// when played.
 let resumeAfterScrub = false;
 $("pause").onclick = () => (player.paused ? player.resume() : player.pause());
 // Another screen shape: the player fits the show into it and letterboxes it.
@@ -239,7 +238,7 @@ $("screen").onchange = () => {
   $("canvas").style.aspectRatio = $("screen").value || `${player.width} / ${player.height}`;
 };
 $("scrub").onpointerdown = () => { resumeAfterScrub = !player.paused; player.pause(); };
-$("scrub").oninput = () => player.seek($("scrub").valueAsNumber, FPS);
+$("scrub").oninput = () => player.seek($("scrub").valueAsNumber);
 $("scrub").onchange = () => { if (resumeAfterScrub) player.resume(); resumeAfterScrub = false; };
 (function tick() {
   if (player) {
