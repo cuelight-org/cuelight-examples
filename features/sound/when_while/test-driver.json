@@ -1,0 +1,30 @@
+{
+  "loop": true,
+  "steps": [
+    {"set": {"warnings": 0, "door": false, "mode": "play", "phase": "ALL QUIET"}},
+    {"wait": 2.0},
+    {"set": {"warnings": 1, "phase": "ONE WARNING: NOTHING LISTENS FOR ONE"}},
+    {"wait": 2.0},
+    {"set": {"warnings": 2, "phase": "TWO: THE CHIME, ONCE, AS IT BECOMES 2"}},
+    {"wait": 2.5},
+    {"set": {"warnings": 3, "phase": "THREE: THE OTHER CHIME, AT ITS THRESHOLD"}},
+    {"wait": 2.5},
+    {"set": {"door": true, "phase": "DOOR OPEN: ONE WARN, HOWEVER LONG IT STAYS OPEN"}},
+    {"wait": 2.5},
+    {"set": {"door": false, "phase": "DOOR SHUT"}},
+    {"wait": 1.0},
+    {"set": {"door": true, "phase": "OPEN AGAIN: WARN AGAIN"}},
+    {"wait": 1.5},
+    {"set": {"door": false}},
+    {"wait": 1.0},
+    {"set": {"mode": "tilt", "phase": "TILT: THE SIREN LOOPS WHILE IT LASTS"}},
+    {"wait": 4.0},
+    {"set": {"mode": "play", "phase": "PLAY AGAIN: THE SIREN STOPS MID-LOOP"}},
+    {"wait": 2.0},
+    {"set": {"phase": "TEST: THE SAME CHIME, FROM A TRIGGER"}},
+    {"trigger": "test"},
+    {"wait": 2.5},
+    {"set": {"warnings": 0, "phase": "BACK TO 0: WHEN WAITS FOR THE NEXT RISE"}},
+    {"wait": 2.5}
+  ]
+}
