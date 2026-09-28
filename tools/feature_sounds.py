@@ -23,6 +23,9 @@ runs to its end.
 For pick, three takes of one knock on a woodblock, knock1.ogg to
 knock3.ogg, a quarter second each. Real takes would differ less: these
 are a C, an E and a G, so which one plays is easy to hear.
+For when_while: chime.ogg, a struck bell; warn.ogg, a buzz falling an
+octave; siren.ogg, a second of two tones taking turns that loops
+without a seam.
 
 For ducking, bed.ogg is eight seconds of soft arpeggios over C, Am, F
 and G, every note above 300 Hz, looping without a seam, and callout.ogg
@@ -257,6 +260,20 @@ def tune(notes, seconds=1.2, step=0.2):
     return [0.6 * v / peak for v in out]
 
 
+def siren(low=520.0, high=690.0, seconds=1.0):
+    """Two tones taking turns, half a second each, the change eased so
+    the loop has no click at its seam."""
+    total = int(RATE * seconds)
+    out, phase = [], 0.0
+    for i in range(total):
+        t = i / total
+        blend = 0.5 - 0.5 * math.cos(2 * math.pi * t)
+        f = low + (high - low) * blend
+        phase += 2 * math.pi * f / RATE
+        out.append(0.4 * sum(math.sin(n * phase) / n for n in (1, 2, 3)))
+    return out
+
+
 def knock(pitch, seed):
     """A knock on a woodblock: a tone and the inharmonic overtone wood
     has, both dying fast, and a click of noise on top for the strike.
@@ -303,6 +320,11 @@ def main():
             ("knock1", knock(523.25, 1)),
             ("knock2", knock(659.25, 2)),
             ("knock3", knock(783.99, 3)),
+        ],
+        "when_while": [
+            ("chime", bell(strikes=(0.0,), seconds=0.9)),
+            ("warn", buzz(700, 350, seconds=0.5)),
+            ("siren", siren()),
         ],
     }
     for example, sounds in examples.items():

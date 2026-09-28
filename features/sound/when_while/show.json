@@ -1,0 +1,142 @@
+{
+  "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+  "format": 1, "name": "sound_when_while", "size": [800, 450], "background": "#0E1116",
+  "variables": {"warnings": 0, "door": false, "mode": "play", "phase": ""},
+  "layers": [
+    {
+      "name": "title", "type": "digits", "digits": 20, "size": [174, 20], "x": 24, "y": 18, "text": "SOUND WHEN AND WHILE",
+      "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}
+    },
+    {
+      "name": "warnings_label", "type": "digits", "digits": 8, "size": [70, 14], "x": 24, "y": 58, "text": "WARNINGS",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "warnings_value", "type": "digits", "digits": 1, "size": [10, 14], "x": 104, "y": 58, "text": "",
+      "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}},
+      "bindings": [{"property": "text", "variable": "warnings"}]
+    },
+    {
+      "name": "door_label", "type": "digits", "digits": 4, "size": [35, 14], "x": 200, "y": 58, "text": "DOOR",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "door_value", "type": "digits", "digits": 6, "size": [52, 14], "x": 244, "y": 58, "text": "",
+      "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}},
+      "bindings": [{"property": "text", "variable": "door", "map": {"true": "OPEN", "false": "SHUT"}}]
+    },
+    {
+      "name": "mode_label", "type": "digits", "digits": 4, "size": [35, 14], "x": 380, "y": 58, "text": "MODE",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "mode_value", "type": "digits", "digits": 4, "size": [35, 14], "x": 424, "y": 58, "text": "",
+      "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}},
+      "bindings": [{"property": "text", "variable": "mode", "map": {"play": "PLAY", "tilt": "TILT"}}]
+    },
+    {
+      "name": "test_label", "type": "digits", "digits": 4, "size": [35, 14], "x": 560, "y": 58, "text": "TEST",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "test_hit", "type": "shape", "shape": {"rect": [0, 0, 56, 22], "radius": 11}, "x": 604, "y": 54,
+      "fill": "#FFB000", "opacity": 0,
+      "timelines": [
+        {"name": "fired", "trigger": "test", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.9, "v": 0, "ease": "quad_in"}]}]}
+      ]
+    },
+
+    {
+      "name": "chime_two", "type": "audio", "sound": "chime", "gain": 0.8,
+      "when": {"variable": "warnings", "map": {"2": 1}}
+    },
+    {
+      "name": "out_two", "type": "shape", "shape": {"circle": [0, 0, 30]}, "x": 100, "y": 178, "fill": "#FFB000", "opacity": 0.08,
+      "timelines": [
+        {"name": "flash", "when": {"variable": "warnings", "map": {"2": 1}},
+         "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.9, "v": 0.08, "ease": "quad_in"}]}]}
+      ]
+    },
+    {
+      "name": "two_1", "type": "digits", "digits": 13, "size": [113, 12], "x": 44, "y": 224, "text": "WHEN WARNINGS",
+      "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}
+    },
+    {
+      "name": "two_2", "type": "digits", "digits": 16, "size": [139, 12], "x": 31, "y": 242, "text": "BECOMES 2: CHIME",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+
+    {
+      "name": "warn_door", "type": "audio", "sound": "warn", "gain": 0.7,
+      "while": {"variable": "door"}
+    },
+    {
+      "name": "out_door", "type": "shape", "shape": {"circle": [0, 0, 30]}, "x": 300, "y": 178, "fill": "#FFB000", "opacity": 0.08,
+      "bindings": [{"property": "opacity", "variable": "door", "map": {"true": 1, "false": 0.08}}]
+    },
+    {
+      "name": "door_1", "type": "digits", "digits": 15, "size": [130, 12], "x": 235, "y": 224, "text": "WHILE DOOR OPEN",
+      "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}
+    },
+    {
+      "name": "door_2", "type": "digits", "digits": 20, "size": [174, 12], "x": 213, "y": 242, "text": "ONE WARN PER OPENING",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+
+    {
+      "name": "siren_tilt", "type": "audio", "sound": "siren", "loop": true, "gain": 0.6,
+      "while": {"variable": "mode", "map": {"tilt": 1}}
+    },
+    {
+      "name": "out_tilt", "type": "shape", "shape": {"circle": [0, 0, 30]}, "x": 500, "y": 178, "fill": "#F87171", "opacity": 0.08,
+      "timelines": [
+        {"name": "blink", "while": {"variable": "mode", "map": {"tilt": 1}}, "loop": true,
+         "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.5, "v": 0.08, "ease": "step"}, {"t": 1, "v": 0.08}]}]}
+      ]
+    },
+    {
+      "name": "tilt_1", "type": "digits", "digits": 15, "size": [130, 12], "x": 435, "y": 224, "text": "WHILE MODE TILT",
+      "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}
+    },
+    {
+      "name": "tilt_2", "type": "digits", "digits": 16, "size": [139, 12], "x": 431, "y": 242, "text": "THE SIREN LOOPS",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+
+    {
+      "name": "chime_either", "type": "audio", "sound": "chime", "gain": 0.8, "trigger": "test",
+      "when": {"variable": "warnings", "threshold": 3}
+    },
+    {
+      "name": "out_either", "type": "shape", "shape": {"circle": [0, 0, 30]}, "x": 700, "y": 178, "fill": "#FFB000", "opacity": 0.08,
+      "timelines": [
+        {"name": "flash", "trigger": "test", "when": {"variable": "warnings", "threshold": 3},
+         "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 0.9, "v": 0.08, "ease": "quad_in"}]}]}
+      ]
+    },
+    {
+      "name": "either_1", "type": "digits", "digits": 15, "size": [130, 12], "x": 635, "y": 224, "text": "WHEN WARNINGS 3",
+      "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}
+    },
+    {
+      "name": "either_2", "type": "digits", "digits": 14, "size": [121, 12], "x": 640, "y": 242, "text": "OR TEST: CHIME",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+
+    {
+      "name": "note", "type": "digits", "digits": 70, "size": [607, 12], "x": 24, "y": 330,
+      "text": "A SOUND PLAYS ON A CONDITION THE WAY A TIMELINE STARTS ON ONE.",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "note_2", "type": "digits", "digits": 70, "size": [607, 12], "x": 24, "y": 350,
+      "text": "WHEN: THE RISING EDGE. WHILE: AS LONG AS IT HOLDS, A LOOP THROUGHOUT.",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "phase", "type": "digits", "digits": 60, "size": [692, 16], "x": 24, "y": 400, "text": "",
+      "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}},
+      "bindings": [{"property": "text", "variable": "phase"}]
+    }
+  ]
+}
