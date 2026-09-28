@@ -58,6 +58,8 @@ h1 { margin: 2px 0 4px; font-size: 26px; }
 button, input { font: inherit; }
 button { padding: 4px 12px; border-radius: 6px; border: 1px solid var(--line); background: #1b222c; color: var(--text); cursor: pointer; }
 button:hover { border-color: var(--accent); }
+button:disabled { opacity: 0.4; cursor: default; }
+button:disabled:hover { border-color: var(--line); }
 button.tab { border: 0; background: none; padding: 0; text-transform: none; letter-spacing: 0; font-size: 13px; color: var(--muted); }
 button.tab[aria-selected="true"] { color: var(--accent); }
 .variables { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 10px; align-items: center; font-size: 13px; }

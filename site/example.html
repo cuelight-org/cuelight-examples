@@ -141,6 +141,41 @@ if (navigator.gpu) {
 }
 
 // The catalog says what there is; ?show=path picks one.
+// Where each trigger is heard, worked out from the document the way the
+// editor's inputs panel does it; cuelight#229 asks the engine to say it.
+// A trigger that enters a scene is `{ opens }`; one only a single scene
+// hears is `{ scene }`; one heard by the show's own layers, by several
+// scenes or by nobody is `{}`.
+function listeners(show) {
+  const names = (t) => (t == null ? [] : Array.isArray(t) ? t : [t]);
+  const heard = new Map();
+  const note = (trigger, root) => {
+    if (!heard.has(trigger)) heard.set(trigger, new Set());
+    heard.get(trigger).add(root);
+  };
+  const walk = (layers, root) => {
+    for (const layer of layers ?? []) {
+      for (const timeline of layer.timelines ?? []) for (const t of names(timeline.trigger)) note(t, root);
+      for (const t of [...names(layer.trigger), ...names(layer.stop)]) note(t, root);
+      for (const t of names(layer.display?.reel?.spin)) note(t, root);
+      walk(layer.children, root);
+    }
+  };
+  walk(show.layers, "");
+  const opens = new Map();
+  for (const scene of show.scenes ?? []) {
+    for (const t of names(scene.trigger)) opens.set(t, scene.name);
+    walk(scene.layers, scene.name);
+  }
+  const places = new Map();
+  for (const [trigger, roots] of heard) {
+    places.set(trigger, roots.size === 1 && !roots.has("") ? { scene: [...roots][0] } : {});
+  }
+  for (const [trigger, scene] of opens) places.set(trigger, { opens: scene });
+  return places;
+}
+let heard = new Map();
+
 const catalog = await (await fetch("examples.json")).json();
 const examples = catalog.categories.flatMap((category) =>
   category.examples.map((example) => ({ ...example, category: category.name })));
@@ -200,9 +235,14 @@ async function play() {
   // says why, the cause before the frame it failed.
   player.onError((message) => once(message, true));
 
+  heard = listeners(JSON.parse(sources["show.json"]));
   for (const action of player.actions()) {
     const button = document.createElement("button");
     button.textContent = action;
+    button.dataset.action = action;
+    const place = heard.get(action);
+    if (place?.opens) button.title = `opens scene ${place.opens}`;
+    else if (place?.scene) button.title = `heard in scene ${place.scene}`;
     button.onclick = () => { player.trigger(action); log(`host   trigger ${action}`); };
     $("actions").append(button);
   }
@@ -261,10 +301,15 @@ $("sound").onclick = () => {
   log(`host   sound ${player.audioEnabled ? "on" : "off"}`);
 };
 
-// The driver changes variables too: show what the show currently holds.
+// The driver changes variables too: show what the show currently holds,
+// and which triggers the scene that is up listens to.
 setInterval(() => {
   if (!player) return;
   $("scene").textContent = player.activeScene ? `scene: ${player.activeScene}` : "";
+  for (const button of $("actions").querySelectorAll("button")) {
+    const place = heard.get(button.dataset.action);
+    button.disabled = place?.scene !== undefined && place.scene !== player.activeScene;
+  }
   $("driver").textContent = player.driverPlaying ? "pause driver" : "play driver";
   $("sound").hidden = false;
   $("sound").textContent = !player.audioEnabled ? "sound on" : player.audioRunning ? "sound off" : "enable sound";
