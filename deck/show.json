@@ -26,7 +26,14 @@
     "chip_paper": {"file": "DMMono-Medium", "size": 19, "color": "#F4EFE6"},
     "equation": {"file": "DMMono-Medium", "size": 36, "color": "#1C1B22"},
     "mono_small": {"file": "DMMono-Regular", "size": 15, "color": "#8A857C"},
-    "link": {"file": "DMMono-Medium", "size": 30, "color": "#1C1B22"}
+    "link": {"file": "DMMono-Medium", "size": 30, "color": "#1C1B22"},
+    "code_plain": {"file": "DMMono-Regular", "size": 18, "color": "#F4EFE6"},
+    "code_key": {"file": "DMMono-Regular", "size": 18, "color": "#9DB8FF"},
+    "code_string": {"file": "DMMono-Regular", "size": 18, "color": "#FFC857"},
+    "code_number": {"file": "DMMono-Regular", "size": 18, "color": "#5EE0B0"},
+    "code_punct": {"file": "DMMono-Regular", "size": 18, "color": "#8E8A80"},
+    "code_prompt": {"file": "DMMono-Medium", "size": 18, "color": "#FF5A3C"},
+    "code_out": {"file": "DMMono-Regular", "size": 18, "color": "#8E8A80"}
   },
   "variables": {"credits": 0},
   "input": {
@@ -2626,192 +2633,507 @@
         },
         {
           "name": "run_0_0",
-          "type": "group",
+          "type": "text",
+          "text": "$",
+          "font": "code_prompt",
           "x": 106,
           "y": 214,
-          "children": [
-            {"name": "code", "type": "vector", "vector": "code_17"},
+          "reveal": 0,
+          "timelines": [
             {
-              "name": "cover",
-              "type": "shape",
-              "x": -4,
-              "y": -6,
-              "shape": {"rect": [0, 0, 690, 32]},
-              "fill": "#1C1B22",
-              "timelines": [
-                {
-                  "name": "type",
-                  "autoplay": true,
-                  "delay": 0.6,
-                  "hold": true,
-                  "tracks": [{"property": "x", "keys": [{"t": 0, "v": -4}, {"t": 0.88, "v": 530.2}]}]
-                }
-              ]
+              "name": "type",
+              "autoplay": true,
+              "delay": 0.6,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.02, "v": 1}]}]
             }
-          ],
-          "clip": {"rect": [-6, -8, 680, 34]}
+          ]
         },
         {
-          "name": "run_1_0",
-          "type": "group",
-          "x": 106,
-          "y": 244,
-          "children": [
-            {"name": "code", "type": "vector", "vector": "code_18"},
+          "name": "run_0_2",
+          "type": "text",
+          "text": "cuelight-render",
+          "font": "code_plain",
+          "x": 127.6,
+          "y": 214,
+          "reveal": 0,
+          "timelines": [
             {
-              "name": "cover",
-              "type": "shape",
-              "x": -4,
-              "y": -6,
-              "shape": {"rect": [0, 0, 690, 32]},
-              "fill": "#1C1B22",
-              "timelines": [
-                {
-                  "name": "type",
-                  "autoplay": true,
-                  "delay": 1.68,
-                  "hold": true,
-                  "tracks": [{"property": "x", "keys": [{"t": 0, "v": -4}, {"t": 0.25, "v": 152.2}]}]
-                }
-              ]
+              "name": "type",
+              "autoplay": true,
+              "delay": 0.64,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.27, "v": 1}]}]
             }
-          ],
-          "clip": {"rect": [-6, -8, 680, 34]}
+          ]
+        },
+        {
+          "name": "run_0_18",
+          "type": "text",
+          "text": "deck/",
+          "font": "code_plain",
+          "x": 300.4,
+          "y": 214,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 0.92,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.09, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_0_24",
+          "type": "text",
+          "text": "--every",
+          "font": "code_plain",
+          "x": 365.2,
+          "y": 214,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 1.03,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.13, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_0_32",
+          "type": "text",
+          "text": "0.04",
+          "font": "code_plain",
+          "x": 451.6,
+          "y": 214,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 1.18,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.07, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_0_37",
+          "type": "text",
+          "text": "--until",
+          "font": "code_plain",
+          "x": 505.6,
+          "y": 214,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 1.27,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.13, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_0_45",
+          "type": "text",
+          "text": "12",
+          "font": "code_plain",
+          "x": 592,
+          "y": 214,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 1.41,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.04, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_0_48",
+          "type": "text",
+          "text": "\\",
+          "font": "code_plain",
+          "x": 624.4,
+          "y": 214,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 1.46,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.02, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_1_4",
+          "type": "text",
+          "text": "-o",
+          "font": "code_plain",
+          "x": 149.2,
+          "y": 244,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 1.75,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.04, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_1_7",
+          "type": "text",
+          "text": "frames/",
+          "font": "code_plain",
+          "x": 181.6,
+          "y": 244,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 1.81,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.13, "v": 1}]}]
+            }
+          ]
         },
         {
           "name": "run_2_0",
-          "type": "group",
+          "type": "text",
+          "text": "$",
+          "font": "code_prompt",
           "x": 106,
           "y": 274,
-          "children": [
-            {"name": "code", "type": "vector", "vector": "code_19"},
+          "reveal": 0,
+          "timelines": [
             {
-              "name": "cover",
-              "type": "shape",
-              "x": -4,
-              "y": -6,
-              "shape": {"rect": [0, 0, 690, 32]},
-              "fill": "#1C1B22",
-              "timelines": [
-                {
-                  "name": "type",
-                  "autoplay": true,
-                  "delay": 2.13,
-                  "hold": true,
-                  "tracks": [{"property": "x", "keys": [{"t": 0, "v": -4}, {"t": 0.77, "v": 465.4}]}]
-                }
-              ]
+              "name": "type",
+              "autoplay": true,
+              "delay": 2.13,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.02, "v": 1}]}]
             }
-          ],
-          "clip": {"rect": [-6, -8, 680, 34]}
+          ]
         },
         {
-          "name": "run_3_0",
-          "type": "group",
-          "x": 106,
-          "y": 304,
-          "children": [
-            {"name": "code", "type": "vector", "vector": "code_20"},
+          "name": "run_2_2",
+          "type": "text",
+          "text": "ffmpeg",
+          "font": "code_plain",
+          "x": 127.6,
+          "y": 274,
+          "reveal": 0,
+          "timelines": [
             {
-              "name": "cover",
-              "type": "shape",
-              "x": -4,
-              "y": -6,
-              "shape": {"rect": [0, 0, 690, 32]},
-              "fill": "#1C1B22",
-              "timelines": [
-                {
-                  "name": "type",
-                  "autoplay": true,
-                  "delay": 3.11,
-                  "hold": true,
-                  "tracks": [{"property": "x", "keys": [{"t": 0, "v": -4}, {"t": 0.54, "v": 325}]}]
-                }
-              ]
+              "name": "type",
+              "autoplay": true,
+              "delay": 2.17,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.11, "v": 1}]}]
             }
-          ],
-          "clip": {"rect": [-6, -8, 680, 34]}
+          ]
+        },
+        {
+          "name": "run_2_9",
+          "type": "text",
+          "text": "-framerate",
+          "font": "code_plain",
+          "x": 203.2,
+          "y": 274,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 2.3,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.18, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_2_20",
+          "type": "text",
+          "text": "25",
+          "font": "code_plain",
+          "x": 322,
+          "y": 274,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 2.49,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.04, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_2_23",
+          "type": "text",
+          "text": "-pattern_type",
+          "font": "code_plain",
+          "x": 354.4,
+          "y": 274,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 2.55,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.23, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_2_37",
+          "type": "text",
+          "text": "glob",
+          "font": "code_plain",
+          "x": 505.6,
+          "y": 274,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 2.8,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.07, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_2_42",
+          "type": "text",
+          "text": "\\",
+          "font": "code_plain",
+          "x": 559.6,
+          "y": 274,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 2.89,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.02, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_3_4",
+          "type": "text",
+          "text": "-i",
+          "font": "code_plain",
+          "x": 149.2,
+          "y": 304,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 3.18,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.04, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_3_7",
+          "type": "text",
+          "text": "'frames/*.png'",
+          "font": "code_string",
+          "x": 181.6,
+          "y": 304,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 3.23,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.25, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_3_22",
+          "type": "text",
+          "text": "deck.mp4",
+          "font": "code_plain",
+          "x": 343.6,
+          "y": 304,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 3.5,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.14, "v": 1}]}]
+            }
+          ]
         },
         {
           "name": "run_5_0",
-          "type": "group",
+          "type": "text",
+          "text": "$",
+          "font": "code_prompt",
           "x": 106,
           "y": 364,
-          "children": [
-            {"name": "code", "type": "vector", "vector": "code_21"},
+          "reveal": 0,
+          "timelines": [
             {
-              "name": "cover",
-              "type": "shape",
-              "x": -4,
-              "y": -6,
-              "shape": {"rect": [0, 0, 690, 32]},
-              "fill": "#1C1B22",
-              "timelines": [
-                {
-                  "name": "type",
-                  "autoplay": true,
-                  "delay": 4.25,
-                  "hold": true,
-                  "tracks": [{"property": "x", "keys": [{"t": 0, "v": -4}, {"t": 0.77, "v": 465.4}]}]
-                }
-              ]
+              "name": "type",
+              "autoplay": true,
+              "delay": 4.25,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.02, "v": 1}]}]
             }
-          ],
-          "clip": {"rect": [-6, -8, 680, 34]}
+          ]
+        },
+        {
+          "name": "run_5_2",
+          "type": "text",
+          "text": "cuelight-render",
+          "font": "code_plain",
+          "x": 127.6,
+          "y": 364,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 4.28,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.27, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_5_18",
+          "type": "text",
+          "text": "deck/",
+          "font": "code_plain",
+          "x": 300.4,
+          "y": 364,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 4.57,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.09, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_5_24",
+          "type": "text",
+          "text": "--until",
+          "font": "code_plain",
+          "x": 365.2,
+          "y": 364,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 4.68,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.13, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_5_32",
+          "type": "text",
+          "text": "20",
+          "font": "code_plain",
+          "x": 451.6,
+          "y": 364,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 4.82,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.04, "v": 1}]}]
+            }
+          ]
+        },
+        {
+          "name": "run_5_35",
+          "type": "text",
+          "text": "--events",
+          "font": "code_plain",
+          "x": 484,
+          "y": 364,
+          "reveal": 0,
+          "timelines": [
+            {
+              "name": "type",
+              "autoplay": true,
+              "delay": 4.88,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.14, "v": 1}]}]
+            }
+          ]
         },
         {
           "name": "run_6_0",
-          "type": "group",
+          "type": "text",
+          "text": "   7.000  driver Trigger { trigger: \"next\" }",
+          "font": "code_out",
           "x": 106,
           "y": 394,
-          "children": [
-            {"name": "code", "type": "vector", "vector": "code_22"},
+          "reveal": 0,
+          "timelines": [
             {
-              "name": "cover",
-              "type": "shape",
-              "x": -4,
-              "y": -6,
-              "shape": {"rect": [0, 0, 690, 32]},
-              "fill": "#1C1B22",
-              "timelines": [
-                {
-                  "name": "type",
-                  "autoplay": true,
-                  "delay": 5.22,
-                  "hold": true,
-                  "tracks": [{"property": "x", "keys": [{"t": 0, "v": -4}, {"t": 0.05, "v": 690, "ease": "step"}]}]
-                }
-              ]
+              "name": "type",
+              "autoplay": true,
+              "delay": 5.22,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.05, "v": 1, "ease": "step"}]}]
             }
-          ],
-          "clip": {"rect": [-6, -8, 680, 34]}
+          ]
         },
         {
           "name": "run_7_0",
-          "type": "group",
+          "type": "text",
+          "text": "   7.017  Trigger(\"slide_2\")",
+          "font": "code_out",
           "x": 106,
           "y": 424,
-          "children": [
-            {"name": "code", "type": "vector", "vector": "code_23"},
+          "reveal": 0,
+          "timelines": [
             {
-              "name": "cover",
-              "type": "shape",
-              "x": -4,
-              "y": -6,
-              "shape": {"rect": [0, 0, 690, 32]},
-              "fill": "#1C1B22",
-              "timelines": [
-                {
-                  "name": "type",
-                  "autoplay": true,
-                  "delay": 5.37,
-                  "hold": true,
-                  "tracks": [{"property": "x", "keys": [{"t": 0, "v": -4}, {"t": 0.05, "v": 690, "ease": "step"}]}]
-                }
-              ]
+              "name": "type",
+              "autoplay": true,
+              "delay": 5.37,
+              "hold": true,
+              "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 0.05, "v": 1, "ease": "step"}]}]
             }
-          ],
-          "clip": {"rect": [-6, -8, 680, 34]}
+          ]
         },
         {
           "name": "points_0",
@@ -3096,7 +3418,7 @@
                 {
                   "name": "code_0",
                   "type": "group",
-                  "children": [{"name": "code", "type": "vector", "vector": "code_25"}]
+                  "children": [{"name": "code", "type": "vector", "vector": "code_18"}]
                 }
               ]
             },
@@ -3125,7 +3447,7 @@
                 {
                   "name": "code_0",
                   "type": "group",
-                  "children": [{"name": "code", "type": "vector", "vector": "code_26"}]
+                  "children": [{"name": "code", "type": "vector", "vector": "code_19"}]
                 }
               ]
             },
@@ -3154,7 +3476,7 @@
                 {
                   "name": "code_0",
                   "type": "group",
-                  "children": [{"name": "code", "type": "vector", "vector": "code_27"}]
+                  "children": [{"name": "code", "type": "vector", "vector": "code_20"}]
                 }
               ]
             }

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+  "format": 1, "name": "reveal", "size": [800, 450], "background": "#0E1116",
+  "variables": {"said": 0},
+  "fonts": {
+    "line": {"file": "Oxanium-Bold", "size": 30, "color": "#E6EDF3"},
+    "box": {"file": "Oxanium-Bold", "size": 26, "color": "#FFB000"}
+  },
+  "layers": [
+    {
+      "name": "title", "type": "digits", "digits": 6, "size": [86, 20], "x": 24, "y": 18, "text": "REVEAL",
+      "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}
+    },
+    {
+      "name": "typed", "type": "text", "font": "line", "x": 24, "y": 84,
+      "text": "Every character counts, spaces too.", "reveal": 0,
+      "timelines": [
+        {
+          "name": "type", "autoplay": true, "loop": true,
+          "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 2.4, "v": 1}, {"t": 3.8, "v": 1}]}]
+        }
+      ]
+    },
+    {
+      "name": "typed_caption", "type": "digits", "digits": 32, "size": [277, 12], "x": 24, "y": 126,
+      "text": "KEYED: 0 TO 1 OVER 2.4 S, LOOPED", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "said_line", "type": "text", "font": "line", "x": 24, "y": 186,
+      "text": "A line the host lets out in four taps.",
+      "bindings": [{"property": "reveal", "variable": "said"}]
+    },
+    {
+      "name": "said_caption", "type": "digits", "digits": 34, "size": [294, 12], "x": 24, "y": 228,
+      "text": "BOUND: THE HOST SETS SAID, 0 TO 1", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "said_value", "type": "digits", "digits": 4, "size": [34, 12], "x": 330, "y": 228, "text": "",
+      "display": {"segments": {"style": "alpha14", "fill": "#38BDF8"}},
+      "bindings": [{"property": "text", "variable": "said", "decimals": 2}]
+    },
+    {
+      "name": "cells", "type": "digits", "digits": 11, "size": [352, 44], "x": 24, "y": 290, "text": "HELLO WORLD",
+      "display": {"segments": {"style": "alpha14", "fill": "#4ADE80", "unlit": "#173322"}}, "reveal": 0,
+      "timelines": [
+        {
+          "name": "type", "autoplay": true, "loop": true,
+          "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 2, "v": 1}, {"t": 3.8, "v": 1}]}]
+        }
+      ]
+    },
+    {
+      "name": "cells_caption", "type": "digits", "digits": 30, "size": [260, 12], "x": 24, "y": 348,
+      "text": "DIGITS: THE CELLS TO COME STAY", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "room_box", "type": "shape", "shape": {"rect": [0, 0, 340, 44], "radius": 6}, "x": 436, "y": 290,
+      "fill": "#161B24"
+    },
+    {
+      "name": "room", "type": "text", "font": "box", "x": 436, "y": 290, "size": [340, 44], "align": "center",
+      "text": "centred, and it stays put", "reveal": 0,
+      "timelines": [
+        {
+          "name": "type", "autoplay": true, "loop": true,
+          "tracks": [{"property": "reveal", "keys": [{"t": 0, "v": 0}, {"t": 2, "v": 1}, {"t": 3.8, "v": 1}]}]
+        }
+      ]
+    },
+    {
+      "name": "room_caption", "type": "digits", "digits": 38, "size": [330, 12], "x": 436, "y": 348,
+      "text": "THE REST KEEPS ITS ROOM: NO RECENTRING", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "note", "type": "digits", "digits": 56, "size": [485, 12], "x": 24, "y": 410,
+      "text": "A SHARE OF THE CHARACTERS. THE NEXT ONE SNAPS IN, NO FADE.",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    }
+  ]
+}
