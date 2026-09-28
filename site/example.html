@@ -231,6 +231,19 @@ async function play() {
   warnings.forEach((warning) => log(warning, true));
   $("sound-note").hidden = !warnings.some((warning) => warning.includes("could not be decoded"));
   player.onEvent((event) => log(`event  ${JSON.stringify(event)}`));
+  // A click on the stage is a press on the show, at the canvas point
+  // under it; the cursor says where a press does something.
+  const canvasPoint = (e) => {
+    const rect = $("canvas").getBoundingClientRect();
+    return [e.clientX - rect.left, e.clientY - rect.top];
+  };
+  $("canvas").onclick = (e) => {
+    const fired = player.press(...canvasPoint(e));
+    if (fired) log(`host   press -> ${fired}`);
+  };
+  $("canvas").onpointermove = (e) => {
+    $("canvas").style.cursor = player.pressedAt(...canvasPoint(e)) ? "pointer" : "";
+  };
   // A GPU error or a failed frame: the player stops its frames there and
   // says why, the cause before the frame it failed.
   player.onError((message) => once(message, true));
@@ -291,6 +304,14 @@ $("scrub").onchange = () => { if (resumeAfterScrub) player.resume(); resumeAfter
   }
   requestAnimationFrame(tick);
 })();
+
+// Keys the show names go to the show, unless a field has the focus.
+addEventListener("keydown", (e) => {
+  if (!player || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (["INPUT", "SELECT", "TEXTAREA", "BUTTON"].includes(document.activeElement?.tagName)) return;
+  const fired = player.key(e.key);
+  if (fired) { e.preventDefault(); log(`host   key ${e.key === " " ? "Space" : e.key} -> ${fired}`); }
+});
 
 // Browsers keep a page silent until it is clicked or typed into; the
 // player picks that gesture up itself, so on a silent page the button
