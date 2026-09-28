@@ -92,6 +92,9 @@ CODE = {    # weight and colour
     "punct": (400, "#8E8A80"), "prompt": (500, CORAL), "out": (400, "#8E8A80"),
 }
 SVGS = {}
+# The same looks as font styles, for lines that type themselves out.
+FONTS.update({f"code_{look}": style("DMMono-Medium" if weight == 500 else "DMMono-Regular", CODE_SIZE, color)
+              for look, (weight, color) in CODE.items()})
 
 
 def width(font, text):
@@ -245,31 +248,36 @@ def code_line(pieces):
     return f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}">{body}</svg>\n'
 
 
+def pieces_of(row, shell=False, output=False):
+    """One line of code as (column, text, kind) pieces. JSON keys and
+    values get their own colours; in a shell line the prompt is red and
+    quoted words yellow; output is grey."""
+    import re
+    if output:
+        return [(0, row, "out")]
+    pattern = re.compile("|".join(f"(?P<{k}>{p})" for k, p in TOKENS))
+    pieces, column = [], 0
+    for m in pattern.finditer(row):
+        kind, piece = m.lastgroup, m.group()
+        if kind != "space":
+            look = {"string": "string", "number": "number", "punct": "punct"}.get(kind, "plain")
+            if kind == "string" and row[m.end():].lstrip().startswith(":"):
+                look = "key"
+            if shell:
+                look = "prompt" if piece == "$" and column == 0 else \
+                    "string" if piece.startswith("'") else "plain"
+            pieces.append((column, piece, look))
+        column += len(piece)
+    return pieces
+
+
 def code_block(name, rows, x, y, step=27, delay=None, shell=False, output=False):
     """Lines of code on DM Mono's fixed advance, each line one piece of
-    vector art. JSON keys and values get their own colours; in a shell
-    block the prompt is red and quoted words yellow, and output is grey."""
-    import re
-    pattern = re.compile("|".join(f"(?P<{k}>{p})" for k, p in TOKENS))
+    vector art."""
     layers = []
     for i, row in enumerate(rows):
-        pieces, column = [], 0
-        if output:
-            pieces.append((0, row, "out"))
-        else:
-            for m in pattern.finditer(row):
-                kind, piece = m.lastgroup, m.group()
-                if kind != "space":
-                    look = {"string": "string", "number": "number", "punct": "punct"}.get(kind, "plain")
-                    if kind == "string" and row[m.end():].lstrip().startswith(":"):
-                        look = "key"
-                    if shell:
-                        look = "prompt" if piece == "$" and column == 0 else \
-                            "string" if piece.startswith("'") else "plain"
-                    pieces.append((column, piece, look))
-                column += len(piece)
         stem = f"code_{len(SVGS):02d}"
-        SVGS[stem] = code_line(pieces)
+        SVGS[stem] = code_line(pieces_of(row, shell, output))
         line = group(f"{name}_{i}", [{"name": "code", "type": "vector", "vector": stem, "x": 0, "y": 0}],
                      x, y + i * step)
         layers.append(enter(line, delay + i * 0.06, rise=10) if delay is not None else line)
@@ -594,22 +602,20 @@ for i, (kind, row) in enumerate(RUN):
     if not kind:
         start += 0.4
         continue
-    words = code_block(f"run_{i}", [row], M + 26, 214 + i * 30, shell=True, output=kind == "out")[0]
-    words["clip"] = {"rect": [-6, -8, 680, 34]}
-    # A night strip over the line slides off it at typing speed; output
-    # appears at once.
-    cover = rect("cover", -4, -6, 690, 32, NIGHT)
-    if kind == "in":
-        keys = [{"t": 0, "v": -4}, {"t": round(len(row) * 0.018, 2), "v": round(len(row) * cell + 1, 1)}]
-        took = len(row) * 0.018 + 0.2
-    else:
-        keys = [{"t": 0, "v": -4}, {"t": 0.05, "v": 690, "ease": "step"}]
-        took = 0.15
-    timeline(cover, name="type", autoplay=True, delay=round(start, 2), hold=True,
-             tracks=[{"property": "x", "keys": keys}])
-    words["children"].append(cover)
-    typed.append(words)
-    start += took
+    # Each piece of a typed line is a text layer in its colour that
+    # reveals itself character by character, in turn; output appears at
+    # once.
+    for column, piece, look in pieces_of(row, shell=True, output=kind == "out"):
+        word = text(f"run_{i}_{column}", piece, M + 26 + round(column * cell, 1), 214 + i * 30,
+                    f"code_{look}", reveal=0)
+        if kind == "in":
+            keys = [{"t": 0, "v": 0}, {"t": round(len(piece) * 0.018, 2), "v": 1}]
+        else:
+            keys = [{"t": 0, "v": 0}, {"t": 0.05, "v": 1, "ease": "step"}]
+        timeline(word, name="type", autoplay=True, delay=round(start + column * 0.018, 2), hold=True,
+                 tracks=[{"property": "reveal", "keys": keys}])
+        typed.append(word)
+    start += len(row) * 0.018 + 0.2 if kind == "in" else 0.15
 
 FRAME_W, FRAME_H, STRIP_X = 250, 131, 900
 FRAME_STEP = FRAME_H + 24

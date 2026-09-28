@@ -1,0 +1,15 @@
+{
+  "loop": true,
+  "steps": [
+    {"set": {"said": 0}},
+    {"wait": 1.0},
+    {"set": {"said": 0.28}},
+    {"wait": 0.8},
+    {"set": {"said": 0.55}},
+    {"wait": 0.8},
+    {"set": {"said": 0.8}},
+    {"wait": 0.8},
+    {"set": {"said": 1}},
+    {"wait": 1.6}
+  ]
+}
