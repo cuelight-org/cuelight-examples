@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+  "format": 1, "name": "pixel_font", "size": [200, 112], "background": "#0E1116",
+  "output": {"scaling": "pixel_perfect"},
+  "fonts": {
+    "tiny": {"file": "Tiny5-Regular", "size": 8, "pixels": true, "color": "#E6EDF3"},
+    "tiny_soft": {"file": "Tiny5-Regular", "size": 8, "pixels": false, "color": "#E6EDF3"},
+    "tiny_dim": {"file": "Tiny5-Regular", "size": 8, "pixels": true, "color": "#8B96A5"},
+    "tiny_gold": {"file": "Tiny5-Regular", "size": 8, "pixels": true, "color": "#FFB000", "border": {"color": "#5A3A00", "width": 1}},
+    "title": {"file": "Jersey20-Regular", "size": 20, "pixels": true, "color": "#4ADE80"},
+    "title_soft": {"file": "Jersey20-Regular", "size": 20, "pixels": false, "color": "#4ADE80"}
+  },
+  "layers": [
+    {"name": "heading", "type": "text", "font": "tiny_dim", "x": 4, "y": 3, "text": "ONE TTF, DRAWN AS PIXELS OR AS OUTLINES"},
+    {"name": "pixels_label", "type": "text", "font": "tiny_dim", "x": 4, "y": 16, "text": "pixels: true"},
+    {"name": "pixels_title", "type": "text", "font": "title", "x": 4, "y": 25, "text": "Score 1,250"},
+    {"name": "pixels_text", "type": "text", "font": "tiny", "x": 4, "y": 47, "text": "Sharp at its own size: 8 px"},
+    {"name": "soft_label", "type": "text", "font": "tiny_dim", "x": 4, "y": 62, "text": "pixels: false"},
+    {"name": "soft_title", "type": "text", "font": "title_soft", "x": 4, "y": 71, "text": "Score 1,250"},
+    {"name": "soft_text", "type": "text", "font": "tiny_soft", "x": 4, "y": 93, "text": "The outline, antialiased, blurs"},
+    {"name": "border", "type": "text", "font": "tiny_gold", "x": 136, "y": 47, "text": "BORDERED"},
+    {"name": "note", "type": "text", "font": "tiny_dim", "x": 4, "y": 103, "text": "on a pixel grid, pixels is the default"}
+  ]
+}
