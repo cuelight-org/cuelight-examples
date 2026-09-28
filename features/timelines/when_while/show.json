@@ -2,6 +2,16 @@
   "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
   "format": 1, "name": "when_while", "size": [800, 450], "background": "#0E1116",
   "variables": {"lamp": 0, "mode": "", "phase": ""},
+  "values": {
+    "tide": {
+      "timelines": [
+        {
+          "name": "loop", "autoplay": true, "loop": true,
+          "keys": [{"t": 0, "v": 0}, {"t": 5, "v": 100, "ease": "quad_in_out"}, {"t": 10, "v": 0, "ease": "quad_in_out"}]
+        }
+      ]
+    }
+  },
   "layers": [
     {
       "name": "title", "type": "digits", "digits": 14, "size": [202, 20], "x": 24, "y": 18, "text": "WHEN AND WHILE",
@@ -58,6 +68,26 @@
           ]
         }
       ]
+    },
+    {
+      "name": "tide_label", "type": "digits", "digits": 4, "size": [40, 14], "x": 24, "y": 304, "text": "TIDE",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "tide_meter", "type": "group", "x": 80, "y": 300,
+      "children": [
+        {"name": "back", "type": "shape", "shape": {"rect": [0, 0, 300, 22], "radius": 11}, "fill": "#232A34"},
+        {"name": "mark", "type": "shape", "shape": {"rect": [205, 0, 2, 22]}, "fill": "#8B96A5"},
+        {
+          "name": "knob", "type": "shape", "shape": {"circle": [11, 11, 8]}, "fill": "#38BDF8",
+          "bindings": [{"property": "x", "variable": "tide", "scale": 2.78}]
+        }
+      ]
+    },
+    {
+      "name": "tide_value", "type": "digits", "digits": 3, "size": [30, 14], "x": 392, "y": 304, "text": "",
+      "display": {"segments": {"style": "alpha14", "fill": "#38BDF8"}},
+      "bindings": [{"property": "text", "variable": "tide", "decimals": 0}]
     },
     {
       "name": "phase", "type": "digits", "digits": 60, "size": [692, 16], "x": 24, "y": 390, "text": "",
@@ -166,6 +196,24 @@
         {
           "name": "rule_settled_2", "type": "digits", "digits": 14, "size": [121, 12], "x": 667, "y": 242, "text": "SETTLES: FLASH",
           "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+        },
+        {
+          "name": "out_tide", "type": "shape", "shape": {"circle": [0, 0, 22]}, "x": 470, "y": 311, "fill": "#38BDF8",
+          "opacity": 0.08,
+          "timelines": [
+            {
+              "name": "flash", "when": {"variable": "tide", "threshold": 70},
+              "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 0.08, "ease": "quad_in"}]}]
+            }
+          ]
+        },
+        {
+          "name": "rule_tide_1", "type": "digits", "digits": 26, "size": [225, 12], "x": 516, "y": 296,
+          "text": "WHEN TIDE PASSES 70: FLASH", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}
+        },
+        {
+          "name": "rule_tide_2", "type": "digits", "digits": 30, "size": [259, 12], "x": 516, "y": 314,
+          "text": "THE SHOW MOVES THE TIDE ITSELF", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
         }
       ]
     },
