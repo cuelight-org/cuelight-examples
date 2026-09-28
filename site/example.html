@@ -37,6 +37,11 @@
       <option value="21 / 9">wider</option>
       <option value="4 / 3">squarer</option>
     </select>
+    <select id="fit" title="How the show is brought to a screen of another shape: fitted inside it with bars, covering it with its edges cut off, or filled by stretching it out of shape">
+      <option value="contain">fit inside</option>
+      <option value="cover">cover</option>
+      <option value="fill">fill</option>
+    </select>
   </div>
 
   <div class="columns">
@@ -141,39 +146,8 @@ if (navigator.gpu) {
 }
 
 // The catalog says what there is; ?show=path picks one.
-// Where each trigger is heard, worked out from the document the way the
-// editor's inputs panel does it; cuelight#229 asks the engine to say it.
-// A trigger that enters a scene is `{ opens }`; one only a single scene
-// hears is `{ scene }`; one heard by the show's own layers, by several
-// scenes or by nobody is `{}`.
-function listeners(show) {
-  const names = (t) => (t == null ? [] : Array.isArray(t) ? t : [t]);
-  const heard = new Map();
-  const note = (trigger, root) => {
-    if (!heard.has(trigger)) heard.set(trigger, new Set());
-    heard.get(trigger).add(root);
-  };
-  const walk = (layers, root) => {
-    for (const layer of layers ?? []) {
-      for (const timeline of layer.timelines ?? []) for (const t of names(timeline.trigger)) note(t, root);
-      for (const t of [...names(layer.trigger), ...names(layer.stop)]) note(t, root);
-      for (const t of names(layer.display?.reel?.spin)) note(t, root);
-      walk(layer.children, root);
-    }
-  };
-  walk(show.layers, "");
-  const opens = new Map();
-  for (const scene of show.scenes ?? []) {
-    for (const t of names(scene.trigger)) opens.set(t, scene.name);
-    walk(scene.layers, scene.name);
-  }
-  const places = new Map();
-  for (const [trigger, roots] of heard) {
-    places.set(trigger, roots.size === 1 && !roots.has("") ? { scene: [...roots][0] } : {});
-  }
-  for (const [trigger, scene] of opens) places.set(trigger, { opens: scene });
-  return places;
-}
+// Where each trigger is heard, as the player says it: `{ where: "opens" |
+// "scene" | "anywhere", scene? }` by name.
 let heard = new Map();
 
 const catalog = await (await fetch("examples.json")).json();
@@ -227,6 +201,7 @@ async function play() {
   for (const id of ["actions", "variables"]) $(id).replaceChildren();
   player = await CuelightPlayer.create($("canvas"), folder);
   $("canvas").style.aspectRatio = $("screen").value || `${player.width} / ${player.height}`;
+  player.fit = $("fit").value;
   const warnings = player.warnings();
   warnings.forEach((warning) => log(warning, true));
   $("sound-note").hidden = !warnings.some((warning) => warning.includes("could not be decoded"));
@@ -248,14 +223,14 @@ async function play() {
   // says why, the cause before the frame it failed.
   player.onError((message) => once(message, true));
 
-  heard = listeners(JSON.parse(sources["show.json"]));
+  heard = new Map(Object.entries(player.listeners()));
   for (const action of player.actions()) {
     const button = document.createElement("button");
     button.textContent = action;
     button.dataset.action = action;
     const place = heard.get(action);
-    if (place?.opens) button.title = `opens scene ${place.opens}`;
-    else if (place?.scene) button.title = `heard in scene ${place.scene}`;
+    if (place?.where === "opens") button.title = `opens scene ${place.scene}`;
+    else if (place?.where === "scene") button.title = `heard in scene ${place.scene}`;
     button.onclick = () => { player.trigger(action); log(`host   trigger ${action}`); };
     $("actions").append(button);
   }
@@ -287,6 +262,7 @@ async function play() {
 let resumeAfterScrub = false;
 $("pause").onclick = () => (player.paused ? player.resume() : player.pause());
 // Another screen shape: the player fits the show into it and letterboxes it.
+$("fit").onchange = () => { if (player) player.fit = $("fit").value; };
 $("screen").onchange = () => {
   $("canvas").style.aspectRatio = $("screen").value || `${player.width} / ${player.height}`;
 };
@@ -329,7 +305,7 @@ setInterval(() => {
   $("scene").textContent = player.activeScene ? `scene: ${player.activeScene}` : "";
   for (const button of $("actions").querySelectorAll("button")) {
     const place = heard.get(button.dataset.action);
-    button.disabled = place?.scene !== undefined && place.scene !== player.activeScene;
+    button.disabled = place?.where === "scene" && place.scene !== player.activeScene;
   }
   $("driver").textContent = player.driverPlaying ? "pause driver" : "play driver";
   $("sound").hidden = false;
