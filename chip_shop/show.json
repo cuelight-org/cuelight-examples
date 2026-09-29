@@ -1,0 +1,1950 @@
+{
+  "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+  "format": 1,
+  "name": "chip_shop",
+  "size": [
+    5760,
+    1080
+  ],
+  "background": "#131A26",
+  "fonts": {
+    "heading": {
+      "file": "BebasNeue-Regular",
+      "size": 68,
+      "color": "#FFC61A",
+      "border": {
+        "color": "#2B1F00",
+        "width": 3
+      }
+    },
+    "column": {
+      "file": "BebasNeue-Regular",
+      "size": 30,
+      "color": "#FFC61A"
+    },
+    "item": {
+      "file": "BarlowSemiCondensed-Bold",
+      "size": 37,
+      "color": "#F2F4F7",
+      "shadow": {
+        "color": "#00000099",
+        "offset": [
+          2,
+          2
+        ]
+      }
+    },
+    "price": {
+      "file": "BarlowSemiCondensed-Bold",
+      "size": 37,
+      "color": "#F2F4F7",
+      "shadow": {
+        "color": "#00000099",
+        "offset": [
+          2,
+          2
+        ]
+      }
+    },
+    "ticker": {
+      "file": "BarlowSemiCondensed-BoldItalic",
+      "size": 42,
+      "color": "#B8AA86"
+    },
+    "brand": {
+      "file": "BebasNeue-Regular",
+      "size": 96,
+      "color": "#FFC61A",
+      "border": {
+        "color": "#2B1F00",
+        "width": 4
+      }
+    },
+    "brand_line": {
+      "file": "BarlowSemiCondensed-BoldItalic",
+      "size": 30,
+      "color": "#F2F4F7"
+    }
+  },
+  "layers": [
+    {
+      "name": "board",
+      "type": "image",
+      "image": "chalk",
+      "size": [
+        5760,
+        1080
+      ],
+      "repeat": {
+        "size": [
+          1920,
+          1080
+        ]
+      }
+    },
+    {
+      "name": "screen_1",
+      "type": "group",
+      "x": 0,
+      "y": 0,
+      "children": [
+        {
+          "name": "fries_heading",
+          "type": "text",
+          "text": "FRIES",
+          "font": "heading",
+          "x": 60,
+          "y": 40
+        },
+        {
+          "name": "fries_0",
+          "type": "text",
+          "text": "SMALL CONE",
+          "font": "item",
+          "x": 60,
+          "y": 132
+        },
+        {
+          "name": "fries_0_price",
+          "type": "text",
+          "text": "€2.80",
+          "font": "price",
+          "x": 930,
+          "y": 132,
+          "anchor": "top_right"
+        },
+        {
+          "name": "fries_1",
+          "type": "text",
+          "text": "SMALL",
+          "font": "item",
+          "x": 60,
+          "y": 178
+        },
+        {
+          "name": "fries_1_price",
+          "type": "text",
+          "text": "€3.20",
+          "font": "price",
+          "x": 930,
+          "y": 178,
+          "anchor": "top_right"
+        },
+        {
+          "name": "fries_2",
+          "type": "text",
+          "text": "MEDIUM",
+          "font": "item",
+          "x": 60,
+          "y": 224
+        },
+        {
+          "name": "fries_2_price",
+          "type": "text",
+          "text": "€3.50",
+          "font": "price",
+          "x": 930,
+          "y": 224,
+          "anchor": "top_right"
+        },
+        {
+          "name": "fries_3",
+          "type": "text",
+          "text": "LARGE",
+          "font": "item",
+          "x": 60,
+          "y": 270
+        },
+        {
+          "name": "fries_3_price",
+          "type": "text",
+          "text": "€3.80",
+          "font": "price",
+          "x": 930,
+          "y": 270,
+          "anchor": "top_right"
+        },
+        {
+          "name": "fries_4",
+          "type": "text",
+          "text": "EXTRA LARGE",
+          "font": "item",
+          "x": 60,
+          "y": 316
+        },
+        {
+          "name": "fries_4_price",
+          "type": "text",
+          "text": "€6.00",
+          "font": "price",
+          "x": 930,
+          "y": 316,
+          "anchor": "top_right"
+        },
+        {
+          "name": "fries_5",
+          "type": "text",
+          "text": "FAMILY BOX",
+          "font": "item",
+          "x": 60,
+          "y": 362
+        },
+        {
+          "name": "fries_5_price",
+          "type": "text",
+          "text": "€8.00",
+          "font": "price",
+          "x": 930,
+          "y": 362,
+          "anchor": "top_right"
+        },
+        {
+          "name": "drinks_heading",
+          "type": "text",
+          "text": "DRINKS",
+          "font": "heading",
+          "x": 60,
+          "y": 462
+        },
+        {
+          "name": "drinks_can",
+          "type": "text",
+          "text": "CAN",
+          "font": "column",
+          "x": 670,
+          "y": 492,
+          "anchor": "top_right"
+        },
+        {
+          "name": "drinks_bottle",
+          "type": "text",
+          "text": "BOTTLE",
+          "font": "column",
+          "x": 930,
+          "y": 492,
+          "anchor": "top_right"
+        },
+        {
+          "name": "drink_0",
+          "type": "text",
+          "text": "COLA / LIGHT / ZERO",
+          "font": "item",
+          "x": 60,
+          "y": 554
+        },
+        {
+          "name": "drink_0_can",
+          "type": "text",
+          "text": "€2.50",
+          "font": "price",
+          "x": 670,
+          "y": 554,
+          "anchor": "top_right"
+        },
+        {
+          "name": "drink_0_bottle",
+          "type": "text",
+          "text": "€3.00",
+          "font": "price",
+          "x": 930,
+          "y": 554,
+          "anchor": "top_right"
+        },
+        {
+          "name": "drink_1",
+          "type": "text",
+          "text": "ORANGE / LEMON",
+          "font": "item",
+          "x": 60,
+          "y": 600
+        },
+        {
+          "name": "drink_1_can",
+          "type": "text",
+          "text": "€2.50",
+          "font": "price",
+          "x": 670,
+          "y": 600,
+          "anchor": "top_right"
+        },
+        {
+          "name": "drink_1_bottle",
+          "type": "text",
+          "text": "€3.00",
+          "font": "price",
+          "x": 930,
+          "y": 600,
+          "anchor": "top_right"
+        },
+        {
+          "name": "drink_2",
+          "type": "text",
+          "text": "ICED TEA",
+          "font": "item",
+          "x": 60,
+          "y": 646
+        },
+        {
+          "name": "drink_2_can",
+          "type": "text",
+          "text": "€2.50",
+          "font": "price",
+          "x": 670,
+          "y": 646,
+          "anchor": "top_right"
+        },
+        {
+          "name": "drink_3",
+          "type": "text",
+          "text": "STILL WATER",
+          "font": "item",
+          "x": 60,
+          "y": 692
+        },
+        {
+          "name": "drink_3_bottle",
+          "type": "text",
+          "text": "€2.50",
+          "font": "price",
+          "x": 930,
+          "y": 692,
+          "anchor": "top_right"
+        },
+        {
+          "name": "drink_4",
+          "type": "text",
+          "text": "LAGER",
+          "font": "item",
+          "x": 60,
+          "y": 738
+        },
+        {
+          "name": "drink_4_can",
+          "type": "text",
+          "text": "€2.50",
+          "font": "price",
+          "x": 670,
+          "y": 738,
+          "anchor": "top_right"
+        },
+        {
+          "name": "drink_5",
+          "type": "text",
+          "text": "ENERGY DRINK",
+          "font": "item",
+          "x": 60,
+          "y": 784
+        },
+        {
+          "name": "drink_5_can",
+          "type": "text",
+          "text": "€3.00",
+          "font": "price",
+          "x": 670,
+          "y": 784,
+          "anchor": "top_right"
+        },
+        {
+          "name": "cold_heading",
+          "type": "text",
+          "text": "COLD SAUCES",
+          "font": "heading",
+          "x": 1010,
+          "y": 40
+        },
+        {
+          "name": "cold_0",
+          "type": "text",
+          "text": "ON THE FRIES",
+          "font": "item",
+          "x": 1010,
+          "y": 132
+        },
+        {
+          "name": "cold_0_price",
+          "type": "text",
+          "text": "€1.10",
+          "font": "price",
+          "x": 1860,
+          "y": 132,
+          "anchor": "top_right"
+        },
+        {
+          "name": "cold_1",
+          "type": "text",
+          "text": "SMALL TUB",
+          "font": "item",
+          "x": 1010,
+          "y": 178
+        },
+        {
+          "name": "cold_1_price",
+          "type": "text",
+          "text": "€1.20",
+          "font": "price",
+          "x": 1860,
+          "y": 178,
+          "anchor": "top_right"
+        },
+        {
+          "name": "cold_2",
+          "type": "text",
+          "text": "LARGE TUB",
+          "font": "item",
+          "x": 1010,
+          "y": 224
+        },
+        {
+          "name": "cold_2_price",
+          "type": "text",
+          "text": "€2.40",
+          "font": "price",
+          "x": 1860,
+          "y": 224,
+          "anchor": "top_right"
+        },
+        {
+          "name": "hot_heading",
+          "type": "text",
+          "text": "HOT SAUCES",
+          "font": "heading",
+          "x": 1010,
+          "y": 304
+        },
+        {
+          "name": "hot_0",
+          "type": "text",
+          "text": "STEW GRAVY",
+          "font": "item",
+          "x": 1010,
+          "y": 396
+        },
+        {
+          "name": "hot_0_price",
+          "type": "text",
+          "text": "€3.00",
+          "font": "price",
+          "x": 1860,
+          "y": 396,
+          "anchor": "top_right"
+        },
+        {
+          "name": "hot_1",
+          "type": "text",
+          "text": "GOULASH",
+          "font": "item",
+          "x": 1010,
+          "y": 442
+        },
+        {
+          "name": "hot_1_price",
+          "type": "text",
+          "text": "€3.00",
+          "font": "price",
+          "x": 1860,
+          "y": 442,
+          "anchor": "top_right"
+        },
+        {
+          "name": "hot_2",
+          "type": "text",
+          "text": "CURRY",
+          "font": "item",
+          "x": 1010,
+          "y": 488
+        },
+        {
+          "name": "hot_2_price",
+          "type": "text",
+          "text": "€2.50",
+          "font": "price",
+          "x": 1860,
+          "y": 488,
+          "anchor": "top_right"
+        },
+        {
+          "name": "hot_3",
+          "type": "text",
+          "text": "PEPPER SAUCE",
+          "font": "item",
+          "x": 1010,
+          "y": 534
+        },
+        {
+          "name": "hot_3_price",
+          "type": "text",
+          "text": "€2.50",
+          "font": "price",
+          "x": 1860,
+          "y": 534,
+          "anchor": "top_right"
+        },
+        {
+          "name": "hot_4",
+          "type": "text",
+          "text": "BOLOGNESE",
+          "font": "item",
+          "x": 1010,
+          "y": 580
+        },
+        {
+          "name": "hot_4_price",
+          "type": "text",
+          "text": "€3.00",
+          "font": "price",
+          "x": 1860,
+          "y": 580,
+          "anchor": "top_right"
+        },
+        {
+          "name": "salads_heading",
+          "type": "text",
+          "text": "SALADS",
+          "font": "heading",
+          "x": 1010,
+          "y": 660
+        },
+        {
+          "name": "salads_0",
+          "type": "text",
+          "text": "GARDEN SALAD",
+          "font": "item",
+          "x": 1010,
+          "y": 752
+        },
+        {
+          "name": "salads_0_price",
+          "type": "text",
+          "text": "€7.00",
+          "font": "price",
+          "x": 1860,
+          "y": 752,
+          "anchor": "top_right"
+        }
+      ]
+    },
+    {
+      "name": "screen_2",
+      "type": "group",
+      "x": 1920,
+      "y": 0,
+      "children": [
+        {
+          "name": "snacks_heading",
+          "type": "text",
+          "text": "SNACKS",
+          "font": "heading",
+          "x": 60,
+          "y": 40
+        },
+        {
+          "name": "snack_a_0",
+          "type": "text",
+          "text": "SKEWER",
+          "font": "item",
+          "x": 60,
+          "y": 132
+        },
+        {
+          "name": "snack_a_0_price",
+          "type": "text",
+          "text": "€4.30",
+          "font": "price",
+          "x": 930,
+          "y": 132,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_1",
+          "type": "text",
+          "text": "NOODLE ROLL",
+          "font": "item",
+          "x": 60,
+          "y": 178
+        },
+        {
+          "name": "snack_a_1_price",
+          "type": "text",
+          "text": "€3.00",
+          "font": "price",
+          "x": 930,
+          "y": 178,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_1_icon",
+          "type": "image",
+          "image": "leaf",
+          "x": 804.049,
+          "y": 186
+        },
+        {
+          "name": "snack_a_2",
+          "type": "text",
+          "text": "CRUNCHY BITE",
+          "font": "item",
+          "x": 60,
+          "y": 224
+        },
+        {
+          "name": "snack_a_2_price",
+          "type": "text",
+          "text": "€3.80",
+          "font": "price",
+          "x": 930,
+          "y": 224,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_3",
+          "type": "text",
+          "text": "BEAR PAW",
+          "font": "item",
+          "x": 60,
+          "y": 270
+        },
+        {
+          "name": "snack_a_3_price",
+          "type": "text",
+          "text": "€3.80",
+          "font": "price",
+          "x": 930,
+          "y": 270,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_4",
+          "type": "text",
+          "text": "MEATBALLS (5)",
+          "font": "item",
+          "x": 60,
+          "y": 316
+        },
+        {
+          "name": "snack_a_4_price",
+          "type": "text",
+          "text": "€3.00",
+          "font": "price",
+          "x": 930,
+          "y": 316,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_5",
+          "type": "text",
+          "text": "MEATBALL / SPECIAL",
+          "font": "item",
+          "x": 60,
+          "y": 362
+        },
+        {
+          "name": "snack_a_5_price",
+          "type": "text",
+          "text": "€3.00 / €4.00",
+          "font": "price",
+          "x": 930,
+          "y": 362,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_6",
+          "type": "text",
+          "text": "SAUSAGE / SPECIAL",
+          "font": "item",
+          "x": 60,
+          "y": 408
+        },
+        {
+          "name": "snack_a_6_price",
+          "type": "text",
+          "text": "€4.20 / €5.20",
+          "font": "price",
+          "x": 930,
+          "y": 408,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_7",
+          "type": "text",
+          "text": "CHEESE CRACK",
+          "font": "item",
+          "x": 60,
+          "y": 454
+        },
+        {
+          "name": "snack_a_7_price",
+          "type": "text",
+          "text": "€3.00",
+          "font": "price",
+          "x": 930,
+          "y": 454,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_8",
+          "type": "text",
+          "text": "CHICKEN CHILI",
+          "font": "item",
+          "x": 60,
+          "y": 500
+        },
+        {
+          "name": "snack_a_8_price",
+          "type": "text",
+          "text": "€3.90",
+          "font": "price",
+          "x": 930,
+          "y": 500,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_8_icon",
+          "type": "image",
+          "image": "drumstick",
+          "x": 805.122,
+          "y": 508
+        },
+        {
+          "name": "snack_a_9",
+          "type": "text",
+          "text": "CHICKEN NUGGETS",
+          "font": "item",
+          "x": 60,
+          "y": 546
+        },
+        {
+          "name": "snack_a_9_price",
+          "type": "text",
+          "text": "€4.00",
+          "font": "price",
+          "x": 930,
+          "y": 546,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_9_icon",
+          "type": "image",
+          "image": "drumstick",
+          "x": 801.94,
+          "y": 554
+        },
+        {
+          "name": "snack_a_10",
+          "type": "text",
+          "text": "GRIZZLY",
+          "font": "item",
+          "x": 60,
+          "y": 592
+        },
+        {
+          "name": "snack_a_10_price",
+          "type": "text",
+          "text": "€4.50",
+          "font": "price",
+          "x": 930,
+          "y": 592,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_10_icon",
+          "type": "image",
+          "image": "flame",
+          "x": 802.7909999999999,
+          "y": 600
+        },
+        {
+          "name": "snack_a_11",
+          "type": "text",
+          "text": "CURRYWURST / SPECIAL",
+          "font": "item",
+          "x": 60,
+          "y": 638
+        },
+        {
+          "name": "snack_a_11_price",
+          "type": "text",
+          "text": "€2.50 / €3.50",
+          "font": "price",
+          "x": 930,
+          "y": 638,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_12",
+          "type": "text",
+          "text": "CURRYWURST XXL",
+          "font": "item",
+          "x": 60,
+          "y": 684
+        },
+        {
+          "name": "snack_a_12_price",
+          "type": "text",
+          "text": "€5.00",
+          "font": "price",
+          "x": 930,
+          "y": 684,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_13",
+          "type": "text",
+          "text": "DYNAMITE",
+          "font": "item",
+          "x": 60,
+          "y": 730
+        },
+        {
+          "name": "snack_a_13_price",
+          "type": "text",
+          "text": "€3.80",
+          "font": "price",
+          "x": 930,
+          "y": 730,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_13_icon",
+          "type": "image",
+          "image": "flame",
+          "x": 804.826,
+          "y": 738
+        },
+        {
+          "name": "snack_a_14",
+          "type": "text",
+          "text": "PRAWN CROQUETTE",
+          "font": "item",
+          "x": 60,
+          "y": 776
+        },
+        {
+          "name": "snack_a_14_price",
+          "type": "text",
+          "text": "€3.80",
+          "font": "price",
+          "x": 930,
+          "y": 776,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_14_icon",
+          "type": "image",
+          "image": "fish",
+          "x": 804.826,
+          "y": 784
+        },
+        {
+          "name": "snack_a_15",
+          "type": "text",
+          "text": "GOULASH CROQUETTE",
+          "font": "item",
+          "x": 60,
+          "y": 822
+        },
+        {
+          "name": "snack_a_15_price",
+          "type": "text",
+          "text": "€3.00",
+          "font": "price",
+          "x": 930,
+          "y": 822,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_16",
+          "type": "text",
+          "text": "CHEESE CROQUETTE",
+          "font": "item",
+          "x": 60,
+          "y": 868
+        },
+        {
+          "name": "snack_a_16_price",
+          "type": "text",
+          "text": "€3.20",
+          "font": "price",
+          "x": 930,
+          "y": 868,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_16_icon",
+          "type": "image",
+          "image": "leaf",
+          "x": 804.4929999999999,
+          "y": 876
+        },
+        {
+          "name": "snack_a_17",
+          "type": "text",
+          "text": "COD STICK",
+          "font": "item",
+          "x": 60,
+          "y": 914
+        },
+        {
+          "name": "snack_a_17_price",
+          "type": "text",
+          "text": "€4.50",
+          "font": "price",
+          "x": 930,
+          "y": 914,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_a_17_icon",
+          "type": "image",
+          "image": "fish",
+          "x": 802.7909999999999,
+          "y": 922
+        },
+        {
+          "name": "snack_b_0",
+          "type": "text",
+          "text": "TURKEY SKEWER",
+          "font": "item",
+          "x": 1010,
+          "y": 132
+        },
+        {
+          "name": "snack_b_0_price",
+          "type": "text",
+          "text": "€4.20",
+          "font": "price",
+          "x": 1860,
+          "y": 132,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_1",
+          "type": "text",
+          "text": "CHEESY CHICKEN",
+          "font": "item",
+          "x": 1010,
+          "y": 178
+        },
+        {
+          "name": "snack_b_1_price",
+          "type": "text",
+          "text": "€4.00",
+          "font": "price",
+          "x": 1860,
+          "y": 178,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_1_icon",
+          "type": "image",
+          "image": "drumstick",
+          "x": 1731.94,
+          "y": 186
+        },
+        {
+          "name": "snack_b_2",
+          "type": "text",
+          "text": "CHICKEN CORN",
+          "font": "item",
+          "x": 1010,
+          "y": 224
+        },
+        {
+          "name": "snack_b_2_price",
+          "type": "text",
+          "text": "€3.20",
+          "font": "price",
+          "x": 1860,
+          "y": 224,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_2_icon",
+          "type": "image",
+          "image": "drumstick",
+          "x": 1734.493,
+          "y": 232
+        },
+        {
+          "name": "snack_b_3",
+          "type": "text",
+          "text": "CHICKEN WINGS",
+          "font": "item",
+          "x": 1010,
+          "y": 270
+        },
+        {
+          "name": "snack_b_3_price",
+          "type": "text",
+          "text": "€5.30",
+          "font": "price",
+          "x": 1860,
+          "y": 270,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_3_icon",
+          "type": "image",
+          "image": "drumstick",
+          "x": 1734.9,
+          "y": 278
+        },
+        {
+          "name": "snack_b_4",
+          "type": "text",
+          "text": "CHICKEN ROLL",
+          "font": "item",
+          "x": 1010,
+          "y": 316
+        },
+        {
+          "name": "snack_b_4_price",
+          "type": "text",
+          "text": "€5.00",
+          "font": "price",
+          "x": 1860,
+          "y": 316,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_4_icon",
+          "type": "image",
+          "image": "drumstick",
+          "x": 1734.012,
+          "y": 324
+        },
+        {
+          "name": "snack_b_5",
+          "type": "text",
+          "text": "MINI SPRING ROLLS",
+          "font": "item",
+          "x": 1010,
+          "y": 362
+        },
+        {
+          "name": "snack_b_5_price",
+          "type": "text",
+          "text": "€4.00",
+          "font": "price",
+          "x": 1860,
+          "y": 362,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_5_icon",
+          "type": "image",
+          "image": "leaf",
+          "x": 1731.94,
+          "y": 370
+        },
+        {
+          "name": "snack_b_6",
+          "type": "text",
+          "text": "SPRING ROLL",
+          "font": "item",
+          "x": 1010,
+          "y": 408
+        },
+        {
+          "name": "snack_b_6_price",
+          "type": "text",
+          "text": "€3.70",
+          "font": "price",
+          "x": 1860,
+          "y": 408,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_7",
+          "type": "text",
+          "text": "LUCIFER",
+          "font": "item",
+          "x": 1010,
+          "y": 454
+        },
+        {
+          "name": "snack_b_7_price",
+          "type": "text",
+          "text": "€4.00",
+          "font": "price",
+          "x": 1860,
+          "y": 454,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_7_icon",
+          "type": "image",
+          "image": "flame",
+          "x": 1731.94,
+          "y": 462
+        },
+        {
+          "name": "snack_b_8",
+          "type": "text",
+          "text": "MINI LUCIFER (4)",
+          "font": "item",
+          "x": 1010,
+          "y": 500
+        },
+        {
+          "name": "snack_b_8_price",
+          "type": "text",
+          "text": "€4.00",
+          "font": "price",
+          "x": 1860,
+          "y": 500,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_8_icon",
+          "type": "image",
+          "image": "flame",
+          "x": 1731.94,
+          "y": 508
+        },
+        {
+          "name": "snack_b_9",
+          "type": "text",
+          "text": "MAMMOTH",
+          "font": "item",
+          "x": 1010,
+          "y": 546
+        },
+        {
+          "name": "snack_b_9_price",
+          "type": "text",
+          "text": "€3.50",
+          "font": "price",
+          "x": 1860,
+          "y": 546,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_10",
+          "type": "text",
+          "text": "MEXICANO",
+          "font": "item",
+          "x": 1010,
+          "y": 592
+        },
+        {
+          "name": "snack_b_10_price",
+          "type": "text",
+          "text": "€3.50",
+          "font": "price",
+          "x": 1860,
+          "y": 592,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_10_icon",
+          "type": "image",
+          "image": "flame",
+          "x": 1734.9,
+          "y": 600
+        },
+        {
+          "name": "snack_b_11",
+          "type": "text",
+          "text": "MINI MEGA MIX",
+          "font": "item",
+          "x": 1010,
+          "y": 638
+        },
+        {
+          "name": "snack_b_11_price",
+          "type": "text",
+          "text": "€5.00",
+          "font": "price",
+          "x": 1860,
+          "y": 638,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_12",
+          "type": "text",
+          "text": "MUSSELS",
+          "font": "item",
+          "x": 1010,
+          "y": 684
+        },
+        {
+          "name": "snack_b_12_price",
+          "type": "text",
+          "text": "€5.20",
+          "font": "price",
+          "x": 1860,
+          "y": 684,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_12_icon",
+          "type": "image",
+          "image": "fish",
+          "x": 1734.456,
+          "y": 692
+        },
+        {
+          "name": "snack_b_13",
+          "type": "text",
+          "text": "MOZZARELLA FINGERS",
+          "font": "item",
+          "x": 1010,
+          "y": 730
+        },
+        {
+          "name": "snack_b_13_price",
+          "type": "text",
+          "text": "€4.00",
+          "font": "price",
+          "x": 1860,
+          "y": 730,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_13_icon",
+          "type": "image",
+          "image": "leaf",
+          "x": 1731.94,
+          "y": 738
+        },
+        {
+          "name": "snack_b_14",
+          "type": "text",
+          "text": "RAGOUT BALL",
+          "font": "item",
+          "x": 1010,
+          "y": 776
+        },
+        {
+          "name": "snack_b_14_price",
+          "type": "text",
+          "text": "€3.50",
+          "font": "price",
+          "x": 1860,
+          "y": 776,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_15",
+          "type": "text",
+          "text": "RIB BITES",
+          "font": "item",
+          "x": 1010,
+          "y": 822
+        },
+        {
+          "name": "snack_b_15_price",
+          "type": "text",
+          "text": "€3.80",
+          "font": "price",
+          "x": 1860,
+          "y": 822,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_16",
+          "type": "text",
+          "text": "BREADED SKEWER",
+          "font": "item",
+          "x": 1010,
+          "y": 868
+        },
+        {
+          "name": "snack_b_16_price",
+          "type": "text",
+          "text": "€3.20",
+          "font": "price",
+          "x": 1860,
+          "y": 868,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_b_17",
+          "type": "text",
+          "text": "SATAY",
+          "font": "item",
+          "x": 1010,
+          "y": 914
+        },
+        {
+          "name": "snack_b_17_price",
+          "type": "text",
+          "text": "€4.00",
+          "font": "price",
+          "x": 1860,
+          "y": 914,
+          "anchor": "top_right"
+        }
+      ]
+    },
+    {
+      "name": "screen_3",
+      "type": "group",
+      "x": 3840,
+      "y": 0,
+      "children": [
+        {
+          "name": "snack_c_heading",
+          "type": "text",
+          "text": "SNACKS",
+          "font": "heading",
+          "x": 60,
+          "y": 40
+        },
+        {
+          "name": "snack_c_0",
+          "type": "text",
+          "text": "CHICKEN SKEWER",
+          "font": "item",
+          "x": 60,
+          "y": 132
+        },
+        {
+          "name": "snack_c_0_price",
+          "type": "text",
+          "text": "€4.00",
+          "font": "price",
+          "x": 900,
+          "y": 132,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_c_0_icon",
+          "type": "image",
+          "image": "drumstick",
+          "x": 771.94,
+          "y": 140
+        },
+        {
+          "name": "snack_c_1",
+          "type": "text",
+          "text": "SHASHLIK",
+          "font": "item",
+          "x": 60,
+          "y": 178
+        },
+        {
+          "name": "snack_c_1_price",
+          "type": "text",
+          "text": "€5.80",
+          "font": "price",
+          "x": 900,
+          "y": 178,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_c_2",
+          "type": "text",
+          "text": "TACO",
+          "font": "item",
+          "x": 60,
+          "y": 224
+        },
+        {
+          "name": "snack_c_2_price",
+          "type": "text",
+          "text": "€4.50",
+          "font": "price",
+          "x": 900,
+          "y": 224,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_c_3",
+          "type": "text",
+          "text": "THE DOUBTER",
+          "font": "item",
+          "x": 60,
+          "y": 270
+        },
+        {
+          "name": "snack_c_3_price",
+          "type": "text",
+          "text": "€5.50",
+          "font": "price",
+          "x": 900,
+          "y": 270,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_c_4",
+          "type": "text",
+          "text": "VIANDEL / SPECIAL",
+          "font": "item",
+          "x": 60,
+          "y": 316
+        },
+        {
+          "name": "snack_c_4_price",
+          "type": "text",
+          "text": "€3.20 / €4.20",
+          "font": "price",
+          "x": 900,
+          "y": 316,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_c_5",
+          "type": "text",
+          "text": "MEAT CROQUETTE",
+          "font": "item",
+          "x": 60,
+          "y": 362
+        },
+        {
+          "name": "snack_c_5_price",
+          "type": "text",
+          "text": "€3.00",
+          "font": "price",
+          "x": 900,
+          "y": 362,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_c_6",
+          "type": "text",
+          "text": "FIRE EATER",
+          "font": "item",
+          "x": 60,
+          "y": 408
+        },
+        {
+          "name": "snack_c_6_price",
+          "type": "text",
+          "text": "€3.50",
+          "font": "price",
+          "x": 900,
+          "y": 408,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_c_6_icon",
+          "type": "image",
+          "image": "flame",
+          "x": 774.9,
+          "y": 416
+        },
+        {
+          "name": "snack_c_7",
+          "type": "text",
+          "text": "GYPSY STICK",
+          "font": "item",
+          "x": 60,
+          "y": 454
+        },
+        {
+          "name": "snack_c_7_price",
+          "type": "text",
+          "text": "€3.80",
+          "font": "price",
+          "x": 900,
+          "y": 454,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_c_8",
+          "type": "text",
+          "text": "VEGGIE CURRYWURST",
+          "font": "item",
+          "x": 60,
+          "y": 500
+        },
+        {
+          "name": "snack_c_8_price",
+          "type": "text",
+          "text": "€3.00",
+          "font": "price",
+          "x": 900,
+          "y": 500,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_c_9",
+          "type": "text",
+          "text": "VEGGIE CHICKEN CORN",
+          "font": "item",
+          "x": 60,
+          "y": 546
+        },
+        {
+          "name": "snack_c_9_price",
+          "type": "text",
+          "text": "€3.50",
+          "font": "price",
+          "x": 900,
+          "y": 546,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_c_9_icon",
+          "type": "image",
+          "image": "leaf",
+          "x": 774.9,
+          "y": 554
+        },
+        {
+          "name": "snack_c_10",
+          "type": "text",
+          "text": "VEGGIE MEATBALLS",
+          "font": "item",
+          "x": 60,
+          "y": 592
+        },
+        {
+          "name": "snack_c_10_price",
+          "type": "text",
+          "text": "€3.50",
+          "font": "price",
+          "x": 900,
+          "y": 592,
+          "anchor": "top_right"
+        },
+        {
+          "name": "snack_c_10_icon",
+          "type": "image",
+          "image": "leaf",
+          "x": 774.9,
+          "y": 600
+        },
+        {
+          "name": "homemade_heading",
+          "type": "text",
+          "text": "HOMEMADE",
+          "font": "heading",
+          "x": 60,
+          "y": 672
+        },
+        {
+          "name": "homemade_0",
+          "type": "text",
+          "text": "BEEF STEW",
+          "font": "item",
+          "x": 60,
+          "y": 764
+        },
+        {
+          "name": "homemade_0_price",
+          "type": "text",
+          "text": "€6.00",
+          "font": "price",
+          "x": 900,
+          "y": 764,
+          "anchor": "top_right"
+        },
+        {
+          "name": "homemade_1",
+          "type": "text",
+          "text": "GOULASH",
+          "font": "item",
+          "x": 60,
+          "y": 810
+        },
+        {
+          "name": "homemade_1_price",
+          "type": "text",
+          "text": "€5.50",
+          "font": "price",
+          "x": 900,
+          "y": 810,
+          "anchor": "top_right"
+        },
+        {
+          "name": "homemade_2",
+          "type": "text",
+          "text": "VOL-AU-VENT",
+          "font": "item",
+          "x": 60,
+          "y": 856
+        },
+        {
+          "name": "homemade_2_price",
+          "type": "text",
+          "text": "€5.50",
+          "font": "price",
+          "x": 900,
+          "y": 856,
+          "anchor": "top_right"
+        },
+        {
+          "name": "homemade_2_icon",
+          "type": "image",
+          "image": "drumstick",
+          "x": 774.863,
+          "y": 864
+        },
+        {
+          "name": "homemade_3",
+          "type": "text",
+          "text": "SPAGHETTI SMALL / LARGE",
+          "font": "item",
+          "x": 60,
+          "y": 902
+        },
+        {
+          "name": "homemade_3_price",
+          "type": "text",
+          "text": "€8.50 / €9.50",
+          "font": "price",
+          "x": 900,
+          "y": 902,
+          "anchor": "top_right"
+        },
+        {
+          "name": "burgers_heading",
+          "type": "text",
+          "text": "BURGERS",
+          "font": "heading",
+          "x": 980,
+          "y": 40
+        },
+        {
+          "name": "burgers_0",
+          "type": "text",
+          "text": "HAMBURGER",
+          "font": "item",
+          "x": 980,
+          "y": 132
+        },
+        {
+          "name": "burgers_0_price",
+          "type": "text",
+          "text": "€4.20",
+          "font": "price",
+          "x": 1860,
+          "y": 132,
+          "anchor": "top_right"
+        },
+        {
+          "name": "burgers_1",
+          "type": "text",
+          "text": "BICKY BURGER",
+          "font": "item",
+          "x": 980,
+          "y": 178
+        },
+        {
+          "name": "burgers_1_price",
+          "type": "text",
+          "text": "€4.50",
+          "font": "price",
+          "x": 1860,
+          "y": 178,
+          "anchor": "top_right"
+        },
+        {
+          "name": "burgers_2",
+          "type": "text",
+          "text": "BICKY CHEESE",
+          "font": "item",
+          "x": 980,
+          "y": 224
+        },
+        {
+          "name": "burgers_2_price",
+          "type": "text",
+          "text": "€4.80",
+          "font": "price",
+          "x": 1860,
+          "y": 224,
+          "anchor": "top_right"
+        },
+        {
+          "name": "burgers_3",
+          "type": "text",
+          "text": "BICKY CHICKEN",
+          "font": "item",
+          "x": 980,
+          "y": 270
+        },
+        {
+          "name": "burgers_3_price",
+          "type": "text",
+          "text": "€4.80",
+          "font": "price",
+          "x": 1860,
+          "y": 270,
+          "anchor": "top_right"
+        },
+        {
+          "name": "burgers_3_icon",
+          "type": "image",
+          "image": "drumstick",
+          "x": 1732.717,
+          "y": 278
+        },
+        {
+          "name": "burgers_4",
+          "type": "text",
+          "text": "BICKY FISH",
+          "font": "item",
+          "x": 980,
+          "y": 316
+        },
+        {
+          "name": "burgers_4_price",
+          "type": "text",
+          "text": "€4.80",
+          "font": "price",
+          "x": 1860,
+          "y": 316,
+          "anchor": "top_right"
+        },
+        {
+          "name": "burgers_4_icon",
+          "type": "image",
+          "image": "fish",
+          "x": 1732.717,
+          "y": 324
+        },
+        {
+          "name": "burgers_5",
+          "type": "text",
+          "text": "BICKY BASTARD",
+          "font": "item",
+          "x": 980,
+          "y": 362
+        },
+        {
+          "name": "burgers_5_price",
+          "type": "text",
+          "text": "€4.80",
+          "font": "price",
+          "x": 1860,
+          "y": 362,
+          "anchor": "top_right"
+        },
+        {
+          "name": "burgers_5_icon",
+          "type": "image",
+          "image": "leaf",
+          "x": 1732.717,
+          "y": 370
+        },
+        {
+          "name": "burgers_6",
+          "type": "text",
+          "text": "BICKY CHICKLESS",
+          "font": "item",
+          "x": 980,
+          "y": 408
+        },
+        {
+          "name": "burgers_6_price",
+          "type": "text",
+          "text": "€4.80",
+          "font": "price",
+          "x": 1860,
+          "y": 408,
+          "anchor": "top_right"
+        },
+        {
+          "name": "burgers_6_icon",
+          "type": "image",
+          "image": "leaf",
+          "x": 1732.717,
+          "y": 416
+        },
+        {
+          "name": "burgers_7",
+          "type": "text",
+          "text": "VEGGIE BURGER",
+          "font": "item",
+          "x": 980,
+          "y": 454
+        },
+        {
+          "name": "burgers_7_price",
+          "type": "text",
+          "text": "€4.80",
+          "font": "price",
+          "x": 1860,
+          "y": 454,
+          "anchor": "top_right"
+        },
+        {
+          "name": "burgers_7_icon",
+          "type": "image",
+          "image": "leaf",
+          "x": 1732.717,
+          "y": 462
+        },
+        {
+          "name": "burgers_8",
+          "type": "text",
+          "text": "MEXICAN SANDWICH",
+          "font": "item",
+          "x": 980,
+          "y": 500
+        },
+        {
+          "name": "burgers_8_price",
+          "type": "text",
+          "text": "€5.50",
+          "font": "price",
+          "x": 1860,
+          "y": 500,
+          "anchor": "top_right"
+        },
+        {
+          "name": "burgers_8_icon",
+          "type": "image",
+          "image": "flame",
+          "x": 1734.863,
+          "y": 508
+        },
+        {
+          "name": "burgers_9",
+          "type": "text",
+          "text": "BICKY ROYAL",
+          "font": "item",
+          "x": 980,
+          "y": 546
+        },
+        {
+          "name": "burgers_9_price",
+          "type": "text",
+          "text": "€6.80",
+          "font": "price",
+          "x": 1860,
+          "y": 546,
+          "anchor": "top_right"
+        },
+        {
+          "name": "burgers_10",
+          "type": "text",
+          "text": "BICKY ROYAL CHEESE",
+          "font": "item",
+          "x": 980,
+          "y": 592
+        },
+        {
+          "name": "burgers_10_price",
+          "type": "text",
+          "text": "€7.20",
+          "font": "price",
+          "x": 1860,
+          "y": 592,
+          "anchor": "top_right"
+        },
+        {
+          "name": "burgers_11",
+          "type": "text",
+          "text": "BICKY WRAP",
+          "font": "item",
+          "x": 980,
+          "y": 638
+        },
+        {
+          "name": "burgers_11_price",
+          "type": "text",
+          "text": "€5.50",
+          "font": "price",
+          "x": 1860,
+          "y": 638,
+          "anchor": "top_right"
+        },
+        {
+          "name": "burgers_12",
+          "type": "text",
+          "text": "BICKY MEXICANO",
+          "font": "item",
+          "x": 980,
+          "y": 684
+        },
+        {
+          "name": "burgers_12_price",
+          "type": "text",
+          "text": "€5.50",
+          "font": "price",
+          "x": 1860,
+          "y": 684,
+          "anchor": "top_right"
+        },
+        {
+          "name": "burgers_12_icon",
+          "type": "image",
+          "image": "flame",
+          "x": 1734.863,
+          "y": 692
+        },
+        {
+          "name": "brand",
+          "type": "text",
+          "text": "THE CHIP SHOP",
+          "font": "brand",
+          "x": 1860,
+          "y": 774,
+          "anchor": "top_right"
+        },
+        {
+          "name": "brand_line",
+          "type": "text",
+          "text": "fried fresh since 1962",
+          "font": "brand_line",
+          "x": 1860,
+          "y": 882,
+          "anchor": "top_right"
+        }
+      ]
+    },
+    {
+      "name": "strip",
+      "type": "shape",
+      "shape": {
+        "rect": [
+          0,
+          0,
+          5760,
+          76
+        ]
+      },
+      "y": 1004,
+      "fill": "#0A0B10"
+    },
+    {
+      "name": "rule",
+      "type": "shape",
+      "shape": {
+        "rect": [
+          0,
+          0,
+          5760,
+          2
+        ]
+      },
+      "y": 1004,
+      "fill": "#FFC61A",
+      "opacity": 0.35
+    },
+    {
+      "name": "news",
+      "type": "text",
+      "text": "Local man wins a lifetime supply of mayonnaise, asks whether it comes with fries   ·   Town council approves a second fryer after a forty-year debate   ·   Study finds the last fry in the cone is the best one, and always was   ·   Weather: a chance of drizzle this afternoon, a certainty of gravy tonight   ·   Seagull elected chairman of the harbour committee on a platform of chips   ·   Scientists confirm fries taste better when somebody else is paying   ·   Record turnout as the village votes on the correct amount of salt   ·   Lost cat found asleep in the mayonnaise aisle, in excellent spirits   ·   ",
+      "font": "ticker",
+      "x": 5760,
+      "y": 1021,
+      "timelines": [
+        {
+          "name": "crawl",
+          "autoplay": true,
+          "loop": true,
+          "tracks": [
+            {
+              "property": "x",
+              "keys": [
+                {
+                  "t": 0,
+                  "v": 5760
+                },
+                {
+                  "t": 63.91,
+                  "v": -9578.8
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
