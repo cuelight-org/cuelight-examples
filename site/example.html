@@ -70,7 +70,7 @@
         <div class="content">
           <div class="controls"><button id="driver" hidden></button><button id="restart">restart</button><button id="sound" hidden></button></div>
           <p class="status" id="driver-note" hidden>The driver script stands in for a host: it fires the triggers
-            and sets the variables. Pause it to take over.</p>
+            and sets the variables, and says so below as it goes. Pause it to take over.</p>
           <p class="status" id="sound-note" hidden>This browser cannot decode some of the show's sounds, so they
             stay silent, and whatever waits for them to end never happens. The warnings below say which.</p>
         </div>
@@ -207,6 +207,15 @@ async function play() {
   warnings.forEach((warning) => log(warning, true));
   $("sound-note").hidden = !warnings.some((warning) => warning.includes("could not be decoded"));
   player.onEvent((event) => log(`event  ${JSON.stringify(event)}`));
+  // What the driver script did, as it fires: a trigger or a variable
+  // set, at the driver's own instant, so the show's events below it
+  // have their cause on the line above.
+  if (player.onDriver) player.onDriver((step) => {
+    const at = step.at.toFixed(2);
+    log(step.type === "set"
+      ? `driver ${at}  set ${step.name} = ${JSON.stringify(step.value)}`
+      : `driver ${at}  trigger ${step.name}`);
+  });
   // A click on the stage is a press on the show, at the canvas point
   // under it; the cursor says where a press does something.
   const canvasPoint = (e) => {
