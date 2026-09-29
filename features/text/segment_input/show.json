@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+  "format": 1, "name": "segment_input", "size": [800, 450], "background": "#0E1116",
+  "variables": {"mask": "1 1 1 1", "comet7": "F0014800 F0014800 F0014800 F0014800", "comet16": "F0036A00000000001 F0036A00000000001 F0036A00000000001 F0036A00000000001", "pulse": "000000000000000 555555505555555 BBBBBBB0BBBBBBB FFFFFFF0FFFFFFF", "phase": ""},
+  "layers": [
+    {"name": "title", "type": "digits", "digits": 13, "size": [187, 20], "x": 24, "y": 18, "text": "SEGMENT INPUT", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+    {"name": "head_numeric7", "type": "digits", "digits": 8, "size": [69, 12], "x": 150, "y": 56, "text": "NUMERIC7", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+    {"name": "head_numeric9", "type": "digits", "digits": 8, "size": [69, 12], "x": 310, "y": 56, "text": "NUMERIC9", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+    {"name": "head_alpha14", "type": "digits", "digits": 7, "size": [60, 12], "x": 470, "y": 56, "text": "ALPHA14", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+    {"name": "head_alpha16", "type": "digits", "digits": 7, "size": [60, 12], "x": 630, "y": 56, "text": "ALPHA16", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+    {"name": "label_text", "type": "digits", "digits": 4, "size": [35, 12], "x": 24, "y": 102, "text": "TEXT", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+    {"name": "text_numeric7", "type": "digits", "digits": 4, "size": [146, 56], "x": 150, "y": 80, "text": "1017", "display": {"segments": {"style": "numeric7", "fill": "#FF5820", "unlit": "#2A0E05"}}},
+    {"name": "text_numeric9", "type": "digits", "digits": 4, "size": [146, 56], "x": 310, "y": 80, "text": "1017", "display": {"segments": {"style": "numeric9", "fill": "#FF5820", "unlit": "#2A0E05"}}},
+    {"name": "text_alpha14", "type": "digits", "digits": 4, "size": [146, 56], "x": 470, "y": 80, "text": "1017", "display": {"segments": {"style": "alpha14", "fill": "#FF5820", "unlit": "#2A0E05"}}},
+    {"name": "text_alpha16", "type": "digits", "digits": 4, "size": [146, 56], "x": 630, "y": 80, "text": "1017", "display": {"segments": {"style": "alpha16", "fill": "#FF5820", "unlit": "#2A0E05"}}},
+    {"name": "label_masks", "type": "digits", "digits": 5, "size": [43, 12], "x": 24, "y": 198, "text": "MASKS", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+    {"name": "masks_numeric7", "type": "digits", "digits": 4, "size": [146, 56], "x": 150, "y": 176, "text": "1 1 1 1", "display": {"segments": {"style": "numeric7", "fill": "#FF5820", "unlit": "#2A0E05", "input": "masks"}}, "bindings": [{"property": "text", "variable": "mask"}]},
+    {"name": "masks_numeric9", "type": "digits", "digits": 4, "size": [146, 56], "x": 310, "y": 176, "text": "1 1 1 1", "display": {"segments": {"style": "numeric9", "fill": "#FF5820", "unlit": "#2A0E05", "input": "masks"}}, "bindings": [{"property": "text", "variable": "mask"}]},
+    {"name": "masks_alpha14", "type": "digits", "digits": 4, "size": [146, 56], "x": 470, "y": 176, "text": "1 1 1 1", "display": {"segments": {"style": "alpha14", "fill": "#FF5820", "unlit": "#2A0E05", "input": "masks"}}, "bindings": [{"property": "text", "variable": "mask"}]},
+    {"name": "masks_alpha16", "type": "digits", "digits": 4, "size": [146, 56], "x": 630, "y": 176, "text": "1 1 1 1", "display": {"segments": {"style": "alpha16", "fill": "#FF5820", "unlit": "#2A0E05", "input": "masks"}}, "bindings": [{"property": "text", "variable": "mask"}]},
+    {"name": "mask_text", "type": "digits", "digits": 23, "size": [199, 12], "x": 150, "y": 242, "text": "1 1 1 1", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}, "bindings": [{"property": "text", "variable": "mask"}]},
+    {"name": "label_levels", "type": "digits", "digits": 6, "size": [52, 12], "x": 24, "y": 294, "text": "LEVELS", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+    {"name": "levels_numeric7", "type": "digits", "digits": 4, "size": [146, 56], "x": 150, "y": 272, "text": "F0014800 F0014800 F0014800 F0014800", "display": {"segments": {"style": "numeric7", "fill": "#FF5820", "unlit": "#2A0E05", "input": "levels"}}, "bindings": [{"property": "text", "variable": "comet7"}]},
+    {"name": "levels_numeric9", "type": "digits", "digits": 4, "size": [146, 56], "x": 310, "y": 272, "text": "3333333000 7777777000 BBBBBBB000 FFFFFFF000", "display": {"segments": {"style": "numeric9", "fill": "#FF5820", "unlit": "#2A0E05", "input": "levels"}}},
+    {"name": "levels_alpha14", "type": "digits", "digits": 4, "size": [146, 56], "x": 470, "y": 272, "text": "000000000000000 555555505555555 BBBBBBB0BBBBBBB FFFFFFF0FFFFFFF", "display": {"segments": {"style": "alpha14", "fill": "#FF5820", "unlit": "#2A0E05", "input": "levels"}}, "bindings": [{"property": "text", "variable": "pulse"}]},
+    {"name": "levels_alpha16", "type": "digits", "digits": 4, "size": [146, 56], "x": 630, "y": 272, "text": "F0036A00000000001 F0036A00000000001 F0036A00000000001 F0036A00000000001", "display": {"segments": {"style": "alpha16", "fill": "#FF5820", "unlit": "#2A0E05", "input": "levels"}}, "bindings": [{"property": "text", "variable": "comet16"}]},
+    {"name": "note_comet7", "type": "digits", "digits": 5, "size": [43, 12], "x": 150, "y": 338, "text": "COMET", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+    {"name": "note_steps", "type": "digits", "digits": 10, "size": [86, 12], "x": 310, "y": 338, "text": "FOUR STEPS", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+    {"name": "note_pulse", "type": "digits", "digits": 5, "size": [43, 12], "x": 470, "y": 338, "text": "PULSE", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+    {"name": "note_comet16", "type": "digits", "digits": 5, "size": [43, 12], "x": 630, "y": 338, "text": "COMET", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+    {"name": "phase", "type": "digits", "digits": 22, "size": [222, 14], "x": 24, "y": 410, "text": "", "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}}, "bindings": [{"property": "text", "variable": "phase"}]}
+  ]
+}
