@@ -1,0 +1,33 @@
+{
+  "loop": true,
+  "steps": [
+    {"set": {"shown": true, "phase": "THE DRIVER STANDS IN FOR A HAND: IT FIRES WHAT A PRESS WOULD"}},
+    {"wait": 1.5},
+    {"set": {"phase": "A PRESS ON THE PAD"}},
+    {"trigger": "tap"},
+    {"wait": 1.5},
+    {"set": {"phase": "A PRESS ON THE MOVING PAD, WHEREVER IT IS"}},
+    {"trigger": "moving"},
+    {"wait": 1.5},
+    {"set": {"shown": false, "phase": "THE PAD HIDES: A CLICK THERE NOW GOES TO ANYWHERE"}},
+    {"wait": 1.5},
+    {"trigger": "anywhere"},
+    {"wait": 1.5},
+    {"set": {"shown": true, "phase": "SHOWN AGAIN, IT IS PRESSED AGAIN"}},
+    {"trigger": "hidden"},
+    {"wait": 1.5},
+    {"set": {"phase": "THE CLIPPED PAD: ONLY ITS SHOWN HALF ANSWERS"}},
+    {"trigger": "clipped"},
+    {"wait": 1.5},
+    {"set": {"phase": "SPACE, THEN THE ARROWS"}},
+    {"trigger": "tap"},
+    {"wait": 0.8},
+    {"trigger": "left"},
+    {"wait": 0.8},
+    {"trigger": "right"},
+    {"wait": 1.5},
+    {"set": {"phase": "ENTER, OR A CLICK ON NOTHING"}},
+    {"trigger": "anywhere"},
+    {"wait": 2.0}
+  ]
+}
