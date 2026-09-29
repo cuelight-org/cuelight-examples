@@ -21,9 +21,9 @@ the word does it.
 | Paper | one PNG multiplied over both pages and the turning leaf: grain, darker edges, foxing and a deep crease where the pages bend into the binding, so the ink and the pictures look printed on it |
 | Story | IM Fell English at 40 pixels, a line per layer; a page that starts with a letter gets a red initial in IM Fell French Canon, with the first two lines indented beside it |
 | Red words | the lines are laid out by the script, word by word, with the font's advance widths, which is how the engine places glyphs, so each red word is a text layer of its own at a known place. It is anchored at its centre and jumps when its trigger fires; a press on it fires the same trigger (`press`) |
-| Pictures | a group clipped to the plate, drawn from SVG parts in a few flat inks with a dark outline. A part that moves is its own file, drawn so that the point it turns around is on its box's edge: a head turns at its neck (`anchor: bottom`), a basket swings from its handle (`top`), the wolf's jaw opens at its hinge (`top_right`), a tail wags from its root (`left`), a flower sways from its stem |
+| Pictures | a group clipped to the plate, drawn from SVGs in a few flat inks with a dark outline. Scenery that moves is its own file, drawn so that the point it turns around is on its box's edge: the big basket swings from its handle (`anchor: top`), a flower sways from its stem (`bottom`) |
 | Idle motion | looping timelines, each with its own period and delay, so nothing moves in step with anything else |
-| Characters | the girl, the wolf and the wolf's head are groups of parts built by one function each and reused on every page: the wolf in Grandma's bed is the same head, mirrored, with a nightcap over its ears |
+| Characters | Red and the wolf are one SVG each, one image layer on the page, and their moving pieces are elements of it with an id that the layer moves as `parts`, around a `pivot` in the artwork's coordinates: her head bobs at her neck and her basket sways from her hand; the wolf's tail wags from its root, its head tilts at its neck and carries its jaw, which opens at its hinge, and its eye, which blinks and grows. Red with empty hands (`red_empty_handed.svg`) and the wolf in Grandma's bed, only its head, in her nightcap (`wolf_as_grandma.svg`), are pictures of their own with the same parts in the same places, so the same timelines move them; the wolf in bed is mirrored to face the room |
 
 ## Running
 
@@ -53,7 +53,7 @@ have to travel with the files are in [`licenses/`](licenses/).
 
 | Asset | Origin | License |
 | --- | --- | --- |
-| `*.svg`, `table.png`, `paper.png` | Made for this show, written by [`tools/red_riding_hood_art.py`](../tools/red_riding_hood_art.py) | MIT, as this repository |
+| `*.svg`, `table.png`, `paper.png` | Made for this show, written by [`tools/red_riding_hood_art.py`](../tools/red_riding_hood_art.py): the backdrops and scenery, the other characters, and Red and the wolf as one picture each (`red.svg`, `wolf.svg`) whose moving pieces are elements with an id, hidden where a page leaves them out | MIT, as this repository |
 | `sounds/turn1.ogg`, `sounds/turn2.ogg` | Synthesized from noise by [`tools/red_riding_hood_sounds.py`](../tools/red_riding_hood_sounds.py) | MIT, as this repository |
 | `fonts/IMFellEnglish-Regular.ttf`, `fonts/IMFellEnglish-Italic.ttf`, `fonts/IMFellFrenchCanon-Regular.ttf` | [IM Fell Types](https://iginomarini.com/fell/) by Igino Marini, revivals of the Fell types of the 1680s, the unmodified files from [google/fonts](https://github.com/google/fonts/tree/8d618a0e96499047423510abb2c5ee9f475b987a/ofl/imfellenglish) and [IM Fell French Canon](https://github.com/google/fonts/tree/3b3145a92153418d09d62971e8238ad5bec48ca3/ofl/imfellfrenchcanon) | [OFL-1.1](licenses/IMFell-OFL.txt), no reserved font name |
 
