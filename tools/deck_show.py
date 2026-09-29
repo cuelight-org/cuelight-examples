@@ -412,7 +412,6 @@ def finish(total):
             timeline(rect("progress", 0, H - 6, W, 6, s["color"], scale_x=now), name="advance", autoplay=True,
                      hold=True, tracks=[{"property": "scale_x", "keys": [{"t": 0, "v": was}, {"t": 0.6, "v": now,
                                                                                      "ease": "cubic_out"}]}]),
-            text("page", f"{n:02d} / {total:02d}", W - M, H - 34, "mono_small", anchor="right"),
         ]
         # What `next` and `prev` mean on this slide: a timeline of no
         # length whose end fires the slide to go to.
@@ -793,6 +792,10 @@ scenes = finish(TOTAL)
 
 # ---------------------------------------------------------------- values the deck animates
 values = {
+    # The slide showing, for the page number at the foot: each slide's
+    # trigger sets it and it holds until the next one.
+    "page": {"timelines": [{"name": f"slide_{n}", "trigger": f"slide_{n}", "hold": True, "keys": [{"t": 0, "v": n}]}
+                           for n in range(1, TOTAL + 1)]},
     # Slide 3 plays the host: a real one setting `fuel` takes over.
     "fuel": {"timelines": [{"name": "host", "trigger": "slide_3", "loop": True, "keys": [
         {"t": 0, "v": 72}, {"t": 2.2, "v": 34, "ease": "step"}, {"t": 4.4, "v": 91, "ease": "step"},
@@ -813,6 +816,10 @@ layers = [
     {"name": "slide_sound", "type": "audio", "sound": "slide", "gain": 0.6,
      "trigger": [f"slide_{n}" for n in range(1, TOTAL + 1)]},
     wordmark("brand", M, H - 34, "brand", anchor="left"),
+    # One page number for every slide: the deck opens on the first, and
+    # each slide's trigger moves `page` on.
+    text("page", f"01 / {TOTAL:02d}", W - M, H - 34, "mono_small", anchor="right",
+         bindings=[{"property": "text", "variable": "page", "min_digits": 2, "suffix": f" / {TOTAL:02d}"}]),
 ]
 
 show = {
