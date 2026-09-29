@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Write the chip shop menu board: chip_shop/show.json.
+"""Write the chip shop menu board: demos/chip_shop/show.json.
 
     tools/chip_shop_show.py
 
@@ -13,7 +13,7 @@ from pathlib import Path
 
 from fontTools.ttLib import TTFont
 
-ROOT = Path(__file__).resolve().parent.parent / "chip_shop"
+ROOT = Path(__file__).resolve().parent.parent / "demos" / "chip_shop"
 SCREEN, SCREENS = (1920, 1080), 3
 WIDTH, HEIGHT = SCREEN[0] * SCREENS, SCREEN[1]
 
@@ -216,7 +216,7 @@ def main():
         ],
     }
     (ROOT / "show.json").write_text(json.dumps(show, indent=2, ensure_ascii=False) + "\n")
-    print(f"chip_shop/show.json: {sum(1 for _ in open(ROOT / 'show.json'))} lines, ticker {advance('ticker', TICKER, '   ·   '.join(HEADLINES)):.0f} px")
+    print(f"demos/chip_shop/show.json: {sum(1 for _ in open(ROOT / 'show.json'))} lines, ticker {advance('ticker', TICKER, '   ·   '.join(HEADLINES)):.0f} px")
 
 
 if __name__ == "__main__":

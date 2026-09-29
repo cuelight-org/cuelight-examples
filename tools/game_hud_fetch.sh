@@ -15,7 +15,7 @@
 # synthesized by tools/game_hud_sounds.py.
 set -eu
 
-out=$(dirname "$0")/../game_hud
+out=$(dirname "$0")/../demos/game_hud
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 mkdir -p "$out/assets/fonts" "$out/assets/sounds" "$out/licenses"

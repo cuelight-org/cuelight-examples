@@ -24,7 +24,7 @@ from pathlib import Path
 
 from PIL import Image
 
-OUT = Path(__file__).resolve().parent.parent / "dragon"
+OUT = Path(__file__).resolve().parent.parent / "demos" / "dragon"
 TITLE = "File:Hokusai Dragon.jpg"
 SIZE = 1000
 AGENT = {"User-Agent": "cuelight-examples (https://github.com/francisdb/cuelight-examples)"}
@@ -74,7 +74,7 @@ def main():
     painting()
     glow()
     for name in ("dragon.png", "glow.png"):
-        print(f"dragon/assets/{name}: {(OUT / 'assets' / name).stat().st_size // 1024} KB")
+        print(f"demos/dragon/assets/{name}: {(OUT / 'assets' / name).stat().st_size // 1024} KB")
 
 
 if __name__ == "__main__":

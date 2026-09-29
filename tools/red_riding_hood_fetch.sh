@@ -10,7 +10,7 @@
 # The page turns are synthesized by tools/red_riding_hood_sounds.py.
 set -eu
 
-out=$(dirname "$0")/../red_riding_hood
+out=$(dirname "$0")/../demos/red_riding_hood
 mkdir -p "$out/assets/fonts" "$out/licenses"
 
 fonts=https://raw.githubusercontent.com/google/fonts

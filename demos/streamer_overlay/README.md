@@ -24,8 +24,8 @@ It needs cuelight `main` with blend modes and audio layers.
 ## Running
 
 ```sh
-cd ../../cuelight
-cargo run -p cuelight-player -- ../cuelight-examples/streamer_overlay
+cd ../../../cuelight
+cargo run -p cuelight-player -- ../cuelight-examples/demos/streamer_overlay
 ```
 
 `test-driver.json` is picked up automatically and plays a short stream in
@@ -33,7 +33,7 @@ about 75 seconds: a countdown, going live, a first follow, the host's
 lower third, a subscription, a raid that brings a crowd, a run of follows
 that reaches the goal, a break and one more alert before it loops. The
 script lives in
-[`tools/streamer_overlay_stream.py`](../tools/streamer_overlay_stream.py);
+[`tools/streamer_overlay_stream.py`](../../tools/streamer_overlay_stream.py);
 the show itself is written by hand. You can also drive it from the
 player's prompt: `alert_kind=raid`, `alert_name=someone`, then `alert`.
 
@@ -48,7 +48,7 @@ have to travel with the files are in [`licenses/`](licenses/).
 
 | Asset | Origin | License |
 | --- | --- | --- |
-| `footage.png`, `alert_icons.png`, `sounds/chime.ogg` | Made for this show, drawn and synthesized by [`tools/streamer_overlay_assets.py`](../tools/streamer_overlay_assets.py) | MIT, as this repository |
+| `footage.png`, `alert_icons.png`, `sounds/chime.ogg` | Made for this show, drawn and synthesized by [`tools/streamer_overlay_assets.py`](../../tools/streamer_overlay_assets.py) | MIT, as this repository |
 | `fonts/Oxanium-Bold.ttf`, `fonts/Oxanium-SemiBold.ttf` | [Oxanium](https://github.com/sevmeyer/oxanium) by The Oxanium Project Authors, the unmodified static files from [`fonts/ttf`](https://github.com/sevmeyer/oxanium/tree/a8f39e0c71186190027a093e9001459410192d1e/fonts/ttf). Its digits all have the same width, so the counts keep their place while they change | [OFL-1.1](licenses/Oxanium-OFL.txt), no reserved font name |
 
 The names in the driver are made up.

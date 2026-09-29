@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Write the artwork of weather_dashboard: its SVG icons.
 
-    tools/weather_dashboard_assets.py weather_dashboard/assets
+    tools/weather_dashboard_assets.py demos/weather_dashboard/assets
 
 The icons are SVG files in a 100x100 viewBox, built from a few primitives
 (a disc, rays, a cloud, drops, flakes, a bolt, fog banks, a crescent,

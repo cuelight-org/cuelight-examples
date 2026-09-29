@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Write game_hud's test driver: a scripted encounter.
 
-    tools/game_hud_encounter.py > game_hud/test-driver.json
+    tools/game_hud_encounter.py > demos/game_hud/test-driver.json
 
 The driver plays the game: it walks the hero towards the chapel, fights
 a Bog Wraith with all six skills, drinks a potion when health runs low,

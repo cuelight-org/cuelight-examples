@@ -32,7 +32,7 @@ import wave
 from pathlib import Path
 
 RATE = 22050
-OUT = Path(__file__).resolve().parent.parent / "game_hud" / "assets" / "sounds"
+OUT = Path(__file__).resolve().parent.parent / "demos" / "game_hud" / "assets" / "sounds"
 
 
 def encode(path, samples):

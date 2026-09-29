@@ -6,7 +6,7 @@ rows shows and what a flight's status is, and tells the show. One minute
 on the board takes half a second. When a flight leaves the board its row
 stays empty for a moment, then the rows below move up one by one.
 
-    tools/departure_board_day.py departure_board/test-driver.json
+    tools/departure_board_day.py demos/departure_board/test-driver.json
 """
 
 import json

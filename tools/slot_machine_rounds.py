@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Write slot_machine's test driver: a run of rounds, some paying, most not.
 
-    tools/slot_machine_rounds.py > slot_machine/test-driver.json
+    tools/slot_machine_rounds.py > demos/slot_machine/test-driver.json
 
 Each round is the host's job: take the bet, fire `spin`, say which symbol
 each reel lands on, wait for the last one to stop, then fire `win` or

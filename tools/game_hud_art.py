@@ -25,7 +25,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFilter
 
 UP = 4
-OUT = Path(__file__).resolve().parent.parent / "game_hud" / "assets"
+OUT = Path(__file__).resolve().parent.parent / "demos" / "game_hud" / "assets"
 
 GOLD = "#C9A45C"
 GOLD_DARK = "#7A5A24"

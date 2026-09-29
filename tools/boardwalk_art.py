@@ -30,7 +30,7 @@
   sit is written to tools/boardwalk_title.json for tools/boardwalk_show.py.
 
 The title is set in Shrikhand and the lettering in League Gothic
-(boardwalk/assets/fonts, fetched by tools/boardwalk_fetch.sh). Shrikhand
+(demos/boardwalk/assets/fonts, fetched by tools/boardwalk_fetch.sh). Shrikhand
 is only needed here, so it is downloaded to a temporary folder; both are
 OFL 1.1 with no reserved font name. Drawn at twice the size and scaled
 down. Needs Pillow.
@@ -52,7 +52,7 @@ from boardwalk_layout import (BALLOON, BANNER, BOARD_BOTTOM, BOARD_TOP, BOARD_W,
                               REEL_W, TEAL, TOWER, WHEEL_BULBS, WHEEL_CENTER, WHEEL_RADIUS, WIDTH)
 
 UP = 2
-ROOT = Path(__file__).resolve().parent.parent / "boardwalk"
+ROOT = Path(__file__).resolve().parent.parent / "demos" / "boardwalk"
 OUT = ROOT / "assets"
 GOTHIC = ROOT / "assets" / "fonts" / "LeagueGothic-Regular.ttf"
 SHRIKHAND = "https://raw.githubusercontent.com/google/fonts/main/ofl/shrikhand/Shrikhand-Regular.ttf"

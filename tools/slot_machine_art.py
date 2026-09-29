@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Draw the symbols and the drum shading of slot_machine.
 
-    tools/slot_machine_art.py slot_machine/assets
+    tools/slot_machine_art.py demos/slot_machine/assets
 
 Eight SVG symbols in a 100x100 viewBox, one per character of the reel's
 ring: cherry (C), lemon (L), orange (O), plum (P), grapes (G), bell (B),

@@ -42,13 +42,13 @@ listens for `cycle` as well as starting at load.
 ## Running
 
 ```sh
-cd ../../cuelight
-cargo run -p cuelight-player -- ../cuelight-examples/eclipse
+cd ../../../cuelight
+cargo run -p cuelight-player -- ../cuelight-examples/demos/eclipse
 ```
 
-`show.json` is written by [`tools/eclipse_show.py`](../tools/eclipse_show.py),
+`show.json` is written by [`tools/eclipse_show.py`](../../tools/eclipse_show.py),
 where the stretches, the geometry and the captions are defined in one
-place; the artwork by [`tools/eclipse_art.py`](../tools/eclipse_art.py).
+place; the artwork by [`tools/eclipse_art.py`](../../tools/eclipse_art.py).
 
 ## Assets
 
@@ -58,7 +58,7 @@ have to travel with the files are in [`licenses/`](licenses/).
 
 | Asset | Origin | License |
 | --- | --- | --- |
-| `corona.png` | Made for this show, written by [`tools/eclipse_art.py`](../tools/eclipse_art.py) | MIT, as this repository |
+| `corona.png` | Made for this show, written by [`tools/eclipse_art.py`](../../tools/eclipse_art.py) | MIT, as this repository |
 | `fonts/Spectral-Regular.ttf`, `fonts/Spectral-Italic.ttf`, `fonts/Spectral-SemiBold.ttf`, `fonts/SpectralSC-SemiBold.ttf` | [Spectral](https://github.com/productiontype/Spectral) by Production Type, the unmodified static files from [google/fonts](https://github.com/google/fonts/tree/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/spectral) | [OFL-1.1](licenses/Spectral-OFL.txt), no reserved font name |
 
 ## What would make it better

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Draw the images and the sound of streamer_overlay.
 
-    tools/streamer_overlay_assets.py streamer_overlay/assets
+    tools/streamer_overlay_assets.py demos/streamer_overlay/assets
 
 footage.png stands in for the game capture the overlay sits on: soft
 colored blobs on a dark ground, 640x360, shown at four times that size,

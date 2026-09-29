@@ -2,7 +2,7 @@
 """Write boardwalk's test driver: a two-player game, as an EM table's
 script would drive its backglass.
 
-    tools/boardwalk_game.py > boardwalk/test-driver.json
+    tools/boardwalk_game.py > demos/boardwalk/test-driver.json
 
 The table tells the backglass what happened, in variables named after
 what they mean:

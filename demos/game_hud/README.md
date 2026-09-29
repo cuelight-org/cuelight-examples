@@ -35,15 +35,15 @@ sound with `pick` and `delay`, and outline fonts.
 ## Running
 
 ```sh
-cd ../../cuelight
-cargo run -p cuelight-player -- ../cuelight-examples/game_hud
+cd ../../../cuelight
+cargo run -p cuelight-player -- ../cuelight-examples/demos/game_hud
 ```
 
 `test-driver.json` is picked up automatically and plays a 40 second
 encounter: the walk towards the chapel, the fight with all six skills, a
 potion when health runs low, the loot, the last brazier, the quest and
 the level, and a second, shorter fight. It is written out by
-[`tools/game_hud_encounter.py`](../tools/game_hud_encounter.py) rather
+[`tools/game_hud_encounter.py`](../../tools/game_hud_encounter.py) rather
 than rolled, so the demo is the same every time. You can also play from
 the player's prompt: `skill_2`, `hp=40`, `hurt`, `damage=999`,
 `crit=true`, `hit`, `heading=180`, `level_up`.
@@ -60,11 +60,11 @@ Everything under `assets/` is committed and free to redistribute.
 
 | Asset | Origin | License |
 | --- | --- | --- |
-| `dusk.png`, `map.png`, the icon SVGs | Made for this show, drawn by [`tools/game_hud_art.py`](../tools/game_hud_art.py) | MIT, as this repository |
-| `fireball`, `frost`, `ward`, `heal`, `ignite`, `potion`, `dissolve`, `level_up` (`.ogg`) | Made for this show, synthesized from sines and noise with a reverb by [`tools/game_hud_sounds.py`](../tools/game_hud_sounds.py) | MIT, as this repository |
-| `swing1`, `swing2`, `coins` (`.ogg`) | [RPG Audio](https://kenney.nl/assets/rpg-audio) by Kenney, fetched by [`tools/game_hud_fetch.sh`](../tools/game_hud_fetch.sh) | [CC0](licenses/Kenney-RPG-Audio-CC0.txt) |
+| `dusk.png`, `map.png`, the icon SVGs | Made for this show, drawn by [`tools/game_hud_art.py`](../../tools/game_hud_art.py) | MIT, as this repository |
+| `fireball`, `frost`, `ward`, `heal`, `ignite`, `potion`, `dissolve`, `level_up` (`.ogg`) | Made for this show, synthesized from sines and noise with a reverb by [`tools/game_hud_sounds.py`](../../tools/game_hud_sounds.py) | MIT, as this repository |
+| `swing1`, `swing2`, `coins` (`.ogg`) | [RPG Audio](https://kenney.nl/assets/rpg-audio) by Kenney, fetched by [`tools/game_hud_fetch.sh`](../../tools/game_hud_fetch.sh) | [CC0](licenses/Kenney-RPG-Audio-CC0.txt) |
 | `clang1` to `clang3`, `hurt1`, `hurt2`, `clatter1`, `clatter2`, `fall`, `bell` (`.ogg`) | [Impact Sounds](https://kenney.nl/assets/impact-sounds) by Kenney, fetched by the same script | [CC0](licenses/Kenney-Impact-Sounds-CC0.txt) |
-| `fonts/Cinzel-Bold.ttf` | [Cinzel](https://github.com/NDISCOVER/Cinzel), fetched by [`tools/game_hud_fetch.sh`](../tools/game_hud_fetch.sh) | [OFL 1.1](licenses/Cinzel-OFL.txt); the only reserved name is Cinzel Decorative, not used here |
+| `fonts/Cinzel-Bold.ttf` | [Cinzel](https://github.com/NDISCOVER/Cinzel), fetched by [`tools/game_hud_fetch.sh`](../../tools/game_hud_fetch.sh) | [OFL 1.1](licenses/Cinzel-OFL.txt); the only reserved name is Cinzel Decorative, not used here |
 | `fonts/Alegreya-Regular.ttf` | [Alegreya](https://github.com/huertatipografica/Alegreya), the regular weight cut from the variable font and trimmed to Latin-1 by the same script | [OFL 1.1](licenses/Alegreya-OFL.txt), no reserved font name |
 
 ## What would make it better

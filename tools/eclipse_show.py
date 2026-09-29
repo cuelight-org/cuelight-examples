@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Write eclipse's show.json.
 
-    tools/eclipse_show.py > eclipse/show.json
+    tools/eclipse_show.py > demos/eclipse/show.json
 
 The show plays a total solar eclipse on its own, with no driver. The
 moon's distance to the sun is a value of the show's own (`values`),

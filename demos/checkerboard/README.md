@@ -23,8 +23,8 @@ transforms, blend modes and tiled vector artwork.
 ## Running
 
 ```sh
-cd ../../cuelight
-cargo run -p cuelight-player -- ../cuelight-examples/checkerboard
+cd ../../../cuelight
+cargo run -p cuelight-player -- ../cuelight-examples/demos/checkerboard
 ```
 
 `test-driver.json` is picked up automatically and only fades the second
@@ -38,7 +38,7 @@ Everything under `assets/` is committed and free to redistribute.
 
 | Asset | Origin | License |
 | --- | --- | --- |
-| `checker.svg`, `knight.svg`, `shadow.svg` | Made for this show, drawn by [`tools/checkerboard_art.py`](../tools/checkerboard_art.py) | MIT, as this repository |
+| `checker.svg`, `knight.svg`, `shadow.svg` | Made for this show, drawn by [`tools/checkerboard_art.py`](../../tools/checkerboard_art.py) | MIT, as this repository |
 
 ## What would make it better
 

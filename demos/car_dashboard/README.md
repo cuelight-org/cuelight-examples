@@ -23,8 +23,8 @@ window resolution, so the cluster stays sharp at any size.
 ## Running
 
 ```sh
-cd ../../cuelight
-cargo run -p cuelight-player -- ../cuelight-examples/car_dashboard
+cd ../../../cuelight
+cargo run -p cuelight-player -- ../cuelight-examples/demos/car_dashboard
 ```
 
 `test-driver.json` is picked up automatically and takes the car for a
@@ -32,7 +32,7 @@ cargo run -p cuelight-player -- ../cuelight-examples/car_dashboard
 mode up to the shift lights, braking, a fuel warning and a stop with the
 hazards on. A driver script sets variables instantly, so the drive is ten
 small steps a second, written by
-[`tools/car_dashboard_drive.py`](../tools/car_dashboard_drive.py); the
+[`tools/car_dashboard_drive.py`](../../tools/car_dashboard_drive.py); the
 show itself is written by hand. You can also set variables from the
 player's prompt, `speed=88` or `mode=sport`.
 
@@ -44,7 +44,7 @@ have to travel with the files are in [`licenses/`](licenses/).
 
 | Asset | Origin | License |
 | --- | --- | --- |
-| `sounds/click.ogg` | Made for this show, synthesized by [`tools/car_dashboard_sounds.py`](../tools/car_dashboard_sounds.py) | MIT, as this repository |
+| `sounds/click.ogg` | Made for this show, synthesized by [`tools/car_dashboard_sounds.py`](../../tools/car_dashboard_sounds.py) | MIT, as this repository |
 | `fonts/Oxanium-Bold.ttf`, `fonts/Oxanium-SemiBold.ttf` | [Oxanium](https://github.com/sevmeyer/oxanium) by The Oxanium Project Authors, the unmodified static files from [`fonts/ttf`](https://github.com/sevmeyer/oxanium/tree/a8f39e0c71186190027a093e9001459410192d1e/fonts/ttf). Its digits all have the same width, so numbers keep their place while they change | [OFL-1.1](licenses/Oxanium-OFL.txt), no reserved font name |
 
 ## What would make it better

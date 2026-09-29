@@ -14,7 +14,7 @@
 # fonttools). OFL 1.1 with no reserved font name.
 set -eu
 
-out=$(dirname "$0")/../boardwalk
+out=$(dirname "$0")/../demos/boardwalk
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 mkdir -p "$out/assets/fonts" "$out/licenses"

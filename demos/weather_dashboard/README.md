@@ -24,8 +24,8 @@ It needs cuelight `main` with vector artwork and path shapes.
 ## Running
 
 ```sh
-cd ../../cuelight
-cargo run -p cuelight-player -- ../cuelight-examples/weather_dashboard
+cd ../../../cuelight
+cargo run -p cuelight-player -- ../cuelight-examples/demos/weather_dashboard
 ```
 
 `test-driver.json` is picked up automatically and plays a day from 04:00 in
@@ -33,7 +33,7 @@ two minutes: a clear night, dawn, a sunny morning that clouds over, rain,
 a thunderstorm, a clear sunset, fog and snow, with the sun on its arc,
 the readings drifting and the forecast and hourly bars refreshing. It is
 written by
-[`tools/weather_dashboard_day.py`](../tools/weather_dashboard_day.py).
+[`tools/weather_dashboard_day.py`](../../tools/weather_dashboard_day.py).
 The show document was first written by a script, since its forecast
 slots, bars and stars repeat, but that script is not kept: the document is
 edited as it is. You can also set a variable from the player's prompt:
@@ -47,7 +47,7 @@ have to travel with the files are in [`licenses/`](licenses/).
 
 | Asset | Origin | License |
 | --- | --- | --- |
-| `*.svg` | Made for this show, written by [`tools/weather_dashboard_assets.py`](../tools/weather_dashboard_assets.py) | MIT, as this repository |
+| `*.svg` | Made for this show, written by [`tools/weather_dashboard_assets.py`](../../tools/weather_dashboard_assets.py) | MIT, as this repository |
 | `fonts/Oxanium-Bold.ttf`, `fonts/Oxanium-SemiBold.ttf` | [Oxanium](https://github.com/sevmeyer/oxanium) by The Oxanium Project Authors, the unmodified static files from [`fonts/ttf`](https://github.com/sevmeyer/oxanium/tree/a8f39e0c71186190027a093e9001459410192d1e/fonts/ttf). Its digits all have the same width, so the readings keep their place while they count | [OFL-1.1](licenses/Oxanium-OFL.txt), no reserved font name |
 
 The weather is made up; the city is real.

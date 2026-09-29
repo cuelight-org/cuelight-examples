@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Write the artwork of red_riding_hood: the pictures, the book and the paper.
 
-    tools/red_riding_hood_art.py red_riding_hood/assets
+    tools/red_riding_hood_art.py demos/red_riding_hood/assets
 
 The pictures are flat shapes in a few inks with a dark outline, the way
 an old picture book was printed from a handful of plates. Red and the

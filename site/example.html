@@ -155,7 +155,9 @@ const catalog = await (await fetch("examples.json")).json();
 const examples = catalog.categories.flatMap((category) =>
   category.examples.map((example) => ({ ...example, category: category.name })));
 const wanted = new URLSearchParams(location.search).get("show");
-const index = Math.max(0, examples.findIndex((example) => example.path === wanted));
+// Links from before the shows moved into demos/ name them bare.
+const find = (path) => examples.findIndex((example) => example.path === path);
+const index = Math.max(0, find(wanted) >= 0 ? find(wanted) : find(`demos/${wanted}`));
 const example = examples[index];
 const folder = `shows/${example.path}/`;
 

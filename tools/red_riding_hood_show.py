@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Write red_riding_hood's show.json and test-driver.json.
 
-    tools/red_riding_hood_show.py red_riding_hood
+    tools/red_riding_hood_show.py demos/red_riding_hood
 
 An open picture book: the story on the left page, a picture on the
 right. Every page is a scene (`cover`, `page_1` ... `page_8`), entered by
@@ -42,7 +42,7 @@ TEXT_Y = 150
 BODY_SIZE, LINE = 40, 64
 CAP_SIZE = 138
 
-FONTS = Path(__file__).resolve().parent.parent / "red_riding_hood" / "assets" / "fonts"
+FONTS = Path(__file__).resolve().parent.parent / "demos" / "red_riding_hood" / "assets" / "fonts"
 
 
 class Measure:
