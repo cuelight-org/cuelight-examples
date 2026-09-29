@@ -29,7 +29,8 @@ cage -m extend -- cuelight-player chip_shop
 ```
 
 The player gets a 5760 x 1080 window and fits the show into it as it
-fits any window. Other wlroots compositors do the same with a rule that
+fits any window. For a wall that runs all day, `--fps` caps the frames
+drawn a second: `cuelight-player chip_shop --fps 30`. Other wlroots compositors do the same with a rule that
 places and sizes the window. A desktop compositor that will not let a
 window span outputs needs the second way, one window per screen, which
 the player does not have yet (cuelight#257, on the presented view of
