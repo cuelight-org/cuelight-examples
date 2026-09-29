@@ -67,8 +67,8 @@
       "name": "Text",
       "description": "Three ways to put characters on the canvas.",
       "examples": [
-        { "path": "features/text/bitmap_font", "title": "Bitmap font", "description": "BMFont pixel fonts on a small canvas: color, border, a pixel shadow, alignment in a box, multiple lines.", "thumbnail_at": 3.2 },
-        { "path": "features/text/pixel_font", "title": "Pixel font", "description": "A pixel font shipped as its TrueType file and drawn as exact pixels with pixels: true, beside the same font drawn as antialiased outlines: sharp at the size it was drawn for, with a border as a bitmap font has one, on a pixel-perfect show where pixels is the default.", "thumbnail_at": 0.5 },
+        { "path": "features/text/bitmap_font", "title": "Bitmap font", "description": "BMFont pixel fonts on a small canvas: color, border, a pixel shadow and a blurred one, alignment in a box, multiple lines.", "thumbnail_at": 3.2 },
+        { "path": "features/text/pixel_font", "title": "Pixel font", "description": "A pixel font shipped as its TrueType file and drawn as exact pixels with pixels: true, beside the same font drawn as antialiased outlines: sharp at the size it was drawn for, with a border and a blurred shadow as a bitmap font has them, on a pixel-perfect show where pixels is the default.", "thumbnail_at": 0.5 },
         { "path": "features/text/outline_font", "title": "Outline font", "description": "A TrueType font at any size from one file: styles, borders, shadows, alignment, and a scale that stays sharp, its shadow scaling with it.", "thumbnail_at": 1.5 },
         { "path": "features/text/reveal", "title": "Reveal", "description": "Text that types itself out: reveal is the share of the characters shown, keyed for a line that types, bound for one the host lets out in taps, on a digits row where the cells to come stay dark, and centred text that keeps its room instead of recentring.", "thumbnail_at": 1.6 },
         { "path": "features/text/digits", "title": "Digit rows", "description": "Segment displays without any asset: alpha14 and numeric7, unlit segments, justification, the dot.", "thumbnail_at": 3.2 },

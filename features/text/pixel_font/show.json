@@ -6,6 +6,7 @@
     "tiny": {"file": "Tiny5-Regular", "size": 8, "pixels": true, "color": "#E6EDF3"},
     "tiny_soft": {"file": "Tiny5-Regular", "size": 8, "pixels": false, "color": "#E6EDF3"},
     "tiny_dim": {"file": "Tiny5-Regular", "size": 8, "pixels": true, "color": "#8B96A5"},
+    "tiny_glow": {"file": "Tiny5-Regular", "size": 8, "pixels": true, "color": "#E6EDF3", "shadow": {"color": "#3E8BFF", "offset": [2, 2], "blur": 3}},
     "tiny_gold": {"file": "Tiny5-Regular", "size": 8, "pixels": true, "color": "#FFB000", "border": {"color": "#5A3A00", "width": 1}},
     "title": {"file": "Jersey20-Regular", "size": 20, "pixels": true, "color": "#4ADE80"},
     "title_soft": {"file": "Jersey20-Regular", "size": 20, "pixels": false, "color": "#4ADE80"}
@@ -18,6 +19,7 @@
     {"name": "soft_label", "type": "text", "font": "tiny_dim", "x": 4, "y": 62, "text": "pixels: false"},
     {"name": "soft_title", "type": "text", "font": "title_soft", "x": 4, "y": 71, "text": "Score 1,250"},
     {"name": "soft_text", "type": "text", "font": "tiny_soft", "x": 4, "y": 93, "text": "The outline, antialiased, blurs"},
+    {"name": "shadow", "type": "text", "font": "tiny_glow", "x": 136, "y": 32, "text": "BLURRED"},
     {"name": "border", "type": "text", "font": "tiny_gold", "x": 136, "y": 47, "text": "BORDERED"},
     {"name": "note", "type": "text", "font": "tiny_dim", "x": 4, "y": 103, "text": "on a pixel grid, pixels is the default"}
   ]
