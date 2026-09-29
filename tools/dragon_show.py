@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Write the dragon backglass: dragon/show.json and dragon/test-driver.json.
+"""Write the dragon backglass: demos/dragon/show.json and demos/dragon/test-driver.json.
 
     tools/dragon_show.py
 
@@ -21,7 +21,7 @@ lights, tilt and shoot again. The attract show is the backglass's own.
 import json
 from pathlib import Path
 
-OUT = Path(__file__).resolve().parent.parent / "dragon"
+OUT = Path(__file__).resolve().parent.parent / "demos" / "dragon"
 W, H = 1000, 900
 ART = 1000                 # the painting, square, cropped top and bottom
 TOP = (H - ART) / 2        # where it starts: -50
@@ -278,5 +278,5 @@ def compact(value, indent=0, width=118):
 
 (OUT / "show.json").write_text(compact(show) + "\n")
 (OUT / "test-driver.json").write_text(compact({"loop": True, "steps": steps}) + "\n")
-print(f"dragon/show.json: {sum(1 for _ in open(OUT / 'show.json'))} lines, "
+print(f"demos/dragon/show.json: {sum(1 for _ in open(OUT / 'show.json'))} lines, "
       f"a round of {sum(s.get('wait', 0) for s in steps):.1f} s")

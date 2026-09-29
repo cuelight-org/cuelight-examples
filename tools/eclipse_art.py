@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Write the artwork of eclipse: the corona.
 
-    tools/eclipse_art.py eclipse/assets
+    tools/eclipse_art.py demos/eclipse/assets
 
 corona.png is the sun's outer atmosphere around a hole the size of the
 moon: long streamers near the equator, short plumes at the poles and fine

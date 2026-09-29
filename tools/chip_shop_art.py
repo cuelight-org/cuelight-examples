@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Draw the chip shop board's artwork into chip_shop/assets/.
+"""Draw the chip shop board's artwork into demos/chip_shop/assets/.
 
     tools/chip_shop_art.py
 
@@ -15,7 +15,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-OUT = Path(__file__).resolve().parent.parent / "chip_shop" / "assets"
+OUT = Path(__file__).resolve().parent.parent / "demos" / "chip_shop" / "assets"
 
 
 def noise(rng, size, cells):

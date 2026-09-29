@@ -12,7 +12,7 @@
 # show draws it at.
 set -eu
 
-out=$(dirname "$0")/../dragon
+out=$(dirname "$0")/../demos/dragon
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 mkdir -p "$out/assets/fonts" "$out/licenses"

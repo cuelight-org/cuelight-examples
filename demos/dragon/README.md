@@ -33,8 +33,8 @@ What the game sets:
 ## Running
 
 ```sh
-cd ../../cuelight
-cargo run -p cuelight-player -- ../cuelight-examples/dragon
+cd ../../../cuelight
+cargo run -p cuelight-player -- ../cuelight-examples/demos/dragon
 ```
 
 `test-driver.json` is picked up automatically and plays a 52 second

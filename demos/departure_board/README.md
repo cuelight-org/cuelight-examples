@@ -20,8 +20,8 @@ It needs cuelight `main` with timelines that take a list of triggers
 ## Running
 
 ```sh
-cd ../../cuelight
-cargo run -p cuelight-player -- ../cuelight-examples/departure_board
+cd ../../../cuelight
+cargo run -p cuelight-player -- ../cuelight-examples/demos/departure_board
 ```
 
 `test-driver.json` is picked up automatically and plays two hours at a
@@ -31,7 +31,7 @@ and gets a new time, one is cancelled. A flight that leaves the board
 leaves its row empty for a second; then the rows below move up one by
 one and the next flight joins at the bottom. All of that is the host
 setting variables and firing `row_N`: the show has no idea rows move. The schedule and the status rules
-live in [`tools/departure_board_day.py`](../tools/departure_board_day.py),
+live in [`tools/departure_board_day.py`](../../tools/departure_board_day.py),
 which writes the driver; the show itself is a plain, regular document.
 You can also set a cell from the player's prompt: `status_2=BOARDING`.
 

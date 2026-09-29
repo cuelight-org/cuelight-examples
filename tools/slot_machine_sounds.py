@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Synthesize the sounds of slot_machine.
 
-    tools/slot_machine_sounds.py slot_machine/assets/sounds
+    tools/slot_machine_sounds.py demos/slot_machine/assets/sounds
 
 Ogg Vorbis files, mono, all made from sines, noise and envelopes, so
 there is nothing to license (written as WAV and encoded with ffmpeg):
@@ -30,7 +30,7 @@ import wave
 from pathlib import Path
 
 RATE = 44100
-SHOW = Path(__file__).resolve().parent.parent / "slot_machine" / "show.json"
+SHOW = Path(__file__).resolve().parent.parent / "demos" / "slot_machine" / "show.json"
 
 
 def write(path, samples):

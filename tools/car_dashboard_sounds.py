@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Synthesize car_dashboard's turn signal relay: click.ogg.
 
-    tools/car_dashboard_sounds.py car_dashboard/assets/sounds
+    tools/car_dashboard_sounds.py demos/car_dashboard/assets/sounds
 
 0.7 seconds, mono, Ogg Vorbis (written as WAV and encoded with ffmpeg): a click at 0 and a softer one at
 0.35 s, the relay pulling in and dropping out, so one play covers one

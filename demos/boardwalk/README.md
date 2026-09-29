@@ -51,8 +51,8 @@ Triggers: `chime_10`, `chime_100` and `chime_1000` for a score pulse
 ## Running
 
 ```sh
-cd ../../cuelight
-cargo run -p cuelight-player -- ../cuelight-examples/boardwalk
+cd ../../../cuelight
+cargo run -p cuelight-player -- ../cuelight-examples/demos/boardwalk
 ```
 
 `test-driver.json` is picked up automatically and plays a 73 second
@@ -60,25 +60,25 @@ loop: attract, two players starting, the reels resetting to zero, three
 balls each with the title spelled out and the bonus collected bulb by
 bulb, a shoot again, a tilt, a special for spelling BOARDWALK, and a
 match. It is written out by
-[`tools/boardwalk_game.py`](../tools/boardwalk_game.py) and starts from
+[`tools/boardwalk_game.py`](../../tools/boardwalk_game.py) and starts from
 the scores and credits it ends with, so the loop joins up.
 
 ## How it is made
 
 Everything is generated:
 
-- [`tools/boardwalk_layout.py`](../tools/boardwalk_layout.py): where
+- [`tools/boardwalk_layout.py`](../../tools/boardwalk_layout.py): where
   everything sits, shared by the painting and the show, so each lamp is
   behind the part of the picture it lights.
-- [`tools/boardwalk_art.py`](../tools/boardwalk_art.py): paints the glass
+- [`tools/boardwalk_art.py`](../../tools/boardwalk_art.py): paints the glass
   in the manner of the late EM era, flat angular shapes with keylines a
   hair off register, saved in 96 colours with a dither for the grain of
   the print, and the silhouettes, bulb, mottle and wear images.
-- [`tools/boardwalk_show.py`](../tools/boardwalk_show.py): writes
+- [`tools/boardwalk_show.py`](../../tools/boardwalk_show.py): writes
   `show.json` from the layout.
-- [`tools/boardwalk_sounds.py`](../tools/boardwalk_sounds.py):
+- [`tools/boardwalk_sounds.py`](../../tools/boardwalk_sounds.py):
   synthesizes the chimes.
-- [`tools/boardwalk_fetch.sh`](../tools/boardwalk_fetch.sh): fetches the
+- [`tools/boardwalk_fetch.sh`](../../tools/boardwalk_fetch.sh): fetches the
   font and the recorded sounds.
 
 ## Assets

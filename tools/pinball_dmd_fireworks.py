@@ -7,7 +7,7 @@ from a fixed seed: they slow down, sag and fade, each with a dimmer pixel
 where it was a moment ago, and the first frames have a white flash in the
 middle.
 
-    tools/pinball_dmd_fireworks.py pinball_dmd/assets/fireworks.png
+    tools/pinball_dmd_fireworks.py demos/pinball_dmd/assets/fireworks.png
 
 Needs Pillow.
 """

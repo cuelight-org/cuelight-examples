@@ -9,22 +9,22 @@ in the browser on the [website](https://francisdb.github.io/cuelight-examples/).
 
 | Show | Description |
 | --- | --- |
-| [boardwalk](boardwalk/) | A retro electromechanical pinball backglass: one painted picture lit from behind, score reels that step and chime, and every light of the game painted into the scene |
-| [car_dashboard](car_dashboard/) | A digital instrument cluster driven by variables: bars, shift lights, gear, warning lamps, turn signals |
-| [checkerboard](checkerboard/) | A rotating, breathing checkerboard behind a still chess piece: nested transforms, a host-driven zoom and a squashed shadow |
-| [deck](deck/) | A slide deck about cuelight, made in cuelight: every slide shows its point live, from describing a show to scrubbing, rendering to video and events driving motion |
-| [departure_board](departure_board/) | An airport departure board made of segment displays, with no assets at all: text variables, mapped status colors, refresh triggers |
-| [dragon](dragon/) | A solid-state pinball backglass of around 1980: Hokusai's Dragon filling the glass, 7-segment score displays in windows, and lamps behind the glass lighting the dragon and the words painted on it |
-| [eclipse](eclipse/) | A total solar eclipse explained: the sky darkening into totality beside a side view of the shadow, playing itself with no driver: the moon's journey fires each contact and everything else reacts |
-| [game_hud](game_hud/) | A fantasy RPG interface: health and mana orbs, a skill hotbar with clock-wipe cooldowns, a turning minimap, a quest tracker, floating damage and banners, over a dusk landscape |
-| [red_riding_hood](red_riding_hood/) | A picture book for children learning to read: a scene per spread with a page turn between them, the story in large type beside pictures that never stand still, and one red word per page that makes the picture do something |
-| [slot_machine](slot_machine/) | A fruit machine: three reels of SVG symbols spinning to staggered stops, with sound, rolling credits and a win celebration |
-| [pinball_dmd](pinball_dmd/) | A pinball dot-matrix display: score layouts, a jackpot in full color, a night drive video mode and a segment display |
-| [streamer_overlay](streamer_overlay/) | A live stream overlay: alerts with a chime, a lower third, a follower goal bar, a viewer count, and starting-soon and be-right-back screens |
-| [weather_dashboard](weather_dashboard/) | A weather kiosk that plays a whole day: a sky and sun that follow the clock, animated SVG icons, a forecast and hourly bars, all from variables |
+| [boardwalk](demos/boardwalk/) | A retro electromechanical pinball backglass: one painted picture lit from behind, score reels that step and chime, and every light of the game painted into the scene |
+| [car_dashboard](demos/car_dashboard/) | A digital instrument cluster driven by variables: bars, shift lights, gear, warning lamps, turn signals |
+| [checkerboard](demos/checkerboard/) | A rotating, breathing checkerboard behind a still chess piece: nested transforms, a host-driven zoom and a squashed shadow |
+| [deck](demos/deck/) | A slide deck about cuelight, made in cuelight: every slide shows its point live, from describing a show to scrubbing, rendering to video and events driving motion |
+| [departure_board](demos/departure_board/) | An airport departure board made of segment displays, with no assets at all: text variables, mapped status colors, refresh triggers |
+| [dragon](demos/dragon/) | A solid-state pinball backglass of around 1980: Hokusai's Dragon filling the glass, 7-segment score displays in windows, and lamps behind the glass lighting the dragon and the words painted on it |
+| [eclipse](demos/eclipse/) | A total solar eclipse explained: the sky darkening into totality beside a side view of the shadow, playing itself with no driver: the moon's journey fires each contact and everything else reacts |
+| [game_hud](demos/game_hud/) | A fantasy RPG interface: health and mana orbs, a skill hotbar with clock-wipe cooldowns, a turning minimap, a quest tracker, floating damage and banners, over a dusk landscape |
+| [red_riding_hood](demos/red_riding_hood/) | A picture book for children learning to read: a scene per spread with a page turn between them, the story in large type beside pictures that never stand still, and one red word per page that makes the picture do something |
+| [slot_machine](demos/slot_machine/) | A fruit machine: three reels of SVG symbols spinning to staggered stops, with sound, rolling credits and a win celebration |
+| [pinball_dmd](demos/pinball_dmd/) | A pinball dot-matrix display: score layouts, a jackpot in full color, a night drive video mode and a segment display |
+| [streamer_overlay](demos/streamer_overlay/) | A live stream overlay: alerts with a chime, a lower third, a follower goal bar, a viewer count, and starting-soon and be-right-back screens |
+| [weather_dashboard](demos/weather_dashboard/) | A weather kiosk that plays a whole day: a sky and sun that follow the clock, animated SVG icons, a forecast and hourly bars, all from variables |
 
-Every show folder has its own README describing what it shows, how to run
-it, and where its assets come from.
+Every show folder in [`demos/`](demos/) has its own README describing
+what it shows, how to run it, and where its assets come from.
 
 ## Feature examples
 
@@ -42,7 +42,7 @@ From a [cuelight](https://github.com/francisdb/cuelight) checkout next to
 this repository:
 
 ```sh
-cargo run -p cuelight-player -- ../cuelight-examples/<show>
+cargo run -p cuelight-player -- ../cuelight-examples/demos/<show>
 ```
 
 Shows with video layers need the player's `video` feature, and ffmpeg on
@@ -57,9 +57,9 @@ lists what a show fires and when, playing the show's driver:
 
 ```sh
 cargo run -p cuelight-loader --features render-cli --bin cuelight-render -- \
-    ../cuelight-examples/eclipse --at 4.1,19.5,26 -o frames/
+    ../cuelight-examples/demos/eclipse --at 4.1,19.5,26 -o frames/
 cargo run -p cuelight-loader --features render-cli --bin cuelight-render -- \
-    ../cuelight-examples/eclipse --until 52 --events
+    ../cuelight-examples/demos/eclipse --until 52 --events
 ```
 
 ## Website

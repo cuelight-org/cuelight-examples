@@ -5,7 +5,7 @@ A driver script sets variables instantly, so a smooth speedometer needs
 many small steps. This plays the host: a crude car model sampled ten
 times a second, writing only the variables that changed.
 
-    tools/car_dashboard_drive.py car_dashboard/test-driver.json
+    tools/car_dashboard_drive.py demos/car_dashboard/test-driver.json
 """
 
 import json

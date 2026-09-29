@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Write weather_dashboard's test driver: a day in two minutes.
 
-    tools/weather_dashboard_day.py > weather_dashboard/test-driver.json
+    tools/weather_dashboard_day.py > demos/weather_dashboard/test-driver.json
 
 Every two seconds is 24 minutes of the day, starting at 04:00: the sky
 goes night, dawn, day, dusk and night again, the sun moves along its arc,

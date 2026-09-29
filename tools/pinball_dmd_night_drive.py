@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Draw the images of pinball_dmd's night drive video mode.
 
-    tools/pinball_dmd_night_drive.py            # writes pinball_dmd/assets/nd_*.png
+    tools/pinball_dmd_night_drive.py            # writes demos/pinball_dmd/assets/nd_*.png
     tools/pinball_dmd_night_drive.py --keys     # prints the keys of a car's approach
 
 - nd_sky.png     136x12, what is above the horizon: stars, a moon, a skyline
@@ -32,7 +32,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw
 
-ASSETS = Path(__file__).resolve().parent.parent / "pinball_dmd" / "assets"
+ASSETS = Path(__file__).resolve().parent.parent / "demos" / "pinball_dmd" / "assets"
 WIDTH, HORIZON, BELOW = 128, 12, 20
 MARGIN = 4
 FULL = WIDTH + 2 * MARGIN
@@ -153,7 +153,7 @@ def main():
         return keys()
     for name, image in [("nd_sky", sky()), ("nd_road", road()), ("nd_traffic", traffic()), ("nd_player", player()), ("nd_crash", crash())]:
         image.save(ASSETS / f"{name}.png", optimize=True)
-        print(f"pinball_dmd/assets/{name}.png {image.size}")
+        print(f"demos/pinball_dmd/assets/{name}.png {image.size}")
 
 
 if __name__ == "__main__":

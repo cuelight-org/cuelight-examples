@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Write streamer_overlay's test driver: a short stream in about 80 seconds.
 
-    tools/streamer_overlay_stream.py > streamer_overlay/test-driver.json
+    tools/streamer_overlay_stream.py > demos/streamer_overlay/test-driver.json
 
 The overlay starts on its starting-soon screen with a countdown, goes
 live, and then gets what a stream gets: the viewer count drifting, follow

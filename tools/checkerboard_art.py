@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Draw the artwork of checkerboard.
 
-    tools/checkerboard_art.py checkerboard/assets
+    tools/checkerboard_art.py demos/checkerboard/assets
 
 checker.svg is two squares by two, 100 units each, light top-left, which
 the show tiles across a board of 17 by 17 squares, 1700 across: wider

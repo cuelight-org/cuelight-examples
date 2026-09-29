@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Synthesize the deck's sounds into deck/assets/sounds/.
+"""Synthesize the deck's sounds into demos/deck/assets/sounds/.
 
     tools/deck_sounds.py
 
@@ -19,7 +19,7 @@ import wave
 from pathlib import Path
 
 RATE = 44100
-OUT = Path(__file__).resolve().parent.parent / "deck/assets/sounds"
+OUT = Path(__file__).resolve().parent.parent / "demos/deck/assets/sounds"
 
 
 def write(name, samples):
@@ -64,7 +64,7 @@ def main():
     shimmer = [(0.35 + i * 0.05, 0.25, note(f, 0.5, 9)) for i, f in enumerate((2637, 3136, 2637, 3520, 3136, 3951))]
     write("jackpot", mix(1.2, *arpeggio, *shimmer))
     for name in ("slide", "coin", "jackpot"):
-        print(f"deck/assets/sounds/{name}.ogg: {(OUT / f'{name}.ogg').stat().st_size} bytes")
+        print(f"demos/deck/assets/sounds/{name}.ogg: {(OUT / f'{name}.ogg').stat().st_size} bytes")
 
 
 if __name__ == "__main__":

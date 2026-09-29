@@ -8,7 +8,7 @@
 # google/fonts, as they come.
 set -eu
 
-out=$(dirname "$0")/../chip_shop
+out=$(dirname "$0")/../demos/chip_shop
 mkdir -p "$out/assets/fonts" "$out/licenses"
 fonts=https://raw.githubusercontent.com/google/fonts/main/ofl
 

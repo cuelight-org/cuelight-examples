@@ -28,8 +28,8 @@ the word does it.
 ## Running
 
 ```sh
-cd ../../cuelight
-cargo run -p cuelight-player -- ../cuelight-examples/red_riding_hood
+cd ../../../cuelight
+cargo run -p cuelight-player -- ../cuelight-examples/demos/red_riding_hood
 ```
 
 There is no driver: the book opens on its cover and waits for its
@@ -38,12 +38,12 @@ left one to turn back, and click a red word to make its picture move; or
 from the player's prompt, `page_6` and `tap_eyes`.
 
 The show and the artwork are written by
-[`tools/red_riding_hood_show.py`](../tools/red_riding_hood_show.py) and
-[`tools/red_riding_hood_art.py`](../tools/red_riding_hood_art.py); the
+[`tools/red_riding_hood_show.py`](../../tools/red_riding_hood_show.py) and
+[`tools/red_riding_hood_art.py`](../../tools/red_riding_hood_art.py); the
 page turns by
-[`tools/red_riding_hood_sounds.py`](../tools/red_riding_hood_sounds.py);
+[`tools/red_riding_hood_sounds.py`](../../tools/red_riding_hood_sounds.py);
 the fonts are fetched by
-[`tools/red_riding_hood_fetch.sh`](../tools/red_riding_hood_fetch.sh).
+[`tools/red_riding_hood_fetch.sh`](../../tools/red_riding_hood_fetch.sh).
 
 ## Assets
 
@@ -53,8 +53,8 @@ have to travel with the files are in [`licenses/`](licenses/).
 
 | Asset | Origin | License |
 | --- | --- | --- |
-| `*.svg`, `table.png`, `paper.png` | Made for this show, written by [`tools/red_riding_hood_art.py`](../tools/red_riding_hood_art.py): the backdrops and scenery, the other characters, and Red and the wolf as one picture each (`red.svg`, `wolf.svg`) whose moving pieces are elements with an id, hidden where a page leaves them out | MIT, as this repository |
-| `sounds/turn1.ogg`, `sounds/turn2.ogg` | Synthesized from noise by [`tools/red_riding_hood_sounds.py`](../tools/red_riding_hood_sounds.py) | MIT, as this repository |
+| `*.svg`, `table.png`, `paper.png` | Made for this show, written by [`tools/red_riding_hood_art.py`](../../tools/red_riding_hood_art.py): the backdrops and scenery, the other characters, and Red and the wolf as one picture each (`red.svg`, `wolf.svg`) whose moving pieces are elements with an id, hidden where a page leaves them out | MIT, as this repository |
+| `sounds/turn1.ogg`, `sounds/turn2.ogg` | Synthesized from noise by [`tools/red_riding_hood_sounds.py`](../../tools/red_riding_hood_sounds.py) | MIT, as this repository |
 | `fonts/IMFellEnglish-Regular.ttf`, `fonts/IMFellEnglish-Italic.ttf`, `fonts/IMFellFrenchCanon-Regular.ttf` | [IM Fell Types](https://iginomarini.com/fell/) by Igino Marini, revivals of the Fell types of the 1680s, the unmodified files from [google/fonts](https://github.com/google/fonts/tree/8d618a0e96499047423510abb2c5ee9f475b987a/ofl/imfellenglish) and [IM Fell French Canon](https://github.com/google/fonts/tree/3b3145a92153418d09d62971e8238ad5bec48ca3/ofl/imfellfrenchcanon) | [OFL-1.1](licenses/IMFell-OFL.txt), no reserved font name |
 
 The story is the folk tale, retold for young readers; in this telling

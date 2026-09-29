@@ -35,8 +35,8 @@ The events slide also listens for `coin` and `jackpot`, and reads the
 ## Running
 
 ```sh
-cd ../../cuelight
-cargo run -p cuelight-player -- ../cuelight-examples/deck
+cd ../../../cuelight
+cargo run -p cuelight-player -- ../cuelight-examples/demos/deck
 ```
 
 `test-driver.json` is picked up automatically and reads the deck in 82
@@ -45,14 +45,14 @@ seconds with `next`, firing a few coins and a jackpot on the events slide.
 Rendered to a video, as its own render slide says:
 
 ```sh
-cuelight-render deck/ --every 0.04 --until 82 -o frames/
+cuelight-render demos/deck/ --every 0.04 --until 82 -o frames/
 ffmpeg -framerate 25 -pattern_type glob -i 'frames/*.png' deck.mp4
 ```
 
 The show, the driver and the code artwork are written by
-[`tools/deck_show.py`](../tools/deck_show.py), the sounds by
-[`tools/deck_sounds.py`](../tools/deck_sounds.py), and the fonts are
-fetched by [`tools/deck_fetch.sh`](../tools/deck_fetch.sh).
+[`tools/deck_show.py`](../../tools/deck_show.py), the sounds by
+[`tools/deck_sounds.py`](../../tools/deck_sounds.py), and the fonts are
+fetched by [`tools/deck_fetch.sh`](../../tools/deck_fetch.sh).
 
 ## Assets
 

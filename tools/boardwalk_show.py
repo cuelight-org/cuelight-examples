@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Write boardwalk's show.json.
 
-    tools/boardwalk_show.py > boardwalk/show.json
+    tools/boardwalk_show.py > demos/boardwalk/show.json
 
 The show is written out by a script because most of it is lamps at
 positions tools/boardwalk_layout.py shares with the painting: sixty-odd

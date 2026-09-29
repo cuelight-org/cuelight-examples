@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Write the deck: deck/show.json and deck/test-driver.json.
+"""Write the deck: demos/deck/show.json and demos/deck/test-driver.json.
 
     tools/deck_show.py
 
@@ -27,7 +27,7 @@ from fontTools.ttLib import TTFont
 from PIL import Image
 
 REPO = Path(__file__).resolve().parent.parent
-OUT = REPO / "deck"
+OUT = REPO / "demos" / "deck"
 SCHEMA = "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json"
 W, H = 1280, 720
 M = 80                                  # the page margin
@@ -473,7 +473,7 @@ CARD_W, CARD_H, THUMB_W, THUMB_H = 352, 214, 336, 172
 cards = []
 for i, (show, label) in enumerate(EXAMPLES):
     col, row = i % 3, i // 3
-    source = REPO / "site/thumbnails" / f"{show}.png"
+    source = REPO / "site/thumbnails/demos" / f"{show}.png"
     iw, ih = Image.open(source).size
     fit = max(THUMB_W / iw, THUMB_H / ih)           # cover the window, centred
     size = [round(iw * fit, 1), round(ih * fit, 1)]
@@ -893,12 +893,12 @@ def main():
     for stem, art in SVGS.items():
         (shots / f"{stem}.svg").write_text(art)
     for show_name, _ in EXAMPLES:
-        shutil.copyfile(REPO / "site/thumbnails" / f"{show_name}.png", shots / f"{show_name}.png")
+        shutil.copyfile(REPO / "site/thumbnails/demos" / f"{show_name}.png", shots / f"{show_name}.png")
     (OUT / "show.json").write_text(compact(rounded(show)) + "\n")
     (OUT / "test-driver.json").write_text(compact(driver) + "\n")
     lines_ = (OUT / "show.json").read_text().count("\n")
     length = sum(s.get("wait", 0) for s in steps)
-    print(f"deck/show.json: {TOTAL} slides, {lines_} lines; the driver reads it in {length:.0f} s")
+    print(f"demos/deck/show.json: {TOTAL} slides, {lines_} lines; the driver reads it in {length:.0f} s")
 
 
 if __name__ == "__main__":

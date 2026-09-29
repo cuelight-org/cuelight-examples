@@ -54,4 +54,4 @@ the headlines are made up.
 | --- | --- | --- |
 | `fonts/BebasNeue-Regular.ttf` | [Bebas Neue](https://github.com/dharmatype/Bebas-Neue) by Dharma Type, from [Google Fonts](https://github.com/google/fonts/tree/main/ofl/bebasneue) | [OFL-1.1](licenses/BebasNeue-OFL.txt), no reserved font name |
 | `fonts/BarlowSemiCondensed-*.ttf` | [Barlow](https://github.com/jpt/barlow) by Jeremy Tribby, from [Google Fonts](https://github.com/google/fonts/tree/main/ofl/barlowsemicondensed) | [OFL-1.1](licenses/BarlowSemiCondensed-OFL.txt), no reserved font name |
-| `chalk.png`, `leaf.svg`, `flame.svg`, `fish.svg`, `drumstick.svg` | Made for this show by [`tools/chip_shop_art.py`](../tools/chip_shop_art.py) | MIT, as this repository |
+| `chalk.png`, `leaf.svg`, `flame.svg`, `fish.svg`, `drumstick.svg` | Made for this show by [`tools/chip_shop_art.py`](../../tools/chip_shop_art.py) | MIT, as this repository |
