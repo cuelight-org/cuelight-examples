@@ -88,7 +88,7 @@ def lettering(name, text, x, y, font, source=None, dark=0.18, **extra):
     layer = {"name": name, "type": "text", "text": text, "font": font, "x": x, "y": y, "anchor": "center", **extra}
     if source:
         layer["opacity"] = dark
-        layer["bindings"] = [{"property": "opacity", **source, "scale": 1 - dark, "offset": dark}]
+        layer["bindings"] = [{"property": "opacity", **source, "scale": round(1 - dark, 3), "offset": dark}]
     return layer
 
 
@@ -179,7 +179,8 @@ layers = [
      "bindings": [{"property": "visible", "variable": "game_running", "map": {"true": 1}, "default": 0}]},
     # The title, printed across the waves and lit from behind.
     lettering("title", "DRAGON", W / 2, 70, "title", when("gi"), dark=0.55),
-    lettering("players", "1 TO 4 CAN PLAY", W / 2, 132, "small"),
+    # The invitation is lit while nobody plays.
+    lettering("players", "1 TO 4 CAN PLAY", W / 2, 132, "small", when("players", "0")),
 ] + players + [
     display("credits", 318, 800, 2, "credits", cell=32),
     lettering("credits_label", "CREDITS", 318 + 44, 788, "small"),

@@ -240,8 +240,8 @@ def flowers(spots, tap=None):
     return out
 
 
-def butterfly(x, y, span=60, period=7.0, delay=0.0):
-    return group("butterfly", x, y, [
+def butterfly(x, y, span=60, period=7.0, delay=0.0, name="butterfly"):
+    return group(name, x, y, [
         vec("wings", "butterfly", 0, 0, anchor="center", scale=1.4,
             timelines=[swing("flap", "scale_x", 1, 0.2, 0.32)]),
     ], timelines=[
@@ -336,7 +336,7 @@ def picture_4():
         red(180, 470, scale=1.2, bob_delay=0.3),
         *flowers(spots, tap="tap_flowers"),
         butterfly(60, 300, span=90, period=8.0),
-        butterfly(300, 240, span=-70, period=6.5, delay=1.1),
+        butterfly(300, 240, span=-70, period=6.5, delay=1.1, name="butterfly_2"),
     ]
 
 

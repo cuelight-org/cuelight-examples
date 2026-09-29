@@ -15,7 +15,6 @@
     "lead": {"file": "AtkinsonHyperlegible-Regular", "size": 30, "color": "#4A4740"},
     "claim": {"file": "AtkinsonHyperlegible-Bold", "size": 42, "color": "#4A4740"},
     "body": {"file": "AtkinsonHyperlegible-Regular", "size": 25, "color": "#1C1B22"},
-    "body_bold": {"file": "AtkinsonHyperlegible-Bold", "size": 25, "color": "#1C1B22"},
     "small": {"file": "AtkinsonHyperlegible-Regular", "size": 19, "color": "#8A857C"},
     "label": {"file": "AtkinsonHyperlegible-Bold", "size": 19, "color": "#1C1B22"},
     "brand": {"file": "AtkinsonHyperlegible-Bold", "size": 19, "color": "#8A857C"},
@@ -28,10 +27,7 @@
     "mono_small": {"file": "DMMono-Regular", "size": 15, "color": "#8A857C"},
     "link": {"file": "DMMono-Medium", "size": 30, "color": "#1C1B22"},
     "code_plain": {"file": "DMMono-Regular", "size": 18, "color": "#F4EFE6"},
-    "code_key": {"file": "DMMono-Regular", "size": 18, "color": "#9DB8FF"},
     "code_string": {"file": "DMMono-Regular", "size": 18, "color": "#FFC857"},
-    "code_number": {"file": "DMMono-Regular", "size": 18, "color": "#5EE0B0"},
-    "code_punct": {"file": "DMMono-Regular", "size": 18, "color": "#8E8A80"},
     "code_prompt": {"file": "DMMono-Medium", "size": 18, "color": "#FF5A3C"},
     "code_out": {"file": "DMMono-Regular", "size": 18, "color": "#8E8A80"}
   },
