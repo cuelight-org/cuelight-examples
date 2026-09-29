@@ -1,0 +1,73 @@
+{
+  "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+  "format": 1, "name": "video_when_while", "size": [640, 360], "background": "#0E1116",
+  "variables": {"alarm": false, "mode": "day", "phase": ""},
+  "layers": [
+    {
+      "name": "title", "type": "digits", "digits": 20, "size": [174, 20], "x": 16, "y": 14, "text": "VIDEO WHEN AND WHILE",
+      "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}
+    },
+    {
+      "name": "alarm_label", "type": "digits", "digits": 5, "size": [43, 14], "x": 16, "y": 44, "text": "ALARM",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "alarm_value", "type": "digits", "digits": 3, "size": [26, 14], "x": 68, "y": 44, "text": "",
+      "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}},
+      "bindings": [{"property": "text", "variable": "alarm", "map": {"true": "ON", "false": "OFF"}}]
+    },
+    {
+      "name": "mode_label", "type": "digits", "digits": 4, "size": [35, 14], "x": 140, "y": 44, "text": "MODE",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "mode_value", "type": "digits", "digits": 5, "size": [43, 14], "x": 184, "y": 44, "text": "",
+      "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}},
+      "bindings": [{"property": "text", "variable": "mode", "map": {"day": "DAY", "night": "NIGHT"}}]
+    },
+
+    {
+      "name": "when", "type": "group", "x": 16, "y": 80,
+      "children": [
+        {"name": "frame", "type": "shape", "shape": {"rect": [-2, -2, 196, 112], "radius": 4}, "fill": "#161B24"},
+        {"name": "clip", "type": "video", "video": "pop_c", "gain": 0.6, "when": {"variable": "alarm"}},
+        {"name": "caption_1", "type": "digits", "digits": 10, "size": [86, 12], "x": 0, "y": 122, "text": "WHEN ALARM", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+        {"name": "caption_2", "type": "digits", "digits": 22, "size": [191, 12], "x": 0, "y": 140, "text": "TURNS ON: ONE PLAY", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}}
+      ]
+    },
+    {
+      "name": "while_once", "type": "group", "x": 224, "y": 80,
+      "children": [
+        {"name": "frame", "type": "shape", "shape": {"rect": [-2, -2, 196, 112], "radius": 4}, "fill": "#161B24"},
+        {"name": "clip", "type": "video", "video": "pop_e", "gain": 0.6, "while": {"variable": "alarm"}},
+        {"name": "caption_1", "type": "digits", "digits": 11, "size": [95, 12], "x": 0, "y": 122, "text": "WHILE ALARM", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+        {"name": "caption_2", "type": "digits", "digits": 22, "size": [191, 12], "x": 0, "y": 140, "text": "IS ON: ONCE PER TURN", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}}
+      ]
+    },
+    {
+      "name": "while_loop", "type": "group", "x": 432, "y": 80,
+      "children": [
+        {"name": "frame", "type": "shape", "shape": {"rect": [-2, -2, 196, 112], "radius": 4}, "fill": "#161B24"},
+        {"name": "clip", "type": "video", "video": "orbit", "gain": 0.0, "loop": true, "while": {"variable": "mode", "map": {"night": 1}}},
+        {"name": "caption_1", "type": "digits", "digits": 16, "size": [139, 12], "x": 0, "y": 122, "text": "WHILE MODE NIGHT", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+        {"name": "caption_2", "type": "digits", "digits": 22, "size": [191, 12], "x": 0, "y": 140, "text": "LOOPS, STOPS MID-LOOP", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}}
+      ]
+    },
+
+    {
+      "name": "note", "type": "digits", "digits": 66, "size": [572, 12], "x": 16, "y": 262,
+      "text": "A CLIP PLAYS ON A CONDITION THE WAY A SOUND OR A TIMELINE DOES.",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "note_2", "type": "digits", "digits": 66, "size": [572, 12], "x": 16, "y": 282,
+      "text": "A WHILE THAT STOPS IT FIRES NO ON_END: TURNING FALSE IS THE END.",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "phase", "type": "digits", "digits": 56, "size": [485, 14], "x": 16, "y": 330, "text": "",
+      "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}},
+      "bindings": [{"property": "text", "variable": "phase"}]
+    }
+  ]
+}
