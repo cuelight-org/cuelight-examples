@@ -133,77 +133,96 @@ def circle(name, x, y, radius, fill, **extra):
             "fill": fill, **extra}
 
 
-# -- Characters, built from their parts ---------------------------------------
+# -- Characters: one picture each, moved by its parts --------------------------
+
+# Where the characters' feet are in their pictures (red_riding_hood_art.py).
+RED_FEET = (70, 230)
+WOLF_FEET = (80, 220)
+WOLF_NECK = (72, -96)  # from its feet
+
+
+def part(id, pivot=None, timelines=None, **extra):
+    """A part of a character's picture, turning and scaling around `pivot`,
+    in the picture's own coordinates."""
+    out = {"id": id}
+    if pivot:
+        out["pivot"] = [r(pivot[0]), r(pivot[1])]
+    out.update(extra)
+    if timelines:
+        out["timelines"] = timelines
+    return out
+
+
+def character(name, image, x, y, parts, timelines=None, **extra):
+    layer = {"name": name, "type": "image", "image": image, "x": r(x), "y": r(y), **extra, "parts": parts}
+    if timelines:
+        layer["timelines"] = timelines
+    return layer
+
 
 def red(x, y, scale=1.0, facing=1, tap=None, bob_delay=0.0, basket=True):
     """The girl, her feet at (x, y). A tap on "red hood" makes her twirl."""
+    fx, fy = RED_FEET
     twirl = []
     if tap:
         twirl = [tl("twirl", "scale_x", [(0, facing), (0.35, -facing, "quad_in_out"), (0.7, facing, "quad_in_out")],
                     trigger=tap)]
-    parts = [
-        vec("body", "red_body", -60, -152),
-        vec("head", "red_head", 2, -146, anchor="bottom",
-            timelines=[swing("bob", "rotation", -3, 4, 3.2, bob_delay)]),
-    ]
+    parts = [part("head", (fx + 2, fy - 146), [swing("bob", "rotation", -3, 4, 3.2, bob_delay)])]
     if basket:
-        parts += [
-            vec("basket", "basket", 36, -88, anchor="top",
-                timelines=[swing("sway", "rotation", -5, 5, 2.4, bob_delay + 0.4)]),
-            circle("hand", 36, -86, 6, "#F2D2B0", stroke={"color": INK, "width": 2.5}),
-        ]
-    return group("red", x, y, parts, timelines=twirl, scale=scale, scale_x=facing)
+        parts.append(part("basket", (fx + 36, fy - 88), [swing("sway", "rotation", -5, 5, 2.4, bob_delay + 0.4)]))
+    else:
+        parts += [part("basket", visible=False), part("hand", visible=False)]
+    extra = {"scale": scale} if scale != 1 else {}
+    return character("red", "red", x, y, parts, timelines=twirl,
+                     anchor="bottom", **extra, scale_x=facing)
 
 
-def wolf_head(x, y, eye_scale=1.0, cap=False, tilt=True, jaw_tap=None, eyes_tap=None, grin_tap=None):
-    """The head, its neck at (x, y); an eye that blinks, a jaw that can open."""
+def wolf_head_parts(eye_scale=1.0, tilt=True, jaw_tap=None, eyes_tap=None, grin_tap=None, look_tap=None):
+    """The head, turning at its neck; an eye that blinks, a jaw that can
+    open."""
+    nx, ny = WOLF_FEET[0] + WOLF_NECK[0], WOLF_FEET[1] + WOLF_NECK[1]
+    head = [swing("tilt", "rotation", -2, 3, 3.6, 0.5)] if tilt else []
+    if look_tap:
+        head.append(tl("look", "rotation", [(0, 0), (0.3, 10, "quad_out"), (1.4, 10), (1.8, 0, "quad_in")],
+                       trigger=look_tap))
     jaw = []
     if jaw_tap:
         jaw.append(tl("teeth", "rotation", [(0, 0), (0.25, -20, "back_out"), (1.8, -20), (2.2, 0, "quad_in")],
                       trigger=jaw_tap))
     if grin_tap:
         jaw.append(tl("grin", "rotation", [(0, 0), (0.2, -9, "quad_out"), (1.0, -9), (1.3, 0)], trigger=grin_tap))
-    eye_grow = []
+    eye = []
     if eyes_tap:
-        eye_grow = [tl("grow", "scale", [(0, eye_scale), (0.4, eye_scale * 2.6, "back_out"), (2.0, eye_scale * 2.6),
-                                          (2.5, eye_scale, "quad_in")], trigger=eyes_tap)]
-    children = [
-        # The inside of the mouth, under the jaw, seen when it opens.
-        {"name": "mouth", "type": "shape", "fill": "#6A1D1A",
-         "shape": {"path": "M -112 -29 L -44 -29 L -56 -13 L -104 -16 Z"}},
-        vec("jaw", "wolf_jaw", -38, -38, anchor="top_right", timelines=jaw),
-        vec("head", "wolf_head", 0, 0, anchor="bottom_right"),
-        group("eye", -54, -58, [
-            circle("white", 0, 0, 6.5, "#F2D27A", stroke={"color": INK, "width": 1.8}),
-            # Towards the snout: the head is drawn facing left, so it looks ahead.
-            circle("pupil", -1.8, 0, 3, INK),
-        ], timelines=eye_grow + [blink("blink", 4.4, 1.3)], scale=eye_scale),
+        eye = [tl("grow", "scale", [(0, eye_scale), (0.4, eye_scale * 2.6, "back_out"), (2.0, eye_scale * 2.6),
+                                     (2.5, eye_scale, "quad_in")], trigger=eyes_tap)]
+    eye.append(blink("blink", 4.4, 1.3))
+    parts = [
+        part("head", (nx, ny), head),
+        part("jaw", (nx - 38, ny - 38), jaw),
+        part("eye", (nx - 54, ny - 58), eye, **({"scale": eye_scale} if eye_scale != 1 else {})),
     ]
-    if cap:
-        children.append(vec("nightcap", "nightcap", -104, -110, scale=0.74))
-    timelines = [swing("tilt", "rotation", -2, 3, 3.6, 0.5)] if tilt else []
-    return group("wolf_head", x, y, children, timelines=timelines)
+    # A part with nothing to do is left out.
+    return [p for p in parts if "timelines" in p or "scale" in p]
 
 
-def wolf(x, y, scale=1.0, tap=None, grin=None):
-    """Standing, facing left, its feet at (x, y). A tap wags its tail fast
-    and tilts its head."""
+def wolf(x, y, scale=1.0, facing=1, tap=None, grin=None):
+    """Standing, facing left (or right, with `facing` -1), its feet at
+    (x, y). A tap wags its tail fast and tilts its head."""
+    fx, fy = WOLF_FEET
     tail = [swing("wag", "rotation", -10, 12, 1.6)]
-    head_tilt = []
     if tap:
         tail.append(tl("happy", "rotation", [(0, 0), (0.15, 20), (0.3, -12), (0.45, 20), (0.6, -12), (0.75, 20),
                                              (0.9, 0)], trigger=tap))
-        head_tilt = [tl("look", "rotation", [(0, 0), (0.3, 10, "quad_out"), (1.4, 10), (1.8, 0, "quad_in")],
-                        trigger=tap)]
-    head = wolf_head(72, -96, grin_tap=grin)
-    head["timelines"] = head["timelines"] + head_tilt
-    hop = [tl("hop", "y", [(0, y), (0.2, y - 24, "quad_out"), (0.4, y, "quad_in"), (0.55, y - 10, "quad_out"),
-                           (0.7, y, "quad_in")], trigger=tap)] if tap else []
-    return group("wolf", x, y, [
-        vec("tail", "wolf_tail", 212, -104, anchor="left", timelines=tail),
-        vec("body", "wolf_body", 0, -150),
-        head,
-    ], timelines=hop, scale=scale)
+    # The picture's top left, from where its feet go.
+    left, top = x - scale * facing * fx, y - scale * fy
+    hop = [tl("hop", "y", [(0, top), (0.2, top - 24, "quad_out"), (0.4, top, "quad_in"), (0.55, top - 10, "quad_out"),
+                           (0.7, top, "quad_in")], trigger=tap)] if tap else []
+    parts = [part("tail", (fx + 212, fy - 104), tail), *wolf_head_parts(grin_tap=grin, look_tap=tap),
+             part("nightcap", visible=False)]
+    extra = {"scale": scale} if scale != 1 else {}
+    if facing != 1:
+        extra["scale_x"] = facing
+    return character("wolf", "wolf", left, top, parts, timelines=hop, **extra)
 
 
 # -- Pictures (in plate coordinates, 470x520) ---------------------------------
@@ -276,7 +295,8 @@ def picture_1():
                           autoplay=True, loop=True)]),
         vec("fence", "fence", 250, 400),
         *flowers([(210, 400, "red", 0.8), (236, 404, "white", 0.7), (440, 470, "blue", 0.9)]),
-        red(110, 490, scale=1.35, tap="tap_hood"),
+        # Her mother gives her the basket on the next page.
+        red(110, 490, scale=1.35, tap="tap_hood", basket=False),
     ]
 
 
@@ -318,8 +338,7 @@ def picture_4():
     # The wolf runs off over the hill, once, then is gone: it rests where the
     # run ends, far enough right that none of it shows (mirrored, it reaches
     # 75 pixels to the left of its x).
-    small = wolf(0, 0, scale=0.3)
-    small["scale_x"] = -1
+    small = wolf(0, 0, scale=0.3, facing=-1)
     runner = group("runner", 600, 290, [small], timelines=[{"name": "run", "autoplay": True, "delay": 0.8, "tracks": [
         {"property": "x", "keys": [{"t": 0, "v": 170}, {"t": 3.8, "v": 600}]},
         {"property": "y", "keys": [{"t": 0, "v": 318}, {"t": 0.25, "v": 306, "ease": "quad_out"},
@@ -370,12 +389,20 @@ def bedroom(scale=1.0, x=0.0, y=0.0, cupboard=True, eyes_tap=None, jaw_tap=None,
         {"name": "hump", "type": "shape", "x": r(bed_x + 170 * s), "y": r(bed_y + 106 * s), "scale": s,
          "shape": {"path": "M -90 4 C -60 -30 40 -34 90 4 Z"}, "fill": RED, "stroke": {"color": INK, "width": 2.5},
          "timelines": [swing("breathe", "scale_y", 1, 1.12, 3.0)]},
-        # Facing the room, his neck on the pillow.
-        group("wolf_in_bed", bed_x + 40 * s, bed_y + 104 * s, [
-            wolf_head(0, 0, cap=True, eyes_tap=eyes_tap, jaw_tap=jaw_tap, eye_scale=eye_scale),
-        ], scale=0.72 * s, scale_x=-1),
+        # Facing the room, his neck on the pillow: only his head shows.
+        wolf_in_bed(bed_x + 40 * s, bed_y + 104 * s, 0.72 * s, eyes_tap=eyes_tap, jaw_tap=jaw_tap,
+                    eye_scale=eye_scale),
     ]
     return parts
+
+
+def wolf_in_bed(x, y, scale, eyes_tap=None, jaw_tap=None, eye_scale=1.0):
+    """The wolf's head in Grandma's nightcap, facing right, its neck at
+    (x, y); the rest of it is under the quilt."""
+    nx, ny = WOLF_FEET[0] + WOLF_NECK[0], WOLF_FEET[1] + WOLF_NECK[1]
+    parts = [*wolf_head_parts(eyes_tap=eyes_tap, jaw_tap=jaw_tap, eye_scale=eye_scale),
+             part("body", visible=False), part("tail", visible=False)]
+    return character("wolf_in_bed", "wolf", x + scale * nx, y - scale * ny, parts, scale=r(scale, 3), scale_x=-1)
 
 
 def room(outside=()):
@@ -415,8 +442,7 @@ def picture_8():
     # The wolf running off outside, seen through the window, once.
     bounce = [(i * 0.2, 196 - (10 if i % 2 else 0), "quad_out" if i % 2 else "quad_in") for i in range(13)]
     # The same wolf as everywhere, mirrored whole, so it runs to the right.
-    small = wolf(0, 0, scale=0.3)
-    small["scale_x"] = -1
+    small = wolf(0, 0, scale=0.3, facing=-1)
     runner = group("runner", 260, 196, [small], timelines=[{"name": "flee", "autoplay": True, "delay": 1.0, "tracks": [
         {"property": "x", "keys": [{"t": 0, "v": 250}, {"t": 2.4, "v": 520}]},
         {"property": "y", "keys": [{"t": t, "v": v, "ease": ease} for t, v, ease in bounce]},

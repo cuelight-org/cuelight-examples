@@ -4,12 +4,15 @@
     tools/red_riding_hood_art.py red_riding_hood/assets
 
 The pictures are flat shapes in a few inks with a dark outline, the way
-an old picture book was printed from a handful of plates. Every part
-that moves is a file of its own, drawn so that the point it turns around
-sits on an edge or corner of its box, where a layer's `anchor` can reach
-it: a head turns at its neck (bottom), a basket swings from its handle
-(top), a jaw opens at its hinge (top right), a tail wags from its root
-(left), a flower sways from its stem (bottom).
+an old picture book was printed from a handful of plates. Red and the
+wolf are one picture each (and one more for the pages where Red carries
+no basket and the wolf is in Grandma's bed), whose moving pieces are groups with an id
+(`head`, `basket`, `jaw`, `tail`, ...) that the show turns as `parts`,
+around points it names in the picture's own coordinates. Everything else
+that moves is a file of its own, drawn so that the point it turns
+around sits on an edge or corner of its box, where a layer's `anchor`
+can reach it: a basket swings from its handle (top), a flower sways
+from its stem (bottom).
 
 The backdrops are 470x520, the size of the picture plate on the right
 page. The book is PNG: the table under it, and the paper's texture,
@@ -78,26 +81,43 @@ def line(d, color=INK, width=2.5):
     return f'<path d="{d}" fill="none" stroke="{color}" stroke-width="{width}"/>'
 
 
+def g(body, x=0, y=0, scale=None, id=None):
+    """A group moved to (x, y), with an id a show's `parts` can name."""
+    ident = f' id="{id}"' if id else ""
+    scaled = f" scale({scale})" if scale else ""
+    return f'<g{ident} transform="translate({x} {y}){scaled}">{body}</g>'
+
+
+def ring(cx, cy, r, width, fill=INK):
+    """A circle's outline as a filled ring, which scales with the part it
+    is in (a stroke keeps its width)."""
+    outer, inner = r + width / 2, r - width / 2
+    return (f'<path d="M {cx + outer} {cy} A {outer} {outer} 0 1 0 {cx - outer} {cy} '
+            f'A {outer} {outer} 0 1 0 {cx + outer} {cy} Z '
+            f'M {cx + inner} {cy} A {inner} {inner} 0 1 1 {cx - inner} {cy} '
+            f'A {inner} {inner} 0 1 1 {cx + inner} {cy} Z" fill="{fill}" fill-rule="evenodd"/>')
+
+
 # -- Red ---------------------------------------------------------------------
 
 def red_body():
-    """Cape, dress and legs, the neck at the top centre (60, 0). Her hand is
-    left to the show, which only draws it where it holds the basket."""
-    return svg("".join([
+    """Cape, dress and legs in a 120x152 box, the neck at the top centre
+    (60, 0)."""
+    return "".join([
         line("M 50 126 L 48 146", INK, 5), line("M 70 126 L 72 146", INK, 5),
         e(46, 148, 8, 4, INK, None), e(75, 148, 8, 4, INK, None),
         p("M 34 100 L 86 100 L 92 128 L 28 128 Z", BLUE),
         p("M 44 4 Q 60 -2 76 4 L 98 112 Q 60 124 22 112 Z", RED),
         line("M 60 8 L 60 108", RED_DARK, 2),
-    ]), 120, 152)
+    ])
 
 
 def red_head():
-    """Head in its hood, turned a little to the right; the neck at the
-    bottom centre (40, 80). A round picture-book face: no nose, round eyes
+    """Head in its hood in an 80x80 box, turned a little to the right; the
+    neck at the bottom centre (40, 80). A round picture-book face: no nose, round eyes
     with a highlight, cheeks under the eyes, a small smile."""
     blush = "#EDB0A0"
-    return svg("".join([
+    return "".join([
         p("M 40 3 C 15 3 3 22 3 44 C 3 64 17 79 40 79 C 63 79 77 64 77 44 C 77 22 65 3 40 3 Z", RED),
         e(43, 46, 25, 27, RED_DARK, None),
         # Hair around the face, falling in two locks beside it.
@@ -113,19 +133,39 @@ def red_head():
         # The bow of her hood, under her chin.
         p("M 43 72 L 34 67 L 35 77 Z M 43 72 L 52 67 L 51 77 Z", RED, INK, 1.5),
         c(43, 72, 2.4, RED_DARK, INK, 1.2),
-    ]), 80, 80)
+    ])
 
 
 def basket():
-    """A basket hanging from its handle, the top centre (30, 0)."""
-    return svg("".join([
+    """A basket in a 60x58 box, hanging from its handle, the top centre
+    (30, 0)."""
+    return "".join([
         line("M 10 26 C 10 -4 50 -4 50 26", TRUNK, 4),
         p("M 4 24 L 56 24 L 50 54 L 10 54 Z", OCHRE),
         line("M 7 34 L 53 34 M 9 44 L 51 44", OCHRE_DARK, 2),
         line("M 18 24 L 20 54 M 30 24 L 30 54 M 42 24 L 40 54", OCHRE_DARK, 1.5),
         p("M 8 24 Q 30 12 52 24 Q 30 30 8 24 Z", RED, INK, 2),
         c(22, 21, 2, WHITE, None), c(34, 19, 2, WHITE, None), c(44, 22, 2, WHITE, None),
-    ]), 60, 58)
+    ])
+
+
+RED_FEET = (70, 230)  # in red.svg: the middle of its bottom edge
+
+
+def red():
+    """The girl, 140x230, her feet at the bottom centre (RED_FEET). Parts:
+    `body`; `head`, which turns at its neck, 146 above her feet and 2 to
+    the right; `basket`, which swings from its handle, 88 above her feet
+    and 36 to the right; `hand`, which holds it. A show hides `basket`
+    and `hand` where she carries nothing: her hand is under her cape."""
+    fx, fy = RED_FEET
+    held = [g(basket(), fx + 36 - 30, fy - 88, id="basket"),
+            g(c(fx + 36, fy - 86, 6, SKIN), id="hand")]
+    return svg("".join([
+        g(red_body(), fx - 60, fy - 152, id="body"),
+        g(red_head(), fx + 2 - 40, fy - 146 - 80, id="head"),
+        *held,
+    ]), 140, 230)
 
 
 # -- Mother, Grandma, the woodcutter -------------------------------------------
@@ -184,31 +224,32 @@ def axe():
 # -- The wolf ----------------------------------------------------------------
 
 def wolf_body():
-    """Standing, facing left; the head sits at the top left, the tail's root
-    at (214, 44)."""
-    return svg("".join([
+    """Standing, facing left, in a 240x150 box; the head sits at the top
+    left, the tail's root at (212, 46)."""
+    return "".join([
         p("M 58 100 L 52 146 L 64 146 L 74 104 Z M 92 104 L 90 146 L 102 146 L 106 104 Z", WOLF_DARK),
         p("M 168 100 L 164 146 L 176 146 L 184 100 Z M 196 96 L 200 146 L 212 146 L 210 92 Z", WOLF_DARK),
         p("M 40 60 C 40 30 70 24 110 32 C 150 38 200 26 218 50 C 232 72 214 108 190 108 "
           "C 150 112 110 108 80 110 C 54 112 40 90 40 60 Z", WOLF),
         p("M 60 92 C 90 104 150 104 190 100 C 170 110 110 112 80 110 C 64 110 58 100 60 92 Z", WOLF_LIGHT, None),
         line("M 110 40 Q 130 46 150 40 M 120 52 Q 140 58 160 50", WOLF_DARK, 2),
-    ]), 240, 150)
+    ])
 
 
 def wolf_tail():
-    """A bushy tail, its root at the middle of the left edge."""
-    return svg(p("M 2 30 C 18 24 36 14 56 8 C 70 2 86 4 90 12 C 94 22 84 30 72 30 "
-                 "C 62 40 42 50 22 46 C 12 44 6 38 2 30 Z", WOLF) +
-               p("M 74 8 C 84 6 90 10 90 14 C 90 22 84 26 76 26 Q 82 16 74 8 Z", WOLF_LIGHT, None) +
-               line("M 30 32 Q 50 26 64 18 M 34 40 Q 52 36 66 26", WOLF_DARK, 1.5), 96, 52)
+    """A bushy tail in a 96x52 box, its root at the middle of the left
+    edge."""
+    return (p("M 2 30 C 18 24 36 14 56 8 C 70 2 86 4 90 12 C 94 22 84 30 72 30 "
+              "C 62 40 42 50 22 46 C 12 44 6 38 2 30 Z", WOLF) +
+            p("M 74 8 C 84 6 90 10 90 14 C 90 22 84 26 76 26 Q 82 16 74 8 Z", WOLF_LIGHT, None) +
+            line("M 30 32 Q 50 26 64 18 M 34 40 Q 52 36 66 26", WOLF_DARK, 1.5))
 
 
 def wolf_head():
-    """Facing left; the neck at the bottom right. Its eye is left to the
-    show, so it can blink and grow, and so is the inside of its mouth,
-    which has to lie under the jaw."""
-    return svg("".join([
+    """Facing left, in a 132x100 box; the neck at the bottom right. Its eye
+    is drawn apart, so it can blink and grow, and its jaw, which carries
+    the inside of the mouth."""
+    return "".join([
         p("M 96 4 L 118 38 L 90 34 Z", WOLF_DARK),
         # The head closes under the jaw's hinge; the mouth is only at the front.
         p("M 8 56 Q 30 44 60 40 C 70 18 110 18 122 44 C 132 70 118 96 100 98 C 88 90 78 76 66 71 L 12 70 Q 2 64 8 56 Z", WOLF),
@@ -217,25 +258,64 @@ def wolf_head():
         p("M 72 26 L 86 6 L 96 30 Z", WOLF_LIGHT, INK, 2),
         c(9, 58, 6, INK, None),
         p("M 30 52 Q 44 46 58 50", "none", WOLF_DARK, 2),
-    ]), 132, 100)
+    ])
 
 
 def wolf_jaw():
-    """The lower jaw, hinged far back under the cheek (near the top right),
-    where the head covers it; shorter than the snout, its fangs stand up."""
-    return svg("".join([
+    """The lower jaw in a 104x36 box, hinged far back under the cheek (the
+    top right), where the head covers it; shorter than the snout, its
+    fangs stand up."""
+    return "".join([
+        # The inside of the mouth rises from the jaw's top edge and turns
+        # with it: closed, the snout covers it; open, it fills the gap
+        # between the jaws, and it never reaches past the jaw's own tip.
+        p("M 34 12 C 30 2 34 -8 48 -13 Q 72 -21 98 -24 L 102 12 Z", "#6A1D1A", None),
         p("M 38 11 L 42 3 L 46 11 Z M 54 11 L 58 1 L 62 11 Z M 70 11 L 73 4 L 76 11 Z", WHITE, INK, 1.5),
         p("M 102 10 L 34 11 Q 24 15 30 23 Q 58 35 102 28 Z", WOLF),
-    ]), 104, 36)
+    ])
 
 
 def nightcap():
-    """Grandma's nightcap, pulled over the wolf's ears; its brim at the bottom."""
-    return svg("".join([
-        p("M 6 64 C 10 20 50 0 100 18 C 120 26 132 40 140 56 C 110 48 90 44 70 50 Q 30 56 6 64 Z", WHITE),
+    """Grandma's nightcap in a 152x76 box, pulled over the wolf's ears; its
+    brim at the bottom."""
+    return "".join([
+        # Its foot follows the band's top from end to end, a little below
+        # it, so the band sits on white all along.
+        p("M 2 64 C 8 20 50 0 100 18 C 120 26 132 40 140 56 C 128 54 120 56 112 60 Q 60 48 2 64 Z", WHITE),
         c(142, 58, 9, RED),
         p("M 2 60 Q 60 44 112 56 L 112 68 Q 60 58 4 72 Z", RED),
-    ]), 152, 76)
+    ])
+
+
+def wolf_eye():
+    """The eye, centred on (0, 0), looking towards the snout."""
+    return c(0, 0, 6.5, "#F2D27A", None) + ring(0, 0, 6.5, 1.8) + c(-1.8, 0, 3, INK, None)
+
+
+WOLF_FEET = (80, 220)  # in wolf.svg: the bottom left corner of its body
+WOLF_NECK = (72, -96)  # from its feet
+
+
+def wolf():
+    """The wolf, 400x224, standing and facing left; its feet at WOLF_FEET,
+    its neck WOLF_NECK from them. Parts: `tail`, whose root is 212 right
+    of its feet and 104 up; `body`; `head`, which turns at its neck and
+    holds the rest: `jaw`, hinged 38 left of the neck and 38 up; `eye`,
+    centred 54 left and 58 up. The inside of the mouth lies under the
+    jaw, so it shows when that opens. `nightcap` is Grandma's, over its
+    ears: a show hides it, or shows it and hides `body` and `tail` for
+    the wolf in her bed."""
+    fx, fy = WOLF_FEET
+    nx, ny = fx + WOLF_NECK[0], fy + WOLF_NECK[1]
+    head = "".join([
+        g(wolf_jaw(), -38 - 104, -38, id="jaw"),
+        g(wolf_head(), -132, -100),
+        g(wolf_eye(), -54, -58, id="eye"),
+        g(nightcap(), -104, -110, scale=0.74, id="nightcap"),
+    ])
+    standing = [g(wolf_tail(), fx + 212, fy - 104 - 26, id="tail"),
+                g(wolf_body(), fx, fy - 150, id="body")]
+    return svg("".join([*standing, g(head, nx, ny, id="head")]), 400, 224)
 
 
 # -- Scenery -----------------------------------------------------------------
@@ -461,10 +541,9 @@ def main():
     out = Path(sys.argv[1])
     out.mkdir(parents=True, exist_ok=True)
     art = {
-        "red_body": red_body(), "red_head": red_head(), "basket": basket(),
+        "red": red(), "basket": svg(basket(), 60, 58),
         "mother": mother(), "grandma": grandma(), "woodcutter": woodcutter(), "axe": axe(),
-        "wolf_body": wolf_body(), "wolf_tail": wolf_tail(), "wolf_head": wolf_head(), "wolf_jaw": wolf_jaw(),
-        "nightcap": nightcap(),
+        "wolf": wolf(),
         "tree_pine": tree_pine(), "tree_round": tree_round(), "bush": bush(),
         "flower_red": flower(RED), "flower_white": flower(WHITE), "flower_blue": flower(BLUE_LIGHT),
         "butterfly": butterfly(), "bird": bird(), "cloud": cloud(),
