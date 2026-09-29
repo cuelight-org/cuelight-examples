@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="140" viewBox="0 0 120 140">
+  <rect id="leg_left" x="38" y="118" width="16" height="20" rx="4" fill="#2A8FB0"/>
+  <rect id="leg_right" x="66" y="118" width="16" height="20" rx="4" fill="#2A8FB0"/>
+  <rect id="body" x="30" y="60" width="60" height="60" rx="8" fill="#3EC9F0"/>
+  <rect id="arm_left" x="14" y="66" width="14" height="44" rx="6" fill="#3EC9F0"/>
+  <g id="arm" transform="translate(92 66)">
+    <rect x="0" y="0" width="14" height="44" rx="6" fill="#3EC9F0"/>
+    <circle cx="7" cy="4" r="4" fill="#2A8FB0"/>
+  </g>
+  <g id="head" transform="translate(30 14)">
+    <rect x="0" y="0" width="60" height="44" rx="8" fill="#E6EDF3"/>
+    <g id="eyes">
+      <circle cx="18" cy="20" r="6" fill="#0E1116"/>
+      <circle cx="42" cy="20" r="6" fill="#0E1116"/>
+    </g>
+    <g>
+      <rect id="jaw" x="8" y="44" width="44" height="12" rx="4" fill="#FFB000"/>
+    </g>
+  </g>
+  <g id="antenna">
+    <rect x="58" y="2" width="4" height="12" fill="#FFB000"/>
+    <circle cx="60" cy="2" r="4" fill="#FFB000"/>
+  </g>
+</svg>
