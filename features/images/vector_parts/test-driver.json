@@ -1,0 +1,41 @@
+{
+  "loop": true,
+  "steps": [
+    {
+      "set": {
+        "nod": 0,
+        "nod_text": "NOD 0"
+      }
+    },
+    {
+      "wait": 1.2
+    },
+    {
+      "set": {
+        "nod": -18,
+        "nod_text": "NOD -18  THE HOST TURNS THE HEAD"
+      }
+    },
+    {
+      "wait": 1.2
+    },
+    {
+      "set": {
+        "nod": 18,
+        "nod_text": "NOD 18"
+      }
+    },
+    {
+      "wait": 1.2
+    },
+    {
+      "set": {
+        "nod": 0,
+        "nod_text": "NOD 0"
+      }
+    },
+    {
+      "wait": 1.2
+    }
+  ]
+}

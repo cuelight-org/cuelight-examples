@@ -1,0 +1,620 @@
+{
+  "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+  "format": 1,
+  "name": "vector_parts",
+  "size": [
+    800,
+    450
+  ],
+  "background": "#0E1116",
+  "variables": {
+    "nod": 0,
+    "nod_text": ""
+  },
+  "layers": [
+    {
+      "name": "title",
+      "type": "digits",
+      "digits": 12,
+      "size": [
+        104,
+        20
+      ],
+      "x": 24,
+      "y": 18,
+      "text": "VECTOR PARTS",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#E6EDF3"
+        }
+      }
+    },
+    {
+      "name": "legend",
+      "type": "digits",
+      "digits": 52,
+      "size": [
+        452,
+        10
+      ],
+      "x": 24,
+      "y": 50,
+      "text": "ONE SVG, ITS ELEMENTS NAMED BY ID, MOVED BY THE SHOW",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "control",
+      "type": "image",
+      "image": "robot",
+      "x": 24,
+      "y": 84
+    },
+    {
+      "name": "c0a",
+      "type": "digits",
+      "digits": 8,
+      "size": [
+        70,
+        10
+      ],
+      "x": 24,
+      "y": 236,
+      "text": "NO PARTS",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "c0b",
+      "type": "digits",
+      "digits": 14,
+      "size": [
+        122,
+        10
+      ],
+      "x": 24,
+      "y": 252,
+      "text": "THE FILE AS IS",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "swing",
+      "type": "image",
+      "image": "robot",
+      "x": 176,
+      "y": 84,
+      "parts": [
+        {
+          "id": "arm",
+          "pivot": [
+            99,
+            70
+          ],
+          "timelines": [
+            {
+              "name": "swing",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "rotation",
+                  "keys": [
+                    {
+                      "t": 0,
+                      "v": -40
+                    },
+                    {
+                      "t": 0.7,
+                      "v": 40,
+                      "ease": "quad_in_out"
+                    },
+                    {
+                      "t": 1.4,
+                      "v": -40,
+                      "ease": "quad_in_out"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "c1a",
+      "type": "digits",
+      "digits": 10,
+      "size": [
+        87,
+        10
+      ],
+      "x": 176,
+      "y": 236,
+      "text": "ARM, KEYED",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "c1b",
+      "type": "digits",
+      "digits": 12,
+      "size": [
+        104,
+        10
+      ],
+      "x": 176,
+      "y": 252,
+      "text": "PIVOT AT THE",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "c1c",
+      "type": "digits",
+      "digits": 8,
+      "size": [
+        70,
+        10
+      ],
+      "x": 176,
+      "y": 268,
+      "text": "SHOULDER",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "nod",
+      "type": "image",
+      "image": "robot",
+      "x": 328,
+      "y": 84,
+      "parts": [
+        {
+          "id": "head",
+          "pivot": [
+            60,
+            58
+          ],
+          "bindings": [
+            {
+              "property": "rotation",
+              "variable": "nod"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "c2a",
+      "type": "digits",
+      "digits": 11,
+      "size": [
+        96,
+        10
+      ],
+      "x": 328,
+      "y": 236,
+      "text": "HEAD, BOUND",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "c2b",
+      "type": "digits",
+      "digits": 13,
+      "size": [
+        113,
+        10
+      ],
+      "x": 328,
+      "y": 252,
+      "text": "TO NOD, WHICH",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "c2c",
+      "type": "digits",
+      "digits": 13,
+      "size": [
+        113,
+        10
+      ],
+      "x": 328,
+      "y": 268,
+      "text": "THE HOST SETS",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "talk",
+      "type": "image",
+      "image": "robot",
+      "x": 480,
+      "y": 84,
+      "parts": [
+        {
+          "id": "head",
+          "pivot": [
+            60,
+            58
+          ],
+          "timelines": [
+            {
+              "name": "turn",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "rotation",
+                  "keys": [
+                    {
+                      "t": 0,
+                      "v": -12
+                    },
+                    {
+                      "t": 1.2,
+                      "v": 12,
+                      "ease": "quad_in_out"
+                    },
+                    {
+                      "t": 2.4,
+                      "v": -12,
+                      "ease": "quad_in_out"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "jaw",
+          "pivot": [
+            38,
+            58
+          ],
+          "timelines": [
+            {
+              "name": "talk",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "rotation",
+                  "keys": [
+                    {
+                      "t": 0,
+                      "v": 0
+                    },
+                    {
+                      "t": 0.3,
+                      "v": 22,
+                      "ease": "quad_out"
+                    },
+                    {
+                      "t": 0.6,
+                      "v": 0,
+                      "ease": "quad_in"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eyes",
+          "timelines": [
+            {
+              "name": "pulse",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "scale",
+                  "keys": [
+                    {
+                      "t": 0,
+                      "v": 1
+                    },
+                    {
+                      "t": 0.5,
+                      "v": 1.6,
+                      "ease": "quad_out"
+                    },
+                    {
+                      "t": 1.0,
+                      "v": 1,
+                      "ease": "quad_in"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "c3a",
+      "type": "digits",
+      "digits": 11,
+      "size": [
+        96,
+        10
+      ],
+      "x": 480,
+      "y": 236,
+      "text": "NESTED, JAW",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "c3b",
+      "type": "digits",
+      "digits": 13,
+      "size": [
+        113,
+        10
+      ],
+      "x": 480,
+      "y": 252,
+      "text": "AND EYES RIDE",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "c3c",
+      "type": "digits",
+      "digits": 11,
+      "size": [
+        96,
+        10
+      ],
+      "x": 480,
+      "y": 268,
+      "text": "ON THE HEAD",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "blink",
+      "type": "image",
+      "image": "robot",
+      "x": 632,
+      "y": 84,
+      "parts": [
+        {
+          "id": "eyes",
+          "timelines": [
+            {
+              "name": "blink",
+              "autoplay": true,
+              "loop": true,
+              "tracks": [
+                {
+                  "property": "opacity",
+                  "keys": [
+                    {
+                      "t": 0,
+                      "v": 1
+                    },
+                    {
+                      "t": 1.6,
+                      "v": 1
+                    },
+                    {
+                      "t": 1.7,
+                      "v": 0
+                    },
+                    {
+                      "t": 1.8,
+                      "v": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "antenna",
+          "visible": false
+        },
+        {
+          "id": "arm",
+          "pivot": [
+            99,
+            70
+          ],
+          "opacity": 0.35,
+          "rotation": 40
+        }
+      ]
+    },
+    {
+      "name": "c4a",
+      "type": "digits",
+      "digits": 13,
+      "size": [
+        113,
+        10
+      ],
+      "x": 632,
+      "y": 236,
+      "text": "EYES BLINK BY",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "c4b",
+      "type": "digits",
+      "digits": 12,
+      "size": [
+        104,
+        10
+      ],
+      "x": 632,
+      "y": 252,
+      "text": "OPACITY, ARM",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "c4c",
+      "type": "digits",
+      "digits": 15,
+      "size": [
+        130,
+        10
+      ],
+      "x": 632,
+      "y": 268,
+      "text": "DIM, NO ANTENNA",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "note1",
+      "type": "digits",
+      "digits": 86,
+      "size": [
+        748,
+        10
+      ],
+      "x": 24,
+      "y": 316,
+      "text": "A PART IS THE ELEMENT OF THAT ID, WITH ALL INSIDE IT, MOVED IN THE ARTWORK'S OWN UNITS",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "note2",
+      "type": "digits",
+      "digits": 85,
+      "size": [
+        739,
+        10
+      ],
+      "x": 24,
+      "y": 336,
+      "text": "PIVOT IS WHERE IT TURNS AND SCALES. LEFT OUT, IT IS THE ELEMENT'S CENTRE, AS THE EYES",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "note3",
+      "type": "digits",
+      "digits": 53,
+      "size": [
+        461,
+        10
+      ],
+      "x": 24,
+      "y": 356,
+      "text": "THE FIRST ROBOT IS THE SAME FILE WITH NO PARTS AT ALL",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "phase",
+      "type": "digits",
+      "digits": 60,
+      "size": [
+        520,
+        14
+      ],
+      "x": 24,
+      "y": 404,
+      "text": "",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#FFB000"
+        }
+      },
+      "bindings": [
+        {
+          "property": "text",
+          "variable": "nod_text"
+        }
+      ]
+    }
+  ]
+}
