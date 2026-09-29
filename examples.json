@@ -124,7 +124,9 @@
         { "path": "features/video/retrigger", "title": "Retrigger", "description": "One clip asked to play three times, 600 ms apart, under three policies: restart cuts to the last, ignore keeps the first, queue plays them one after another.", "thumbnail_at": 2.3 },
         { "path": "features/video/pick", "title": "One of several", "description": "Three clips on a list, and what pick does with them: in_order, random and shuffle, next to each other. Picks count plays, so the show looks the same every run.", "thumbnail_at": 2.2 },
         { "path": "features/video/masked", "title": "Clipped video", "description": "One looping clip cut to a shape by a group clip: a circle, a star path, and a round window that sweeps across while the picture inside stays put, both moved by one show value.", "thumbnail_at": 1.0 },
-        { "path": "features/video/one_clip_many_plays", "title": "One clip, many plays", "description": "One clip playing on four layers at once, each started 300 ms after the one before: every layer shows its own point in the clip.", "thumbnail_at": 1.7 }
+        { "path": "features/video/one_clip_many_plays", "title": "One clip, many plays", "description": "One clip playing on four layers at once, each started 300 ms after the one before: every layer shows its own point in the clip.", "thumbnail_at": 1.7 },
+        { "path": "features/video/bound_video", "title": "Bound video", "description": "One video layer whose clip follows a variable: with restart a new clip cuts the one playing, with queue each plays to its end in turn, and on_end says when each is over.", "thumbnail_at": 1.6 },
+        { "path": "features/video/when_while", "title": "Video when and while", "description": "Clips that play on a variable condition instead of a trigger: one play when the alarm turns on, one play per turn while it is on, and an orbit that loops while the mode is night and stops mid-loop when it is not.", "thumbnail_at": 2.2 }
       ]
     },
     {
