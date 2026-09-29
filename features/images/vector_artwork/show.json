@@ -65,7 +65,21 @@
       "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
     },
     {
-      "name": "pulse", "type": "image", "image": "bolt", "x": 700, "y": 300, "tint": "#FFB000", "anchor": "center", "size": [64, 64],
+      "name": "gradient_label", "type": "digits", "digits": 28, "size": [243, 12], "x": 540, "y": 224, "text": "GRADIENTS KEEP THEIR SHADING",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {"name": "sun", "type": "image", "image": "sun", "x": 540, "y": 234},
+    {"name": "button", "type": "image", "image": "button", "x": 640, "y": 248},
+    {
+      "name": "gradient_note_1", "type": "digits", "digits": 6, "size": [52, 10], "x": 554, "y": 318, "text": "RADIAL",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "gradient_note_2", "type": "digits", "digits": 6, "size": [52, 10], "x": 682, "y": 318, "text": "LINEAR",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "pulse", "type": "image", "image": "bolt", "x": 700, "y": 408, "tint": "#FFB000", "anchor": "center", "size": [56, 56],
       "timelines": [{"name": "beat", "autoplay": true, "loop": true, "tracks": [{"property": "scale", "keys": [{"t": 0, "v": 0.8}, {"t": 0.6, "v": 1.4, "ease": "quad_out"}, {"t": 1.2, "v": 0.8, "ease": "quad_in"}]}]}]
     },
     {
