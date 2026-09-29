@@ -15,7 +15,7 @@ surface pixels per dot or more; in a smaller window the frame is plain.
 
 | Scene | What it shows | How it works |
 | --- | --- | --- |
-| `welcome` | Title and a two-line info text | text layers centered in a `size` box, in two bitmap fonts |
+| `welcome` | Title and a two-line info text | text layers centered in a `size` box, in two pixel fonts |
 | `stern` | Four player scores (active one highlighted), separator line, a content area with a title that gives way to a scrolling text | `text` bindings with `thousands`, a mapped `font` binding on `player`, a group `clip` |
 | `williams` | Four corner scores, the active player in a big font | `anchor` on text, the same mapped `font` binding |
 | `jackpot` | A bordered, flashing title under fireworks | font `border`, five layers of one sprite sheet with a row per color, each looping on its own `delay` and period |
@@ -60,14 +60,14 @@ have to travel with the files are in [`licenses/`](licenses/).
 
 | Asset | Origin | License |
 | --- | --- | --- |
-| `fonts/tiny5-8.*` | [Tiny5](https://github.com/Gissio/font_tiny5) by The Tiny5 Project Authors, `Tiny5-Regular.ttf` from [Google Fonts](https://github.com/google/fonts/tree/b2723573ff4dd21b37158d1d549269e21a559df9/ofl/tiny5) rasterized at 8px with [`tools/ttf2bmfont.py`](../tools/ttf2bmfont.py) | [OFL-1.1](licenses/Tiny5-OFL.txt), no reserved font name |
-| `fonts/jersey20-20.*` | [Jersey 20](https://github.com/scfried/soft-type-jersey) by The Soft Type Project Authors, `Jersey20-Regular.ttf` from [Google Fonts](https://github.com/google/fonts/tree/064d437c73364b35a95e42bad4621e25c8014e1e/ofl/jersey20) rasterized at 20px with [`tools/ttf2bmfont.py`](../tools/ttf2bmfont.py) | [OFL-1.1](licenses/Jersey20-OFL.txt), no reserved font name |
+| `fonts/Tiny5-Regular.ttf` | [Tiny5](https://github.com/Gissio/font_tiny5) by The Tiny5 Project Authors, from [Google Fonts](https://github.com/google/fonts/tree/b2723573ff4dd21b37158d1d549269e21a559df9/ofl/tiny5); drawn at 8 px with `"pixels": true` | [OFL-1.1](licenses/Tiny5-OFL.txt), no reserved font name |
+| `fonts/Jersey20-Regular.ttf` | [Jersey 20](https://github.com/scfried/soft-type-jersey) by The Soft Type Project Authors, from [Google Fonts](https://github.com/google/fonts/tree/064d437c73364b35a95e42bad4621e25c8014e1e/ofl/jersey20); drawn at 20 px with `"pixels": true` | [OFL-1.1](licenses/Jersey20-OFL.txt), no reserved font name |
 | `fireworks.png` | Made for this show, drawn by [`tools/pinball_dmd_fireworks.py`](../tools/pinball_dmd_fireworks.py) | MIT, as this repository |
 | `nd_sky.png`, `nd_road.png`, `nd_traffic.png`, `nd_player.png`, `nd_crash.png` | Made for this show, drawn by [`tools/pinball_dmd_night_drive.py`](../tools/pinball_dmd_night_drive.py) | MIT, as this repository |
 
-The bitmap fonts are modified versions in OFL terms (a format conversion),
-so they stay under the OFL; neither font reserves its name. A font with a
-reserved name would have to be renamed.
+The fonts travel unmodified; neither reserves its name. The engine rasterizes them
+pixel for pixel at their design size, so they lay out like the bitmap atlases
+this show used to carry.
 
 ## What would make it better
 

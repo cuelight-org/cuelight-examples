@@ -6,22 +6,22 @@
   "background": "#000000",
   "output": { "scaling": "pixel_perfect", "passes": [{ "dots": { "size": 0.8, "glow": 0.3 } }] },
   "fonts": {
-    "tiny_white": { "file": "tiny5-8", "color": "#FFFFFF" },
-    "tiny_gray64": { "file": "tiny5-8", "color": "#404040" },
-    "tiny_gray128": { "file": "tiny5-8", "color": "#808080" },
-    "title_white": { "file": "jersey20-20", "color": "#FFFFFF" },
+    "tiny_white": { "file": "Tiny5-Regular", "size": 8, "pixels": true, "color": "#FFFFFF" },
+    "tiny_gray64": { "file": "Tiny5-Regular", "size": 8, "pixels": true, "color": "#404040" },
+    "tiny_gray128": { "file": "Tiny5-Regular", "size": 8, "pixels": true, "color": "#808080" },
+    "title_white": { "file": "Jersey20-Regular", "size": 20, "pixels": true, "color": "#FFFFFF" },
     "title_gold": {
-      "file": "jersey20-20",
+      "file": "Jersey20-Regular", "size": 20, "pixels": true,
       "color": "#FFD840",
       "border": { "color": "#A02000", "width": 1 }
     },
     "title_gold_flash": {
-      "file": "jersey20-20",
+      "file": "Jersey20-Regular", "size": 20, "pixels": true,
       "color": "#FFFFFF",
       "border": { "color": "#FF7A00", "width": 1 }
     },
     "title_sky": {
-      "file": "jersey20-20",
+      "file": "Jersey20-Regular", "size": 20, "pixels": true,
       "color": "#C8E6FF",
       "border": { "color": "#000000", "width": 1 }
     }
