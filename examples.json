@@ -141,6 +141,7 @@
       "name": "Events",
       "description": "What the show tells its host.",
       "examples": [
+        { "path": "features/input/keys_and_presses", "title": "Keys and presses", "description": "What a show does with a host's keys and clicks: keys it names fire triggers, a press on a pressable layer fires its trigger where the layer is now, a hidden or clipped-away layer is not pressed, and a press on nothing pressable, or Enter, fires the show's own anywhere trigger. Click and type on the page; the driver stands in by firing the same triggers.", "thumbnail_at": 3.2 },
         { "path": "features/events/show_events", "title": "Show events", "description": "Triggers the show fires itself come back to the host as events; watch the log.", "thumbnail_at": 3.9 }
       ]
     }
