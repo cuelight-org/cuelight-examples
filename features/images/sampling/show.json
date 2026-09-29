@@ -1,0 +1,105 @@
+{
+  "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+  "format": 1,
+  "name": "sampling",
+  "size": [640, 360],
+  "background": "#0E1116",
+  "layers": [
+    {
+      "name": "title", "type": "digits", "digits": 8, "size": [84, 20], "x": 24, "y": 18, "text": "SAMPLING",
+      "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}
+    },
+    {
+      "name": "label_4x", "type": "digits", "digits": 2, "size": [17, 12], "x": 110, "y": 58, "text": "4X",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "label_8x", "type": "digits", "digits": 2, "size": [17, 12], "x": 232, "y": 58, "text": "8X",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "label_rotated", "type": "digits", "digits": 7, "size": [60, 12], "x": 354, "y": 58, "text": "ROTATED",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "label_sheet", "type": "digits", "digits": 5, "size": [43, 12], "x": 476, "y": 58, "text": "SHEET",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "label_repeat", "type": "digits", "digits": 6, "size": [52, 12], "x": 554, "y": 58, "text": "REPEAT",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "label_smooth", "type": "digits", "digits": 6, "size": [52, 12], "x": 24, "y": 130, "text": "SMOOTH",
+      "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}}
+    },
+    {
+      "name": "x4_smooth", "type": "image", "image": "critter", "sheet": {"cell": [16, 16], "columns": 4}, "size": [64, 64],
+      "x": 118, "y": 136, "anchor": "center"
+    },
+    {
+      "name": "x8_smooth", "type": "image", "image": "critter", "sheet": {"cell": [16, 16], "columns": 4}, "size": [128, 128],
+      "x": 240, "y": 136, "anchor": "center"
+    },
+    {
+      "name": "turning_smooth", "type": "image", "image": "critter", "sheet": {"cell": [16, 16], "columns": 4}, "size": [64, 64],
+      "x": 384, "y": 136, "anchor": "center",
+      "timelines": [
+        {
+          "name": "turn", "autoplay": true, "loop": true,
+          "tracks": [{"property": "rotation", "keys": [{"t": 0, "v": 0}, {"t": 8, "v": 360}]}]
+        }
+      ]
+    },
+    {
+      "name": "sheet_smooth", "type": "image", "image": "critter", "sheet": {"cell": [16, 16], "columns": 4}, "size": [64, 64],
+      "x": 498, "y": 136, "anchor": "center",
+      "timelines": [
+        {
+          "name": "walk", "autoplay": true, "loop": true,
+          "tracks": [{"property": "frame", "keys": [{"t": 0, "v": 0}, {"t": 1.2, "v": 4}]}]
+        }
+      ]
+    },
+    {
+      "name": "wall_smooth", "type": "image", "image": "bricks", "size": [64, 64], "repeat": {"size": [32, 32]}, "x": 580,
+      "y": 136, "anchor": "center"
+    },
+    {
+      "name": "label_nearest", "type": "digits", "digits": 7, "size": [60, 12], "x": 24, "y": 278, "text": "NEAREST",
+      "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}}
+    },
+    {
+      "name": "x4_nearest", "type": "image", "image": "critter", "sheet": {"cell": [16, 16], "columns": 4}, "size": [64, 64],
+      "x": 118, "y": 284, "anchor": "center", "sampling": "nearest"
+    },
+    {
+      "name": "x8_nearest", "type": "image", "image": "critter", "sheet": {"cell": [16, 16], "columns": 4}, "size": [128, 128],
+      "x": 240, "y": 284, "anchor": "center", "sampling": "nearest"
+    },
+    {
+      "name": "turning_nearest", "type": "image", "image": "critter", "sheet": {"cell": [16, 16], "columns": 4}, "size": [64, 64],
+      "x": 384, "y": 284, "anchor": "center", "sampling": "nearest",
+      "timelines": [
+        {
+          "name": "turn", "autoplay": true, "loop": true,
+          "tracks": [{"property": "rotation", "keys": [{"t": 0, "v": 0}, {"t": 8, "v": 360}]}]
+        }
+      ]
+    },
+    {
+      "name": "sheet_nearest", "type": "image", "image": "critter", "sheet": {"cell": [16, 16], "columns": 4}, "size": [64, 64],
+      "x": 498, "y": 284, "anchor": "center", "sampling": "nearest",
+      "timelines": [
+        {
+          "name": "walk", "autoplay": true, "loop": true,
+          "tracks": [{"property": "frame", "keys": [{"t": 0, "v": 0}, {"t": 1.2, "v": 4}]}]
+        }
+      ]
+    },
+    {
+      "name": "wall_nearest", "type": "image", "image": "bricks", "size": [64, 64], "repeat": {"size": [32, 32]}, "x": 580,
+      "y": 284, "anchor": "center", "sampling": "nearest"
+    }
+  ]
+}

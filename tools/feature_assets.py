@@ -25,6 +25,11 @@ to multiply over clean art.
 tile.png is a 48x48 floor tile for features/images/tile, a rounded
 square with a dot that repeats without a seam.
 
+critter.png is a 16x16 pixel-art slime for features/images/sampling,
+four cells side by side: standing, squashing, standing and blinking.
+bricks.png is an 8x8 brick tile for the same show. Both are drawn pixel
+by pixel, with no antialiasing, so nearest sampling keeps every pixel.
+
 For features/images/asset_paths, two skies both called sky.png, a day in
 art/day/ and a night in art/night/, which the show names by
 path, and moon.png in its assets/, which it names by stem.
@@ -213,6 +218,74 @@ def tile(size=48):
     return image.resize((size, size), Image.LANCZOS)
 
 
+def critter_frame(squash=0, blink=False):
+    """One 16x16 cell of the slime: a dome on little feet, outlined,
+    with a highlight and two eyes. squash lowers the top and widens it."""
+    outline, body, light, eye, pupil, cheek = (
+        (27, 31, 59, 255), (74, 222, 128, 255), (184, 245, 200, 255),
+        (255, 255, 255, 255), (27, 31, 59, 255), (255, 111, 174, 255))
+    top, mid, half = 3 + squash, 9, 5.5 + squash * 0.5
+
+    def inside(x, y):
+        dx = x + 0.5 - 8
+        if y < top or y > 13:
+            return False
+        if y < mid:
+            return (dx / half) ** 2 + ((y + 0.5 - mid) / (mid - top)) ** 2 <= 1
+        if y == 13:
+            return abs(dx) <= half and int(x) % 3 != 1
+        return abs(dx) <= half
+
+    cell = Image.new("RGBA", (16, 16), (0, 0, 0, 0))
+    px = cell.load()
+    for y in range(16):
+        for x in range(16):
+            if inside(x, y):
+                px[x, y] = body
+            elif any(inside(x + dx, y + dy) for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))):
+                px[x, y] = outline
+    for x, y in ((5, top + 1), (6, top + 1), (4, top + 2)):
+        if px[x, y] == body:
+            px[x, y] = light
+    ey = 8 + squash // 2
+    for ex in (5, 9):
+        if blink:
+            px[ex, ey + 1] = px[ex + 1, ey + 1] = pupil
+        else:
+            px[ex, ey] = px[ex + 1, ey] = px[ex, ey + 1] = eye
+            px[ex + 1, ey + 1] = pupil
+    px[4, ey + 2] = px[11, ey + 2] = cheek
+    return cell
+
+
+def critter_sheet():
+    sheet = Image.new("RGBA", (64, 16), (0, 0, 0, 0))
+    for i, frame in enumerate([critter_frame(), critter_frame(squash=2), critter_frame(), critter_frame(blink=True)]):
+        sheet.paste(frame, (16 * i, 0))
+    return sheet
+
+
+def bricks():
+    """An 8x8 brick tile that repeats without a seam: mortar every fourth
+    row, the joints of one course halfway along the next."""
+    rows = [
+        "bbbmbbbb",
+        "BBBmBBBB",
+        "BBBmBBBB",
+        "mmmmmmmm",
+        "bbbbbbbm",
+        "BBBBBBBm",
+        "BBBBBBBm",
+        "mmmmmmmm",
+    ]
+    colors = {"b": (232, 128, 96, 255), "B": (200, 85, 61, 255), "m": (72, 52, 48, 255)}
+    image = Image.new("RGBA", (8, 8))
+    for y, row in enumerate(rows):
+        for x, c in enumerate(row):
+            image.putpixel((x, y), colors[c])
+    return image
+
+
 def main():
     for path, image in [
         ("features/images/image/assets/badge.png", badge()),
@@ -229,6 +302,8 @@ def main():
         ("features/images/asset_paths/art/day/sky.png", sky(False)),
         ("features/images/asset_paths/art/night/sky.png", sky(True)),
         ("features/images/asset_paths/assets/moon.png", moon()),
+        ("features/images/sampling/assets/critter.png", critter_sheet()),
+        ("features/images/sampling/assets/bricks.png", bricks()),
     ]:
         out = ROOT / path
         out.parent.mkdir(parents=True, exist_ok=True)
