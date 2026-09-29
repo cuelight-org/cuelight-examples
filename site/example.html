@@ -26,7 +26,8 @@
     <pre id="video-command"></pre>
   </div>
 
-  <div class="stage" id="stage"><canvas id="canvas"></canvas></div>
+  <div class="stage" id="stage"><canvas id="canvas" tabindex="0"></canvas></div>
+  <p class="status" id="input-note" hidden></p>
   <div class="transport" id="transport" hidden>
     <button id="pause">pause</button>
     <input type="range" id="scrub" min="0" step="0.01" value="0" aria-label="show time" hidden>
@@ -212,10 +213,25 @@ async function play() {
     const rect = $("canvas").getBoundingClientRect();
     return [e.clientX - rect.left, e.clientY - rect.top];
   };
-  $("canvas").onclick = (e) => {
+  // Pointer events, so a finger or a pen presses too; the canvas takes
+  // the focus, so keys go to the show after a press on it.
+  $("canvas").onpointerdown = (e) => {
+    if (e.button !== 0) return;
+    $("canvas").focus({ preventScroll: true });
     const fired = player.press(...canvasPoint(e));
     if (fired) log(`host   press -> ${fired}`);
   };
+  // What the show answers to, so a visitor knows what to do.
+  const input = JSON.parse(sources["show.json"]).input ?? {};
+  const keyName = (k) => (k === " " ? "Space" : k);
+  const answers = [];
+  const keys = Object.entries(input.keys ?? {});
+  if (keys.length) answers.push(`keys: ${keys.map(([k, t]) => `${keyName(k)} ${t}`).join(", ")}`);
+  const pressable = /"press"\s*:\s*\{/.test(sources["show.json"]);
+  if (pressable) answers.push("click what lights up under the pointer");
+  if (input.press) answers.push(`click elsewhere: ${input.press}`);
+  $("input-note").textContent = answers.length ? `The show answers to ${answers.join("; ")}.` : "";
+  $("input-note").hidden = !answers.length;
   $("canvas").onpointermove = (e) => {
     $("canvas").style.cursor = player.pressedAt(...canvasPoint(e)) ? "pointer" : "";
   };
