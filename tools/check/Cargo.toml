@@ -1,6 +1,6 @@
-# Checks that every show in examples.json loads without errors or
-# warnings, and that its assets and driver match the show. It builds
-# against a cuelight checkout next to this repository.
+# Checks that every show in examples.json loads, decodes and passes the
+# engine's audit of its document, folder and driver. It builds against a
+# cuelight checkout next to this repository.
 [package]
 name = "cuelight-examples-check"
 version = "0.0.0"

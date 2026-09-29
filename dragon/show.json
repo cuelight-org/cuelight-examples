@@ -669,13 +669,19 @@
       "bindings": [
         {
           "property": "opacity", "variable": "gi", "map": {"true": 1}, "default": 0,
-          "transition": {"model": "incandescent"}, "scale": 0.44999999999999996, "offset": 0.55
+          "transition": {"model": "incandescent"}, "scale": 0.45, "offset": 0.55
         }
       ]
     },
     {
       "name": "players", "type": "text", "text": "1 TO 4 CAN PLAY", "font": "small", "x": 500.0, "y": 132,
-      "anchor": "center"
+      "anchor": "center", "opacity": 0.18,
+      "bindings": [
+        {
+          "property": "opacity", "variable": "players", "map": {"0": 1}, "default": 0,
+          "transition": {"model": "incandescent"}, "scale": 0.82, "offset": 0.18
+        }
+      ]
     },
     {
       "name": "player_1", "type": "group",

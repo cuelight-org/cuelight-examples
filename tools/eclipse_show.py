@@ -302,7 +302,7 @@ def beads(side, trigger, flicker):
     for i, (da, rad) in enumerate([(0, 2.6), (-7, 2.0), (6, 2.2), (-14, 1.6), (13, 1.8), (-21, 1.3)]):
         x, y = limb(side + da, SUN_R - 1.2)
         keys = flicker(i)
-        layers.append(circle(f"bead_{i}", r(x, 2), r(y, 2), rad, "#FFFFFF", opacity=0,
+        layers.append(circle(f"bead_{'left' if side == 180 else 'right'}_{i}", r(x, 2), r(y, 2), rad, "#FFFFFF", opacity=0,
                              timelines=[fade("flicker", keys, trigger)]))
     return layers
 

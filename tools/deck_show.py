@@ -69,7 +69,6 @@ FONTS = {
     "lead": style("AtkinsonHyperlegible-Regular", 30, SOFT),
     "claim": style("AtkinsonHyperlegible-Bold", 42, SOFT),
     "body": style("AtkinsonHyperlegible-Regular", 25, INK),
-    "body_bold": style("AtkinsonHyperlegible-Bold", 25, INK),
     "small": style("AtkinsonHyperlegible-Regular", 19, MUTED),
     "label": style("AtkinsonHyperlegible-Bold", 19, INK),
     "brand": style("AtkinsonHyperlegible-Bold", 19, MUTED),
@@ -93,8 +92,10 @@ CODE = {    # weight and colour
 }
 SVGS = {}
 # The same looks as font styles, for lines that type themselves out.
+# Only the looks a typed line uses: key, number and punct are tspans of an
+# SVG code block and never a text layer.
 FONTS.update({f"code_{look}": style("DMMono-Medium" if weight == 500 else "DMMono-Regular", CODE_SIZE, color)
-              for look, (weight, color) in CODE.items()})
+              for look, (weight, color) in CODE.items() if look in ("plain", "string", "prompt", "out")})
 
 
 def width(font, text):
