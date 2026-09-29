@@ -28,6 +28,9 @@
     {"wait": 1.5},
     {"set": {"phase": "ENTER, OR A CLICK ON NOTHING"}},
     {"trigger": "anywhere"},
+    {"wait": 1.5},
+    {"set": {"phase": "THE BLUE PAD FIRES LINK, AND OPENS A PAGE IN A NEW TAB"}},
+    {"trigger": "link"},
     {"wait": 2.0}
   ]
 }

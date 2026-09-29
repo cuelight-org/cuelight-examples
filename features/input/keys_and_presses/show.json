@@ -123,13 +123,24 @@
       "children": [
         {"name": "heading", "type": "digits", "digits": 8, "size": [69, 14], "x": 0, "y": 0, "text": "ANYWHERE", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
         {
-          "name": "lamp", "type": "shape", "shape": {"rect": [0, 0, 300, 40], "radius": 8}, "x": 0, "y": 30, "fill": "#4ADE80", "opacity": 0.08,
+          "name": "lamp", "type": "shape", "shape": {"rect": [0, 0, 200, 40], "radius": 8}, "x": 0, "y": 30, "fill": "#4ADE80", "opacity": 0.08,
           "timelines": [{"name": "flash", "trigger": "anywhere", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0.9}, {"t": 0.8, "v": 0.08, "ease": "quad_in"}]}]}]
+        },
+        {
+          "name": "link", "type": "group", "x": 210, "y": 30,
+          "press": {"trigger": "link", "open": "https://francisdb.github.io/cuelight-examples/"},
+          "children": [
+            {
+              "name": "pad", "type": "shape", "shape": {"rect": [0, 0, 90, 40], "radius": 8}, "fill": "#60A5FA", "opacity": 0.25,
+              "timelines": [{"name": "flash", "trigger": "link", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0.9}, {"t": 0.8, "v": 0.25, "ease": "quad_in"}]}]}]
+            },
+            {"name": "label", "type": "digits", "digits": 4, "size": [35, 14], "x": 28, "y": 13, "text": "OPEN", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}}
+          ]
         }
       ]
     },
     {
-      "name": "anywhere_caption", "type": "digits", "digits": 38, "size": [330, 12], "x": 462, "y": 324, "text": "A PRESS ON NOTHING PRESSABLE, OR ENTER",
+      "name": "anywhere_caption", "type": "digits", "digits": 38, "size": [330, 12], "x": 462, "y": 324, "text": "NOTHING OR ENTER  BLUE OPENS A PAGE",
       "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
     },
 
