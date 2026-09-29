@@ -19,7 +19,7 @@ cargo run -p cuelight-player -- ../cuelight-examples/features/timelines/easing
 | [scenes](scenes/) | `scenes` |
 | [sound](sound/) | `audio_layers`, `pick`, `rest`, `ducking`, `bound_sound` |
 | [video](video/) | `video_layer`, `retrigger`, `pick`, `masked`, `one_clip_many_plays` |
-| [output](output/) | `modes`, `scaling`, `dots`, `overflow` |
+| [output](output/) | `modes`, `scaling`, `edges`, `dots`, `overflow` |
 | [events](events/) | `show_events` |
 
 Titles and descriptions live in [`examples.json`](../examples.json), which

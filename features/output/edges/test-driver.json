@@ -1,0 +1,9 @@
+{
+  "loop": true,
+  "steps": [
+    { "trigger": "soft" },
+    { "wait": 3 },
+    { "trigger": "hard" },
+    { "wait": 3 }
+  ]
+}

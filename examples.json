@@ -145,6 +145,7 @@
       "examples": [
         { "path": "features/output/modes", "title": "Output modes", "description": "The same colors as rgb, gray4 and gray2 with a tint, the way a monochrome DMD shows them.", "thumbnail_at": 3 },
         { "path": "features/output/scaling", "title": "Scaling", "description": "A 128x32 canvas brought up to the page in whole pixel_perfect blocks, or smooth.", "thumbnail_at": 1 },
+        { "path": "features/output/edges", "title": "Edges", "description": "Shapes on a 192x108 pixel grid with soft edges and with hard ones, flipping between the two: an off-grid circle, a rotated and a rounded rect, a square sliding and turning a dot at a time, a circle clip with a bar sweeping through it, and an outline that stays soft either way.", "thumbnail_at": 4.5 },
         { "path": "features/output/dots", "title": "Dots", "description": "The dot matrix look, a pass on the shown frame: round or square dots, their size, a color for dots that are off, and a glow.", "thumbnail_at": 13.5 },
         { "path": "features/output/overflow", "title": "Overflow", "description": "Layers that draw past the canvas into the letterbox: a sky and a group of hills, balloons rising through the top and bottom and clouds drifting across the sides, one of each allowed out and one clipped. Pick a wider or squarer screen under it to see them.", "thumbnail_at": 5.0 }
       ]
