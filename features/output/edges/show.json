@@ -1,0 +1,98 @@
+{
+  "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+  "format": 1,
+  "name": "output_edges",
+  "size": [192, 108],
+  "background": "#101418",
+  "output": {"scaling": "pixel_perfect"},
+  "layers": [
+    {
+      "name": "title", "type": "digits", "digits": 5, "size": [40, 10], "x": 5, "y": 4, "text": "EDGES",
+      "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}
+    },
+    {"name": "circle", "type": "shape", "shape": {"circle": [0, 0, 11.4]}, "fill": "#FFB000", "x": 32.3, "y": 30.6},
+    {
+      "name": "label_circle", "type": "digits", "digits": 6, "size": [36, 9], "x": 14, "y": 47, "text": "CIRCLE",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "rotated", "type": "shape", "shape": {"rect": [-14, -7, 28, 14]}, "fill": "#3EC9F0", "x": 96, "y": 31,
+      "rotation": 20
+    },
+    {
+      "name": "label_rotated", "type": "digits", "digits": 7, "size": [42, 9], "x": 75, "y": 47, "text": "ROTATED",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {"name": "rounded", "type": "shape", "shape": {"rect": [-18, -11, 36, 22], "radius": 7}, "fill": "#4ADE80", "x": 160, "y": 31},
+    {
+      "name": "label_rounded", "type": "digits", "digits": 7, "size": [42, 9], "x": 139, "y": 47, "text": "ROUNDED",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "moving", "type": "shape", "shape": {"rect": [-7, -7, 14, 14]}, "fill": "#FF6FAE", "x": 21, "y": 74,
+      "timelines": [
+        {
+          "name": "roll", "autoplay": true, "loop": true,
+          "tracks": [
+            {
+              "property": "x",
+              "keys": [{"t": 0, "v": 21}, {"t": 3, "v": 43, "ease": "quad_in_out"}, {"t": 6, "v": 21, "ease": "quad_in_out"}]
+            },
+            {"property": "rotation", "keys": [{"t": 0, "v": 0}, {"t": 6, "v": 180}]}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "label_moving", "type": "digits", "digits": 6, "size": [36, 9], "x": 14, "y": 93, "text": "MOVING",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "window", "type": "group", "x": 96.4, "y": 74.6, "clip": {"circle": [0, 0, 12]},
+      "children": [
+        {"name": "back", "type": "shape", "shape": {"rect": [-14, -14, 28, 28]}, "fill": "#A78BFA"},
+        {
+          "name": "bar", "type": "shape", "shape": {"rect": [-4, -14, 8, 28]}, "fill": "#FFB000", "x": -17,
+          "timelines": [
+            {
+              "name": "sweep", "autoplay": true, "loop": true,
+              "tracks": [{"property": "x", "keys": [{"t": 0, "v": -17}, {"t": 3, "v": 17}, {"t": 6, "v": -17}]}]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "label_clip", "type": "digits", "digits": 4, "size": [24, 9], "x": 84, "y": 93, "text": "CLIP",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "outline", "type": "shape", "shape": {"circle": [0, 0, 11]}, "fill": "#00000000",
+      "stroke": {"color": "#E6EDF3", "width": 1.5}, "x": 160.4, "y": 74.3
+    },
+    {
+      "name": "label_outline", "type": "digits", "digits": 7, "size": [42, 9], "x": 139, "y": 93, "text": "OUTLINE",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    }
+  ],
+  "scenes": [
+    {
+      "name": "soft", "trigger": "soft", "output": {"edges": "soft"},
+      "layers": [
+        {
+          "name": "edges", "type": "digits", "digits": 4, "size": [32, 10], "x": 155, "y": 4, "text": "SOFT",
+          "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}}
+        }
+      ]
+    },
+    {
+      "name": "hard", "trigger": "hard", "output": {"edges": "hard"},
+      "layers": [
+        {
+          "name": "edges", "type": "digits", "digits": 4, "size": [32, 10], "x": 155, "y": 4, "text": "HARD",
+          "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}}
+        }
+      ]
+    }
+  ]
+}
