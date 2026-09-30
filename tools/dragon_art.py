@@ -27,7 +27,7 @@ from PIL import Image
 OUT = Path(__file__).resolve().parent.parent / "demos" / "dragon"
 TITLE = "File:Hokusai Dragon.jpg"
 SIZE = 1000
-AGENT = {"User-Agent": "cuelight-examples (https://github.com/francisdb/cuelight-examples)"}
+AGENT = {"User-Agent": "cuelight-examples (https://github.com/cuelight-org/cuelight-examples)"}
 
 
 def fetch(url):

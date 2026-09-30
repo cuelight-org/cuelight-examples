@@ -632,7 +632,7 @@ def show():
         text("scale_note", 690, 684, "note", "Not to scale. Times compressed.", size=[542, 22], align="right"),
     ]
     return {
-        "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+        "$schema": "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json",
         "format": 1,
         "name": "eclipse",
         "size": [W, H],

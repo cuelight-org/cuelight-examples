@@ -220,7 +220,7 @@ def show():
         variables[f"rollover_{player}"] = 0
 
     return {
-        "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+        "$schema": "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json",
         "format": 1,
         "name": "boardwalk",
         "size": [WIDTH, HEIGHT],

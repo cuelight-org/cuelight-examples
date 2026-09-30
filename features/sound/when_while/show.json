@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+  "$schema": "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json",
   "format": 1, "name": "sound_when_while", "size": [800, 450], "background": "#0E1116",
   "variables": {"warnings": 0, "door": false, "mode": "play", "phase": ""},
   "layers": [

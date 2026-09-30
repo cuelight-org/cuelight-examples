@@ -28,7 +28,7 @@ from PIL import Image
 
 REPO = Path(__file__).resolve().parent.parent
 OUT = REPO / "demos" / "deck"
-SCHEMA = "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json"
+SCHEMA = "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json"
 W, H = 1280, 720
 M = 80                                  # the page margin
 
@@ -440,12 +440,15 @@ shapes = [
 ]
 
 
-def shape_set(prefix, delay=0.0):
+def shape_set(prefix, delay=0.0, moved=None):
     """The four shapes, each popping in and then swinging gently: the pop
-    scales a holder at the shape's place, the swing moves the shape in it."""
+    scales a holder at the shape's place, the swing moves the shape in it.
+    `moved` shifts named shapes by (dx, dy) to make room on a slide."""
     out = []
     for make, spec, wait, (prop, low, high, period) in shapes:
-        spec = dict(spec, name=f"{prefix}_{spec['name']}")
+        dx, dy = (moved or {}).get(spec["name"], (0, 0))
+        low, high = (low + dx, high + dx) if prop == "x" else (low + dy, high + dy) if prop == "y" else (low, high)
+        spec = dict(spec, name=f"{prefix}_{spec['name']}", x=spec["x"] + dx, y=spec["y"] + dy)
         home = {"x": spec["x"], "y": spec["y"]}
         shape = make(**dict(spec, x=0, y=0))
         base = home.get(prop, 0)
@@ -774,15 +777,16 @@ for i, (head, color, points) in enumerate(COLUMNS):
 slide("For people who make things move.", CORAL, columns)
 
 # 9 -------------------------------------------------------------- try it
-slide(None, MINT, shape_set("end", delay=0.4) + [
+# The square steps aside for the longer of the two links.
+slide(None, MINT, shape_set("end", delay=0.4, moved={"square": (40, 0)}) + [
     enter(text("try", "Try it.", M - 4, 150, "end"), 0.1),
     enter(group("site", [text("label", "Every example plays in the browser", 0, 0, "small"),
-                         text("url", "francisdb.github.io/cuelight-examples", 0, 26, "link"),
-                         rect("line", 0, 68, width("link", "francisdb.github.io/cuelight-examples"), 5, CORAL)],
+                         text("url", "cuelight-org.github.io/cuelight-examples", 0, 26, "link"),
+                         rect("line", 0, 68, width("link", "cuelight-org.github.io/cuelight-examples"), 5, CORAL)],
                 M, 300), 0.3),
     enter(group("repo", [text("label", "The engine", 0, 0, "small"),
-                         text("url", "github.com/francisdb/cuelight", 0, 26, "link"),
-                         rect("line", 0, 68, width("link", "github.com/francisdb/cuelight"), 5, COBALT)],
+                         text("url", "github.com/cuelight-org/cuelight", 0, 26, "link"),
+                         rect("line", 0, 68, width("link", "github.com/cuelight-org/cuelight"), 5, COBALT)],
                 M, 410), 0.45),
     enter(text("made", "This deck is one show.json, written by tools/deck_show.py.", M, 540, "body"), 0.7),
 ])

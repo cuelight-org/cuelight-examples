@@ -10,9 +10,9 @@
 <header class="top"><div class="inner">
   <a class="brand" href="./">cue<span>light</span> examples</a>
   <nav>
-    <a href="https://github.com/francisdb/cuelight">cuelight</a>
-    <a href="https://github.com/francisdb/cuelight/blob/main/docs/show-format.md">show format</a>
-    <a href="https://github.com/francisdb/cuelight-examples">source</a>
+    <a href="https://github.com/cuelight-org/cuelight">cuelight</a>
+    <a href="https://github.com/cuelight-org/cuelight/blob/main/docs/show-format.md">show format</a>
+    <a href="https://github.com/cuelight-org/cuelight-examples">source</a>
   </nav>
 </div></header>
 <main>
@@ -21,7 +21,7 @@
   <p class="lead" id="description"></p>
   <div class="native-note" id="video-note" hidden>
     <p>Video does not play in the browser yet, so the clips stay blank here. To see this show, run it with
-      the native player from a <a href="https://github.com/francisdb/cuelight">cuelight</a> checkout next to
+      the native player from a <a href="https://github.com/cuelight-org/cuelight">cuelight</a> checkout next to
       this repository:</p>
     <pre id="video-command"></pre>
   </div>
@@ -165,10 +165,10 @@ document.title = `${example.title} - cuelight examples`;
 $("category").textContent = example.category;
 $("title").textContent = example.title;
 $("description").textContent = example.description;
-$("github").href = `https://github.com/francisdb/cuelight-examples/tree/main/${example.path}`;
+$("github").href = `https://github.com/cuelight-org/cuelight-examples/tree/main/${example.path}`;
 // The web editor fetches the show from this site; both are published on
 // the same origin, so that works there (not from a local copy).
-$("editor").href = `https://francisdb.github.io/cuelight-editor/?show=${new URL(`shows/${example.path}.cuelight`, location.href)}`;
+$("editor").href = `https://cuelight-org.github.io/cuelight-editor/?show=${new URL(`shows/${example.path}.cuelight`, location.href)}`;
 for (const [id, other, text] of [["previous", examples[index - 1], "\u2190 "], ["next", examples[index + 1], " \u2192"]]) {
   if (!other) continue;
   $(id).href = `example.html?show=${other.path}`;

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+  "$schema": "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json",
   "format": 1, "name": "vector_artwork", "size": [800, 450], "background": "#0E1116",
   "fonts": {"label": {"file": "Oxanium-Bold", "size": 26, "color": "#FFB000"}},
   "layers": [

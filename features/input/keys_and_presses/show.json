@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+  "$schema": "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json",
   "format": 1, "name": "keys_and_presses", "size": [800, 450], "background": "#0E1116",
   "variables": {"shown": true, "phase": ""},
   "input": {"keys": {" ": "tap", "ArrowLeft": "left", "ArrowRight": "right", "Enter": "anywhere"}, "press": "anywhere"},
@@ -128,7 +128,7 @@
         },
         {
           "name": "link", "type": "group", "x": 210, "y": 30,
-          "press": {"trigger": "link", "open": "https://francisdb.github.io/cuelight-examples/"},
+          "press": {"trigger": "link", "open": "https://cuelight-org.github.io/cuelight-examples/"},
           "children": [
             {
               "name": "pad", "type": "shape", "shape": {"rect": [0, 0, 90, 40], "radius": 8}, "fill": "#60A5FA", "opacity": 0.25,

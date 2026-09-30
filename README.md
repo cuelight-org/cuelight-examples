@@ -1,9 +1,9 @@
 # cuelight-examples
 
-Example shows for [cuelight](https://github.com/francisdb/cuelight), the
+Example shows for [cuelight](https://github.com/cuelight-org/cuelight), the
 embeddable engine for trigger- and variable-driven displays. Each show is a
 folder you can play directly with the cuelight player, and they all play
-in the browser on the [website](https://francisdb.github.io/cuelight-examples/).
+in the browser on the [website](https://cuelight-org.github.io/cuelight-examples/).
 
 ## Shows
 
@@ -38,7 +38,7 @@ generated assets, such as bitmap fonts rasterized from OFL TrueType fonts.
 
 ## Running a show
 
-From a [cuelight](https://github.com/francisdb/cuelight) checkout next to
+From a [cuelight](https://github.com/cuelight-org/cuelight) checkout next to
 this repository:
 
 ```sh

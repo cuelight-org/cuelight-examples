@@ -202,7 +202,7 @@ def main():
     for i, build in enumerate((screen_1, screen_2, screen_3)):
         screens.append({"name": f"screen_{i + 1}", "type": "group", "x": i * SCREEN[0], "y": 0, "children": build()})
     show = {
-        "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+        "$schema": "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json",
         "format": 1,
         "name": "chip_shop",
         "size": [WIDTH, HEIGHT],

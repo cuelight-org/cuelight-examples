@@ -25,7 +25,7 @@ OUT = Path(__file__).resolve().parent.parent / "demos" / "dragon"
 W, H = 1000, 900
 ART = 1000                 # the painting, square, cropped top and bottom
 TOP = (H - ART) / 2        # where it starts: -50
-SCHEMA = "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json"
+SCHEMA = "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json"
 
 GOLD = "#E2B862"
 LAMP = {"model": "incandescent"}
