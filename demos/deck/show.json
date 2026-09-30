@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+  "$schema": "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json",
   "format": 1,
   "name": "deck",
   "size": [1280, 720],
@@ -4305,7 +4305,7 @@
         {
           "name": "end_square_holder",
           "type": "group",
-          "x": 870,
+          "x": 910,
           "y": 430,
           "children": [
             {
@@ -4456,8 +4456,14 @@
           "y": 300,
           "children": [
             {"name": "label", "type": "text", "text": "Every example plays in the browser", "font": "small"},
-            {"name": "url", "type": "text", "text": "francisdb.github.io/cuelight-examples", "font": "link", "y": 26},
-            {"name": "line", "type": "shape", "y": 68, "shape": {"rect": [0, 0, 666, 5]}, "fill": "#FF5A3C"}
+            {
+              "name": "url",
+              "type": "text",
+              "text": "cuelight-org.github.io/cuelight-examples",
+              "font": "link",
+              "y": 26
+            },
+            {"name": "line", "type": "shape", "y": 68, "shape": {"rect": [0, 0, 720, 5]}, "fill": "#FF5A3C"}
           ],
           "opacity": 0,
           "timelines": [
@@ -4480,8 +4486,8 @@
           "y": 410,
           "children": [
             {"name": "label", "type": "text", "text": "The engine", "font": "small"},
-            {"name": "url", "type": "text", "text": "github.com/francisdb/cuelight", "font": "link", "y": 26},
-            {"name": "line", "type": "shape", "y": 68, "shape": {"rect": [0, 0, 522, 5]}, "fill": "#2D5BFF"}
+            {"name": "url", "type": "text", "text": "github.com/cuelight-org/cuelight", "font": "link", "y": 26},
+            {"name": "line", "type": "shape", "y": 68, "shape": {"rect": [0, 0, 576, 5]}, "fill": "#2D5BFF"}
           ],
           "opacity": 0,
           "timelines": [

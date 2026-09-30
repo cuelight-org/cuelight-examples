@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+  "$schema": "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json",
   "format": 1, "name": "segment_input", "size": [800, 450], "background": "#0E1116",
   "variables": {"mask": "1 1 1 1", "comet7": "F0014800 F0014800 F0014800 F0014800", "comet16": "F0036A00000000001 F0036A00000000001 F0036A00000000001 F0036A00000000001", "pulse": "000000000000000 555555505555555 BBBBBBB0BBBBBBB FFFFFFF0FFFFFFF", "phase": ""},
   "layers": [

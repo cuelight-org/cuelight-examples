@@ -2,7 +2,7 @@
 
 Small shows that each demonstrate one thing the show format can do, the
 way the [Bevy examples](https://bevy.org/examples/) do for Bevy. They all
-play on the [website](https://francisdb.github.io/cuelight-examples/),
+play on the [website](https://cuelight-org.github.io/cuelight-examples/),
 next to their source, and in the player:
 
 ```sh

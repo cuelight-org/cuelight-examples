@@ -707,7 +707,7 @@ def show():
          "fill": PAPER},
     ]
     return {
-        "$schema": "https://raw.githubusercontent.com/francisdb/cuelight/main/crates/cuelight/schemas/show.schema.json",
+        "$schema": "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json",
         "format": 1,
         "name": "red_riding_hood",
         "size": [W, H],

@@ -26,7 +26,7 @@ jobs:
           path: cuelight-examples
       - uses: actions/checkout@v7
         with:
-          repository: francisdb/cuelight
+          repository: cuelight-org/cuelight
           path: cuelight
       - uses: dtolnay/rust-toolchain@stable
         with:
@@ -78,7 +78,7 @@ jobs:
           path: cuelight-examples
       - uses: actions/checkout@v7
         with:
-          repository: francisdb/cuelight
+          repository: cuelight-org/cuelight
           path: cuelight
       - uses: dtolnay/rust-toolchain@stable
         with:
