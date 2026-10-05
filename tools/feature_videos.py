@@ -41,7 +41,7 @@ ROOT = Path(__file__).resolve().parent.parent / "features/video"
 # folder plays on its own.
 USERS = {
     "sweep": ["video_layer", "retrigger", "one_clip_many_plays"],
-    "orbit": ["video_layer", "masked", "when_while"],
+    "orbit": ["video_layer", "retrigger", "masked", "when_while"],
     "pop_c": ["video_layer", "pick", "bound_video", "when_while"],
     "pop_e": ["pick", "bound_video", "when_while"],
     "pop_g": ["pick", "bound_video"],
