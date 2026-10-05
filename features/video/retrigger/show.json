@@ -84,6 +84,16 @@
       "fill": "#1B2230"
     },
     {
+      "name": "restart_background",
+      "type": "video",
+      "video": "orbit",
+      "x": 16,
+      "y": 96,
+      "autoplay": true,
+      "loop": true,
+      "gain": 0.1
+    },
+    {
       "name": "restart",
       "type": "video",
       "video": "sweep",
@@ -150,6 +160,16 @@
       ]
     },
     {
+      "name": "ignore_background",
+      "type": "video",
+      "video": "orbit",
+      "x": 224,
+      "y": 96,
+      "autoplay": true,
+      "loop": true,
+      "gain": 0.1
+    },
+    {
       "name": "ignore",
       "type": "video",
       "video": "sweep",
@@ -214,6 +234,16 @@
           ]
         }
       ]
+    },
+    {
+      "name": "queue_background",
+      "type": "video",
+      "video": "orbit",
+      "x": 432,
+      "y": 96,
+      "autoplay": true,
+      "loop": true,
+      "gain": 0.1
     },
     {
       "name": "queue",
@@ -346,6 +376,24 @@
       "x": 16,
       "y": 300,
       "text": "A LAMP FLASHES ON ON_END",
+      "display": {
+        "segments": {
+          "style": "alpha14",
+          "fill": "#8B96A5"
+        }
+      }
+    },
+    {
+      "name": "label_background",
+      "type": "digits",
+      "digits": 25,
+      "size": [
+        216,
+        12
+      ],
+      "x": 16,
+      "y": 320,
+      "text": "AN ORBIT LOOPS UNDERNEATH",
       "display": {
         "segments": {
           "style": "alpha14",

@@ -19,13 +19,6 @@
   <div class="crumbs"><a href="./">Examples</a> / <span id="category"></span></div>
   <h1 id="title"></h1>
   <p class="lead" id="description"></p>
-  <div class="native-note" id="video-note" hidden>
-    <p>Video does not play in the browser yet, so the clips stay blank here. To see this show, run it with
-      the native player from a <a href="https://github.com/cuelight-org/cuelight">cuelight</a> checkout next to
-      this repository:</p>
-    <pre id="video-command"></pre>
-  </div>
-
   <div class="stage" id="stage"><canvas id="canvas" tabindex="0"></canvas></div>
   <p class="status" id="input-note" hidden></p>
   <div class="transport" id="transport" hidden>
@@ -190,10 +183,6 @@ async function showSource(file) {
 }
 for (const tab of document.querySelectorAll(".tab")) tab.onclick = () => showSource(tab.dataset.file);
 await showSource("show.json");
-// The web player draws nothing for a video layer yet: say so, and how to
-// see the show as it is meant.
-$("video-note").hidden = !/"type"\s*:\s*"video"/.test(sources["show.json"]);
-$("video-command").textContent = `cargo run -p cuelight-player --features video -- ../cuelight-examples/${example.path}`;
 
 let player;
 let CuelightPlayer;
