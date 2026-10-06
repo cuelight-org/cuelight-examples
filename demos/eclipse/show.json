@@ -1123,32 +1123,7 @@
                 }
               ]
             },
-            {
-              "name": "land",
-              "type": "shape",
-              "shape": {"path": "M 0 498 C 60 484 120 476 190 488 C 260 500 300 506 360 496 C 430 484 520 472 600 490 V 568 H 0 Z"},
-              "fill": "#1B2230"
-            },
-            {
-              "name": "tree",
-              "type": "shape",
-              "shape": {"path": "M 96 484 V 458 C 70 456 66 426 84 418 C 84 396 112 392 118 410 C 138 412 140 444 120 456 C 112 460 104 460 102 458 V 484 Z"},
-              "fill": "#1B2230"
-            },
-            {"name": "head_452", "type": "shape", "x": 449, "y": 457.4, "shape": {"circle": [0, 0, 5.4]}, "fill": "#151924"},
-            {
-              "name": "body_452",
-              "type": "shape",
-              "fill": "#151924",
-              "shape": {"path": "M 447.58 486 L 446.76 463.968 Q 450.5 461.248 454.24 463.968 L 456.42 486 Z"}
-            },
-            {"name": "head_476", "type": "shape", "x": 474, "y": 460.5, "shape": {"circle": [0, 0, 4.5]}, "fill": "#151924"},
-            {
-              "name": "body_476",
-              "type": "shape",
-              "fill": "#151924",
-              "shape": {"path": "M 472.36 484 L 471.92 465.856 Q 475.0 463.616 478.08 465.856 L 479.64 484 Z"}
-            },
+            {"name": "ground", "type": "vector", "vector": "ground", "x": 0, "y": 388},
             {
               "name": "scale_normal",
               "type": "text",
@@ -1464,12 +1439,7 @@
           "clip": {"circle": [0, 0, 126]},
           "children": [
             {"name": "ocean", "type": "shape", "x": 0, "y": 0, "shape": {"circle": [0, 0, 126]}, "fill": "#7FA7C9"},
-            {
-              "name": "continent",
-              "type": "shape",
-              "fill": "#9DB98A",
-              "shape": {"path": "M -126 -40 C -110 -50 -96 -30 -104 -10 C -112 10 -96 30 -110 60 L -126 60 Z"}
-            },
+            {"name": "continent", "type": "vector", "vector": "continent", "x": -128, "y": -52},
             {
               "name": "shadow_on_earth",
               "type": "group",

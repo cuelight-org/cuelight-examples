@@ -407,35 +407,9 @@ def sky():
             fade("out", [(0, 1), (2.5, 0, "quad_in")], "c3", hold=True),
         ],
     }
-    land = (
-        f"M 0 {SKY_H - 70} C 60 {SKY_H - 84} 120 {SKY_H - 92} 190 {SKY_H - 80} "
-        f"C 260 {SKY_H - 68} 300 {SKY_H - 62} 360 {SKY_H - 72} C 430 {SKY_H - 84} 520 {SKY_H - 96} {SKY_W} {SKY_H - 78} "
-        f"V {SKY_H} H 0 Z"
-    )
-    # A tree on the left hill and two people on the right one, looking up.
-    tree = (
-        f"M 96 {SKY_H - 84} V {SKY_H - 110} "
-        f"C 70 {SKY_H - 112} 66 {SKY_H - 142} 84 {SKY_H - 150} C 84 {SKY_H - 172} 112 {SKY_H - 176} 118 {SKY_H - 158} "
-        f"C 138 {SKY_H - 156} 140 {SKY_H - 124} 120 {SKY_H - 112} C 112 {SKY_H - 108} 104 {SKY_H - 108} 102 {SKY_H - 110} V {SKY_H - 84} Z"
-    )
-
-    def person(x, base, height, lean):
-        head = height * 0.16
-        top = base - height
-        return [
-            circle(f"head_{x}", r(x + lean, 1), r(top + head, 1), r(head, 1), "#151924"),
-            {"name": f"body_{x}", "type": "shape", "fill": "#151924", "shape": {"path": (
-                f"M {x - height * 0.13} {base} L {x - height * 0.11 + lean * 0.5} {top + head * 2.2} "
-                f"Q {x + lean * 0.5} {top + head * 1.7} {x + height * 0.11 + lean * 0.5} {top + head * 2.2} "
-                f"L {x + height * 0.13} {base} Z")}},
-        ]
-
-    ground = [
-        {"name": "land", "type": "shape", "shape": {"path": land}, "fill": "#1B2230"},
-        {"name": "tree", "type": "shape", "shape": {"path": tree}, "fill": "#1B2230"},
-        *person(452, SKY_H - 82, 34, -3),
-        *person(476, SKY_H - 84, 28, -2),
-    ]
+    # The land with a tree on the left hill and two people on the right
+    # one, looking up: ground.svg, its bottom on the window's.
+    ground = [{"name": "ground", "type": "vector", "vector": "ground", "x": 0, "y": SKY_H - 180}]
     chips = [
         text("scale_normal", 18, 14, "chip", "1 second here \u2248 5 minutes", opacity=0) | {"timelines": [
                  fade("in", [(0, 0), (0.6, 1)], hold=True),
@@ -530,8 +504,7 @@ def diagram():
         {"name": "earth", "type": "group", "x": EARTH_X, "y": DIA_SUN_Y, "clip": {"circle": [0, 0, EARTH_R]},
          "children": [
              circle("ocean", 0, 0, EARTH_R, "#7FA7C9"),
-             {"name": "continent", "type": "shape", "fill": "#9DB98A",
-              "shape": {"path": "M -126 -40 C -110 -50 -96 -30 -104 -10 C -112 10 -96 30 -110 60 L -126 60 Z"}},
+             {"name": "continent", "type": "vector", "vector": "continent", "x": -128, "y": -52},
              on_earth,
          ]},
         {"name": "earth_edge", "type": "shape", "x": EARTH_X, "y": DIA_SUN_Y, "shape": {"circle": [0, 0, EARTH_R]},

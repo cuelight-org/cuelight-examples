@@ -30,6 +30,9 @@ is what the website's gallery is built from.
 
 - One feature per show, and as little else as possible. Captions are
   `digits` layers (segment displays), so most examples need no assets.
+- Shapes are inline, since an example shows what the format says; SVG
+  only where the example is about artwork. The rule for the shows is in
+  the [top README](../README.md#feature-examples).
 - 640x360 canvas, unless the example is about small canvases.
 - A `test-driver.json` wherever the show needs a host to come alive, so
   the example plays by itself in the gallery. Visitors can pause it and

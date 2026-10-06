@@ -58,7 +58,7 @@ have to travel with the files are in [`licenses/`](licenses/).
 
 | Asset | Origin | License |
 | --- | --- | --- |
-| `corona.png` | Made for this show, written by [`tools/eclipse_art.py`](../../tools/eclipse_art.py) | MIT, as this repository |
+| `corona.png`, `ground.svg`, `continent.svg` | Made for this show, written by [`tools/eclipse_art.py`](../../tools/eclipse_art.py) | MIT, as this repository |
 | `fonts/Spectral-Regular.ttf`, `fonts/Spectral-Italic.ttf`, `fonts/Spectral-SemiBold.ttf`, `fonts/SpectralSC-SemiBold.ttf` | [Spectral](https://github.com/productiontype/Spectral) by Production Type, the unmodified static files from [google/fonts](https://github.com/google/fonts/tree/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/spectral) | [OFL-1.1](licenses/Spectral-OFL.txt), no reserved font name |
 
 ## What would make it better
