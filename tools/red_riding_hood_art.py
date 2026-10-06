@@ -381,6 +381,9 @@ def fence():
                232, 62)
 
 
+BED_HUMP = (170, 106)  # in bed.svg: the foot of the hump, which it breathes around
+
+
 def bed():
     """A bed seen from the side, its pillow on the left."""
     return svg("".join([
@@ -393,6 +396,9 @@ def bed():
         "".join(p(f"M {x} {y} l 24 0 l 0 22 l -24 0 Z", color, INK, 1.5)
                 for x, y, color in [(110, 110, OCHRE), (170, 104, BLUE), (230, 108, OCHRE),
                                     (140, 140, BLUE), (200, 138, OCHRE), (258, 140, BLUE)]),
+        # A hump under the quilt where the wolf lies, which the show lets
+        # breathe around its foot.
+        g(p("M -90 4 C -60 -30 40 -34 90 4 Z", RED), *BED_HUMP, id="hump"),
     ]), 316, 198)
 
 
@@ -408,13 +414,53 @@ def cupboard():
     ]), 120, 228)
 
 
+CAKE_TOP = 30  # in cake.svg: room above the cake for a flame flared to twice its height
+CAKE_FLAMES = [(40, CAKE_TOP + 20), (60, CAKE_TOP + 20), (80, CAKE_TOP + 20)]  # each flame's foot
+
+
 def cake():
-    return svg("".join([
+    """The cake with three candles; their flames are parts the show
+    flickers and flares, each around its foot."""
+    flame = "M 0 -14 Q 6 -4 0 0 Q -6 -4 0 -14 Z"
+    return svg(g("".join([
         e(60, 70, 58, 10, WHITE),
         p("M 14 38 L 106 38 L 106 66 L 14 66 Z", OCHRE),
         p("M 14 38 Q 60 26 106 38 Q 100 50 92 42 Q 84 52 74 42 Q 66 52 56 42 Q 46 52 38 42 Q 28 52 14 44 Z", WHITE),
         c(40, 34, 5, RED), c(60, 30, 5, RED), c(80, 34, 5, RED),
-    ]), 120, 82)
+        "".join(p(f"M {x - 3} 22 l 6 0 l 0 20 l -6 0 Z", "#F4ECDA", INK, 1.5) for x, _ in CAKE_FLAMES),
+    ]), 0, CAKE_TOP) + "".join(g(p(flame, "#F2B640", None), x, y, id=f"flame_{i}")
+                              for i, (x, y) in enumerate(CAKE_FLAMES)), 120, 82 + CAKE_TOP)
+
+
+def side_table():
+    """The little table the cake stands on, its top at (2, 2)."""
+    return svg(g(p("M 0 0 L 170 0 L 170 12 L 0 12 Z M 16 12 L 28 12 L 28 110 L 16 110 Z "
+                   "M 142 12 L 154 12 L 154 110 L 142 110 Z", "#8A6440"), 2, 2), 174, 114)
+
+
+def flourish(half, wave, dot, width):
+    """A wave with a diamond on it, centred in its picture: the cover's
+    and the last page's ornaments."""
+    d = (f"M {-half} 0 C {-half * 2 / 3} {-wave} {-half / 3} {wave} 0 0 "
+         f"C {half / 3} {-wave} {half * 2 / 3} {wave} {half} 0 "
+         f"M {-dot} 0 L 0 {-dot} L {dot} 0 L 0 {dot} Z")
+    w, h = 2 * half + 4, 2 * dot + 8
+    return svg(g(p(d, RED, INK, width), w / 2, h / 2), w, h)
+
+
+FRAME = 18  # in frame.svg: from its edge to the picture's
+
+
+def frame():
+    """The two rules round the picture and the red diamonds on the outer
+    one's corners; the picture's top left corner is at (FRAME, FRAME)."""
+    o = FRAME
+    rule = lambda gap, width: (f'<rect x="{o - gap}" y="{o - gap}" width="{W + 2 * gap}" height="{H + 2 * gap}" '
+                               f'fill="none" stroke="{INK}" stroke-width="{width}"/>')
+    corners = [(o - 10, o - 10), (o + W + 10, o - 10), (o - 10, o + H + 10), (o + W + 10, o + H + 10)]
+    diamonds = "".join(p(f"M {x} {y - 8} L {x + 8} {y} L {x} {y + 8} L {x - 8} {y} Z", RED, INK, 1.5)
+                       for x, y in corners)
+    return svg(rule(10, 2) + rule(4, 1) + diamonds, W + 2 * o, H + 2 * o)
 
 
 # -- Backdrops (470x520) -------------------------------------------------------
@@ -538,6 +584,8 @@ def main():
         "flower_red": flower(RED), "flower_white": flower(WHITE), "flower_blue": flower(BLUE_LIGHT),
         "butterfly": butterfly(), "bird": bird(), "cloud": cloud(),
         "cottage": cottage(), "fence": fence(), "bed": bed(), "cupboard": cupboard(), "cake": cake(),
+        "side_table": side_table(), "frame": frame(),
+        "flourish": flourish(120, 18, 8, 1.5), "flourish_end": flourish(60, 10, 5, 1.2),
         "bg_cottage": bg_cottage(), "bg_woods": bg_woods(), "bg_meadow": bg_meadow(), "bg_room": bg_room(),
         "window_front": window_front(),
     }

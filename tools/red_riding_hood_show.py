@@ -143,6 +143,9 @@ def circle(name, x, y, radius, fill, **extra):
 RED_FEET = (70, 230)
 WOLF_FEET = (80, 220)
 WOLF_NECK = (72, -96)  # from its feet
+BED_HUMP = (170, 106)  # the foot of the hump under the quilt, in bed.svg
+CAKE_TOP = 30  # room above the cake in cake.svg, where its flames are
+CAKE_FLAMES = [(40, CAKE_TOP + 20), (60, CAKE_TOP + 20), (80, CAKE_TOP + 20)]  # each flame's foot
 
 
 def part(id, pivot=None, timelines=None, **extra):
@@ -388,11 +391,10 @@ def bedroom(scale=1.0, x=0.0, y=0.0, cupboard=True, eyes_tap=None, jaw_tap=None,
         ]
     bed_x, bed_y = x + 140 * s, y + 240 * s
     parts += [
-        vec("bed", "bed", bed_x, bed_y, scale=s),
-        # A hump under the quilt where the wolf lies, breathing.
-        {"name": "hump", "type": "shape", "x": r(bed_x + 170 * s), "y": r(bed_y + 106 * s), "scale": s,
-         "shape": {"path": "M -90 4 C -60 -30 40 -34 90 4 Z"}, "fill": RED, "stroke": {"color": INK, "width": 2.5},
-         "timelines": [swing("breathe", "scale_y", 1, 1.12, 3.0)]},
+        # The hump under the quilt where the wolf lies breathes.
+        character("bed", "bed", bed_x, bed_y, [
+            part("hump", pivot=BED_HUMP, timelines=[swing("breathe", "scale_y", 1, 1.12, 3.0)]),
+        ], scale=s),
         # Facing the room, his neck on the pillow: only his head shows.
         wolf_in_bed(bed_x + 40 * s, bed_y + 104 * s, 0.72 * s, eyes_tap=eyes_tap, jaw_tap=jaw_tap,
                     eye_scale=eye_scale),
@@ -432,17 +434,11 @@ def picture_close(tap_eyes=None, tap_teeth=None):
 
 
 def picture_8():
-    candles = []
-    for i, cx in enumerate((168, 188, 208)):
-        candles += [
-            {"name": f"candle_{i}", "type": "shape", "x": cx - 3, "y": 334, "shape": {"rect": [0, 0, 6, 20]},
-             "fill": "#F4ECDA", "stroke": {"color": INK, "width": 1.5}},
-            {"name": f"flame_{i}", "type": "shape", "x": cx, "y": 332, "anchor": "bottom",
-             "shape": {"path": "M 0 -14 Q 6 -4 0 0 Q -6 -4 0 -14 Z"}, "fill": "#F2B640",
-             "timelines": [swing("flicker", "scale_y", 0.85, 1.15, 0.5 + 0.13 * i),
-                           tl("flare", "scale", [(0, 1), (0.2, 2.0, "back_out"), (1.2, 2.0), (1.6, 1)],
-                              trigger="tap_cake", delay=0.1 * i)]},
-        ]
+    # The candles flicker, and flare up one after another for the cake.
+    flames = [part(f"flame_{i}", pivot=foot, timelines=[
+        swing("flicker", "scale_y", 0.85, 1.15, 0.5 + 0.13 * i),
+        tl("flare", "scale", [(0, 1), (0.2, 2.0, "back_out"), (1.2, 2.0), (1.6, 1)], trigger="tap_cake", delay=0.1 * i),
+    ]) for i, foot in enumerate(CAKE_FLAMES)]
     # The wolf running off outside, seen through the window, once.
     bounce = [(i * 0.2, 196 - (10 if i % 2 else 0), "quad_out" if i % 2 else "quad_in") for i in range(13)]
     # The same wolf as everywhere, mirrored whole, so it runs to the right.
@@ -453,12 +449,8 @@ def picture_8():
     ]}])
     return [
         *room([runner]),
-        {"name": "table", "type": "shape", "x": 110, "y": 380,
-         "shape": {"path": "M 0 0 L 170 0 L 170 12 L 0 12 Z M 16 12 L 28 12 L 28 110 L 16 110 Z "
-                            "M 142 12 L 154 12 L 154 110 L 142 110 Z"},
-         "fill": "#8A6440", "stroke": {"color": INK, "width": 2.5}},
-        vec("cake", "cake", 128, 312),
-        *candles,
+        vec("table", "side_table", 108, 378),
+        character("cake", "cake", 128, 312 - CAKE_TOP, flames),
         vec("grandma", "grandma", 70, 500, anchor="bottom",
             timelines=[swing("nod", "rotation", -2, 2, 2.8)]),
         group("woodcutter", 410, 500, [
@@ -539,21 +531,10 @@ def pulse(layers, trigger):
 
 
 def plate_frame():
-    x, y, w, h = PLATE
-    rule = f"M {x - 10} {y - 10} H {x + w + 10} V {y + h + 10} H {x - 10} Z"
-    inner = f"M {x - 4} {y - 4} H {x + w + 4} V {y + h + 4} H {x - 4} Z"
-    corners = []
-    for i, (cx, cy) in enumerate([(x - 10, y - 10), (x + w + 10, y - 10), (x - 10, y + h + 10), (x + w + 10, y + h + 10)]):
-        corners.append({"name": f"corner_{i}", "type": "shape", "x": cx, "y": cy,
-                        "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"}, "fill": RED,
-                        "stroke": {"color": INK, "width": 1.5}})
-    return [
-        {"name": "rule_outer", "type": "shape", "shape": {"path": rule}, "fill": "#00000000",
-         "stroke": {"color": INK, "width": 2}},
-        {"name": "rule_inner", "type": "shape", "shape": {"path": inner}, "fill": "#00000000",
-         "stroke": {"color": INK, "width": 1}},
-        *corners,
-    ]
+    """The rules round the picture, with their red corners: frame.svg,
+    its picture's corner 18 px in from its own."""
+    x, y, _w, _h = PLATE
+    return [vec("frame", "frame", x - 18, y - 18)]
 
 
 def leaf(trigger, back=False):
@@ -695,9 +676,8 @@ def cover():
     left = [
         text("title_1", 70, 170, "title", "Little Red", size=[570, 90], align="center"),
         text("title_2", 70, 262, "title", "Riding Hood", size=[570, 90], align="center"),
-        {"name": "flourish", "type": "shape", "x": 355, "y": 382,
-         "shape": {"path": "M -120 0 C -80 -18 -40 18 0 0 C 40 -18 80 18 120 0 M -8 0 L 0 -8 L 8 0 L 0 8 Z"},
-         "fill": RED, "stroke": {"color": INK, "width": 1.5}},
+        # The ornaments are centred in their pictures, 244x24 and 124x18.
+        vec("flourish", "flourish", 355 - 122, 382 - 12),
         text("subtitle", 70, 420, "subtitle", "A fairy tale for young readers", size=[570, 40], align="center"),
         text("hint", 70, 560, "running", "Press the folded corner to turn the page.", size=[570, 30], align="center"),
     ]
@@ -707,9 +687,7 @@ def cover():
 def the_end():
     return [
         text("the_end", 70, 470, "subtitle", "The End", size=[570, 40], align="center"),
-        {"name": "end_flourish", "type": "shape", "x": 355, "y": 524,
-         "shape": {"path": "M -60 0 C -40 -10 -20 10 0 0 C 20 -10 40 10 60 0 M -5 0 L 0 -5 L 5 0 L 0 5 Z"},
-         "fill": RED, "stroke": {"color": INK, "width": 1.2}},
+        vec("end_flourish", "flourish_end", 355 - 62, 524 - 9),
     ]
 
 
