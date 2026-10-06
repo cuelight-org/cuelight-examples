@@ -14,7 +14,7 @@ that looks like. No scenes, only shapes, text and one click.
 | Sport mode | `mode` is a text variable: a mapped `font` binding turns the speed red, a mapped `opacity` binding shows the label |
 | Warning lamps | group `opacity` bound to a 0/1 variable, from dim to lit |
 | Ignition | the `ignition` trigger plays timelines that sweep the rev bar and light every lamp; a running timeline overrides a binding and hands the property back when it ends |
-| Turn signals, hazard | each arrow is a `path` shape, the right one the left one with `scale_x` -1; each has one blink timeline with `repeat` and a list of triggers, `["turn_left", "hazard"]`, and an `audio` layer clicks like the relay on the same triggers, with the same `repeat`. The arrows are dim when off, like the lamps |
+| Turn signals, hazard | both arrows are one SVG, `arrow.svg`, the right one mirrored with `scale_x` -1; each has one blink timeline with `repeat` and a list of triggers, `["turn_left", "hazard"]`, and an `audio` layer clicks like the relay on the same triggers, with the same `repeat`. The arrows are dim when off, like the lamps |
 
 Everything the show uses is in cuelight `main`, including outline fonts:
 the text is drawn from the TrueType outlines and the player renders at
@@ -44,6 +44,7 @@ have to travel with the files are in [`licenses/`](licenses/).
 
 | Asset | Origin | License |
 | --- | --- | --- |
+| `arrow.svg` | Made for this show, written by [`tools/car_dashboard_art.py`](../../tools/car_dashboard_art.py) | MIT, as this repository |
 | `sounds/click.ogg` | Made for this show, synthesized by [`tools/car_dashboard_sounds.py`](../../tools/car_dashboard_sounds.py) | MIT, as this repository |
 | `fonts/Oxanium-Bold.ttf`, `fonts/Oxanium-SemiBold.ttf` | [Oxanium](https://github.com/sevmeyer/oxanium) by The Oxanium Project Authors, the unmodified static files from [`fonts/ttf`](https://github.com/sevmeyer/oxanium/tree/a8f39e0c71186190027a093e9001459410192d1e/fonts/ttf). Its digits all have the same width, so numbers keep their place while they change | [OFL-1.1](licenses/Oxanium-OFL.txt), no reserved font name |
 
