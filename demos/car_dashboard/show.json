@@ -146,9 +146,8 @@
     },
     {
       "name": "signal_left",
-      "type": "shape",
-      "shape": { "path": "M 0 28 L 36 0 L 36 15 L 72 15 L 72 41 L 36 41 L 36 56 Z" },
-      "fill": "#3DDC84",
+      "type": "vector",
+      "vector": "arrow",
       "x": 70,
       "y": 54,
       "anchor": "center",
@@ -173,9 +172,8 @@
     },
     {
       "name": "signal_right",
-      "type": "shape",
-      "shape": { "path": "M 0 28 L 36 0 L 36 15 L 72 15 L 72 41 L 36 41 L 36 56 Z" },
-      "fill": "#3DDC84",
+      "type": "vector",
+      "vector": "arrow",
       "x": 1210,
       "y": 54,
       "anchor": "center",
