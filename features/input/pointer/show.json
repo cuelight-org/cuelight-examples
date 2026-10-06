@@ -4,7 +4,7 @@
   "name": "pointer",
   "size": [640, 360],
   "background": "#0E1116",
-  "input": {"pointer": {"x": "pointer_x", "y": "pointer_y", "over": "pointer_over"}},
+  "input": {"pointer": {"x": "pointer_x", "y": "pointer_y", "over": "pointer_over", "under": "hovered"}},
   "values": {
     "pointer_x": {"timelines": [{"name": "wander", "autoplay": true, "loop": true, "keys": [
       {"t": 0, "v": 150}, {"t": 2, "v": 430, "ease": "quad_in_out"}, {"t": 4, "v": 590, "ease": "quad_in_out"},
@@ -85,89 +85,172 @@
       "text": "HOVER",
       "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
     },
-    {"name": "tile_00", "type": "shape", "x": 368, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
-    {"name": "tile_01", "type": "shape", "x": 432, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
-    {"name": "tile_02", "type": "shape", "x": 496, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
-    {"name": "tile_03", "type": "shape", "x": 560, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
-    {"name": "tile_10", "type": "shape", "x": 368, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
-    {"name": "tile_11", "type": "shape", "x": 432, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
-    {"name": "tile_12", "type": "shape", "x": 496, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
-    {"name": "tile_13", "type": "shape", "x": 560, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
-    {"name": "tile_20", "type": "shape", "x": 368, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
-    {"name": "tile_21", "type": "shape", "x": 432, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
-    {"name": "tile_22", "type": "shape", "x": 496, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
-    {"name": "tile_23", "type": "shape", "x": 560, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
+    {"name": "A1", "type": "shape", "x": 368, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230", "press": {"trigger": "press_A1"}},
     {
-      "name": "hover", "type": "group",
-      "bindings": [{"property": "opacity", "variable": "pointer_over", "map": {"false": 0}, "transition": {"duration": 0.2}}],
-      "children": [
-        {
-          "name": "row_0", "type": "group",
-          "bindings": [{"property": "opacity", "variable": "pointer_y", "transition": {"duration": 0.2}, "curve": [{"t": 103, "v": 0}, {"t": 104, "v": 1, "ease": "step"}, {"t": 160, "v": 1}, {"t": 161, "v": 0, "ease": "step"}]}],
-          "children": [
-            {
-              "name": "lit_00", "type": "shape", "x": 368, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
-              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 367, "v": 0}, {"t": 368, "v": 1, "ease": "step"}, {"t": 424, "v": 1}, {"t": 425, "v": 0, "ease": "step"}]}]
-            },
-            {
-              "name": "lit_01", "type": "shape", "x": 432, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
-              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 431, "v": 0}, {"t": 432, "v": 1, "ease": "step"}, {"t": 488, "v": 1}, {"t": 489, "v": 0, "ease": "step"}]}]
-            },
-            {
-              "name": "lit_02", "type": "shape", "x": 496, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
-              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 495, "v": 0}, {"t": 496, "v": 1, "ease": "step"}, {"t": 552, "v": 1}, {"t": 553, "v": 0, "ease": "step"}]}]
-            },
-            {
-              "name": "lit_03", "type": "shape", "x": 560, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
-              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 559, "v": 0}, {"t": 560, "v": 1, "ease": "step"}, {"t": 616, "v": 1}, {"t": 617, "v": 0, "ease": "step"}]}]
-            }
-          ]
-        },
-        {
-          "name": "row_1", "type": "group",
-          "bindings": [{"property": "opacity", "variable": "pointer_y", "transition": {"duration": 0.2}, "curve": [{"t": 167, "v": 0}, {"t": 168, "v": 1, "ease": "step"}, {"t": 224, "v": 1}, {"t": 225, "v": 0, "ease": "step"}]}],
-          "children": [
-            {
-              "name": "lit_10", "type": "shape", "x": 368, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
-              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 367, "v": 0}, {"t": 368, "v": 1, "ease": "step"}, {"t": 424, "v": 1}, {"t": 425, "v": 0, "ease": "step"}]}]
-            },
-            {
-              "name": "lit_11", "type": "shape", "x": 432, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
-              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 431, "v": 0}, {"t": 432, "v": 1, "ease": "step"}, {"t": 488, "v": 1}, {"t": 489, "v": 0, "ease": "step"}]}]
-            },
-            {
-              "name": "lit_12", "type": "shape", "x": 496, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
-              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 495, "v": 0}, {"t": 496, "v": 1, "ease": "step"}, {"t": 552, "v": 1}, {"t": 553, "v": 0, "ease": "step"}]}]
-            },
-            {
-              "name": "lit_13", "type": "shape", "x": 560, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
-              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 559, "v": 0}, {"t": 560, "v": 1, "ease": "step"}, {"t": 616, "v": 1}, {"t": 617, "v": 0, "ease": "step"}]}]
-            }
-          ]
-        },
-        {
-          "name": "row_2", "type": "group",
-          "bindings": [{"property": "opacity", "variable": "pointer_y", "transition": {"duration": 0.2}, "curve": [{"t": 231, "v": 0}, {"t": 232, "v": 1, "ease": "step"}, {"t": 288, "v": 1}, {"t": 289, "v": 0, "ease": "step"}]}],
-          "children": [
-            {
-              "name": "lit_20", "type": "shape", "x": 368, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
-              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 367, "v": 0}, {"t": 368, "v": 1, "ease": "step"}, {"t": 424, "v": 1}, {"t": 425, "v": 0, "ease": "step"}]}]
-            },
-            {
-              "name": "lit_21", "type": "shape", "x": 432, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
-              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 431, "v": 0}, {"t": 432, "v": 1, "ease": "step"}, {"t": 488, "v": 1}, {"t": 489, "v": 0, "ease": "step"}]}]
-            },
-            {
-              "name": "lit_22", "type": "shape", "x": 496, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
-              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 495, "v": 0}, {"t": 496, "v": 1, "ease": "step"}, {"t": 552, "v": 1}, {"t": 553, "v": 0, "ease": "step"}]}]
-            },
-            {
-              "name": "lit_23", "type": "shape", "x": 560, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
-              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 559, "v": 0}, {"t": 560, "v": 1, "ease": "step"}, {"t": 616, "v": 1}, {"t": 617, "v": 0, "ease": "step"}]}]
-            }
-          ]
-        }
-      ]
+      "name": "A1_lit", "type": "shape", "x": 368, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000", "opacity": 0,
+      "bindings": [{"property": "opacity", "variable": "hovered", "map": {"A1": 1}, "default": 0, "transition": {"duration": 0.2}}]
+    },
+    {
+      "name": "A1_flash", "type": "shape", "x": 368, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#E6EDF3", "opacity": 0,
+      "timelines": [{"name": "flash", "trigger": "press_A1", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0.8}, {"t": 0.4, "v": 0, "ease": "quad_out"}]}]}]
+    },
+    {
+      "name": "A1_label", "type": "digits", "digits": 2, "size": [20, 12], "x": 386, "y": 126, "text": "A1",
+      "display": {"segments": {"style": "alpha14", "fill": "#5A6372"}}
+    },
+    {"name": "B1", "type": "shape", "x": 432, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230", "press": {"trigger": "press_B1"}},
+    {
+      "name": "B1_lit", "type": "shape", "x": 432, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000", "opacity": 0,
+      "bindings": [{"property": "opacity", "variable": "hovered", "map": {"B1": 1}, "default": 0, "transition": {"duration": 0.2}}]
+    },
+    {
+      "name": "B1_flash", "type": "shape", "x": 432, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#E6EDF3", "opacity": 0,
+      "timelines": [{"name": "flash", "trigger": "press_B1", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0.8}, {"t": 0.4, "v": 0, "ease": "quad_out"}]}]}]
+    },
+    {
+      "name": "B1_label", "type": "digits", "digits": 2, "size": [20, 12], "x": 450, "y": 126, "text": "B1",
+      "display": {"segments": {"style": "alpha14", "fill": "#5A6372"}}
+    },
+    {"name": "C1", "type": "shape", "x": 496, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230", "press": {"trigger": "press_C1"}},
+    {
+      "name": "C1_lit", "type": "shape", "x": 496, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000", "opacity": 0,
+      "bindings": [{"property": "opacity", "variable": "hovered", "map": {"C1": 1}, "default": 0, "transition": {"duration": 0.2}}]
+    },
+    {
+      "name": "C1_flash", "type": "shape", "x": 496, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#E6EDF3", "opacity": 0,
+      "timelines": [{"name": "flash", "trigger": "press_C1", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0.8}, {"t": 0.4, "v": 0, "ease": "quad_out"}]}]}]
+    },
+    {
+      "name": "C1_label", "type": "digits", "digits": 2, "size": [20, 12], "x": 514, "y": 126, "text": "C1",
+      "display": {"segments": {"style": "alpha14", "fill": "#5A6372"}}
+    },
+    {"name": "D1", "type": "shape", "x": 560, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230", "press": {"trigger": "press_D1"}},
+    {
+      "name": "D1_lit", "type": "shape", "x": 560, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000", "opacity": 0,
+      "bindings": [{"property": "opacity", "variable": "hovered", "map": {"D1": 1}, "default": 0, "transition": {"duration": 0.2}}]
+    },
+    {
+      "name": "D1_flash", "type": "shape", "x": 560, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#E6EDF3", "opacity": 0,
+      "timelines": [{"name": "flash", "trigger": "press_D1", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0.8}, {"t": 0.4, "v": 0, "ease": "quad_out"}]}]}]
+    },
+    {
+      "name": "D1_label", "type": "digits", "digits": 2, "size": [20, 12], "x": 578, "y": 126, "text": "D1",
+      "display": {"segments": {"style": "alpha14", "fill": "#5A6372"}}
+    },
+    {"name": "A2", "type": "shape", "x": 368, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230", "press": {"trigger": "press_A2"}},
+    {
+      "name": "A2_lit", "type": "shape", "x": 368, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000", "opacity": 0,
+      "bindings": [{"property": "opacity", "variable": "hovered", "map": {"A2": 1}, "default": 0, "transition": {"duration": 0.2}}]
+    },
+    {
+      "name": "A2_flash", "type": "shape", "x": 368, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#E6EDF3", "opacity": 0,
+      "timelines": [{"name": "flash", "trigger": "press_A2", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0.8}, {"t": 0.4, "v": 0, "ease": "quad_out"}]}]}]
+    },
+    {
+      "name": "A2_label", "type": "digits", "digits": 2, "size": [20, 12], "x": 386, "y": 190, "text": "A2",
+      "display": {"segments": {"style": "alpha14", "fill": "#5A6372"}}
+    },
+    {"name": "B2", "type": "shape", "x": 432, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230", "press": {"trigger": "press_B2"}},
+    {
+      "name": "B2_lit", "type": "shape", "x": 432, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000", "opacity": 0,
+      "bindings": [{"property": "opacity", "variable": "hovered", "map": {"B2": 1}, "default": 0, "transition": {"duration": 0.2}}]
+    },
+    {
+      "name": "B2_flash", "type": "shape", "x": 432, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#E6EDF3", "opacity": 0,
+      "timelines": [{"name": "flash", "trigger": "press_B2", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0.8}, {"t": 0.4, "v": 0, "ease": "quad_out"}]}]}]
+    },
+    {
+      "name": "B2_label", "type": "digits", "digits": 2, "size": [20, 12], "x": 450, "y": 190, "text": "B2",
+      "display": {"segments": {"style": "alpha14", "fill": "#5A6372"}}
+    },
+    {"name": "C2", "type": "shape", "x": 496, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230", "press": {"trigger": "press_C2"}},
+    {
+      "name": "C2_lit", "type": "shape", "x": 496, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000", "opacity": 0,
+      "bindings": [{"property": "opacity", "variable": "hovered", "map": {"C2": 1}, "default": 0, "transition": {"duration": 0.2}}]
+    },
+    {
+      "name": "C2_flash", "type": "shape", "x": 496, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#E6EDF3", "opacity": 0,
+      "timelines": [{"name": "flash", "trigger": "press_C2", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0.8}, {"t": 0.4, "v": 0, "ease": "quad_out"}]}]}]
+    },
+    {
+      "name": "C2_label", "type": "digits", "digits": 2, "size": [20, 12], "x": 514, "y": 190, "text": "C2",
+      "display": {"segments": {"style": "alpha14", "fill": "#5A6372"}}
+    },
+    {"name": "D2", "type": "shape", "x": 560, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230", "press": {"trigger": "press_D2"}},
+    {
+      "name": "D2_lit", "type": "shape", "x": 560, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000", "opacity": 0,
+      "bindings": [{"property": "opacity", "variable": "hovered", "map": {"D2": 1}, "default": 0, "transition": {"duration": 0.2}}]
+    },
+    {
+      "name": "D2_flash", "type": "shape", "x": 560, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#E6EDF3", "opacity": 0,
+      "timelines": [{"name": "flash", "trigger": "press_D2", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0.8}, {"t": 0.4, "v": 0, "ease": "quad_out"}]}]}]
+    },
+    {
+      "name": "D2_label", "type": "digits", "digits": 2, "size": [20, 12], "x": 578, "y": 190, "text": "D2",
+      "display": {"segments": {"style": "alpha14", "fill": "#5A6372"}}
+    },
+    {"name": "A3", "type": "shape", "x": 368, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230", "press": {"trigger": "press_A3"}},
+    {
+      "name": "A3_lit", "type": "shape", "x": 368, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000", "opacity": 0,
+      "bindings": [{"property": "opacity", "variable": "hovered", "map": {"A3": 1}, "default": 0, "transition": {"duration": 0.2}}]
+    },
+    {
+      "name": "A3_flash", "type": "shape", "x": 368, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#E6EDF3", "opacity": 0,
+      "timelines": [{"name": "flash", "trigger": "press_A3", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0.8}, {"t": 0.4, "v": 0, "ease": "quad_out"}]}]}]
+    },
+    {
+      "name": "A3_label", "type": "digits", "digits": 2, "size": [20, 12], "x": 386, "y": 254, "text": "A3",
+      "display": {"segments": {"style": "alpha14", "fill": "#5A6372"}}
+    },
+    {"name": "B3", "type": "shape", "x": 432, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230", "press": {"trigger": "press_B3"}},
+    {
+      "name": "B3_lit", "type": "shape", "x": 432, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000", "opacity": 0,
+      "bindings": [{"property": "opacity", "variable": "hovered", "map": {"B3": 1}, "default": 0, "transition": {"duration": 0.2}}]
+    },
+    {
+      "name": "B3_flash", "type": "shape", "x": 432, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#E6EDF3", "opacity": 0,
+      "timelines": [{"name": "flash", "trigger": "press_B3", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0.8}, {"t": 0.4, "v": 0, "ease": "quad_out"}]}]}]
+    },
+    {
+      "name": "B3_label", "type": "digits", "digits": 2, "size": [20, 12], "x": 450, "y": 254, "text": "B3",
+      "display": {"segments": {"style": "alpha14", "fill": "#5A6372"}}
+    },
+    {"name": "C3", "type": "shape", "x": 496, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230", "press": {"trigger": "press_C3"}},
+    {
+      "name": "C3_lit", "type": "shape", "x": 496, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000", "opacity": 0,
+      "bindings": [{"property": "opacity", "variable": "hovered", "map": {"C3": 1}, "default": 0, "transition": {"duration": 0.2}}]
+    },
+    {
+      "name": "C3_flash", "type": "shape", "x": 496, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#E6EDF3", "opacity": 0,
+      "timelines": [{"name": "flash", "trigger": "press_C3", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0.8}, {"t": 0.4, "v": 0, "ease": "quad_out"}]}]}]
+    },
+    {
+      "name": "C3_label", "type": "digits", "digits": 2, "size": [20, 12], "x": 514, "y": 254, "text": "C3",
+      "display": {"segments": {"style": "alpha14", "fill": "#5A6372"}}
+    },
+    {"name": "D3", "type": "shape", "x": 560, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230", "press": {"trigger": "press_D3"}},
+    {
+      "name": "D3_lit", "type": "shape", "x": 560, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000", "opacity": 0,
+      "bindings": [{"property": "opacity", "variable": "hovered", "map": {"D3": 1}, "default": 0, "transition": {"duration": 0.2}}]
+    },
+    {
+      "name": "D3_flash", "type": "shape", "x": 560, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#E6EDF3", "opacity": 0,
+      "timelines": [{"name": "flash", "trigger": "press_D3", "tracks": [{"property": "opacity", "keys": [{"t": 0, "v": 0.8}, {"t": 0.4, "v": 0, "ease": "quad_out"}]}]}]
+    },
+    {
+      "name": "D3_label", "type": "digits", "digits": 2, "size": [20, 12], "x": 578, "y": 254, "text": "D3",
+      "display": {"segments": {"style": "alpha14", "fill": "#5A6372"}}
+    },
+    {
+      "name": "under_readout",
+      "type": "digits",
+      "digits": 8,
+      "size": [80, 12],
+      "x": 536,
+      "y": 86,
+      "text": "UNDER",
+      "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}},
+      "bindings": [{"property": "text", "variable": "hovered", "prefix": "UNDER "}]
     },
     {
       "name": "readout_x",
