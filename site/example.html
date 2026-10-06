@@ -230,6 +230,12 @@ async function play() {
   const pressable = /"press"\s*:\s*\{/.test(sources["show.json"]);
   if (pressable) answers.push("click what lights up under the pointer");
   if (input.press) answers.push(`click elsewhere: ${input.press}`);
+  // A show that follows the pointer wants a finger followed rather than
+  // taken to scroll the page.
+  if (input.pointer) {
+    answers.push("the pointer moving over it");
+    $("canvas").style.touchAction = "none";
+  }
   $("input-note").textContent = answers.length ? `The show answers to ${answers.join("; ")}.` : "";
   $("input-note").hidden = !answers.length;
   $("canvas").onpointermove = (e) => {

@@ -156,6 +156,7 @@
       "description": "What the show tells its host.",
       "examples": [
         { "path": "features/input/keys_and_presses", "title": "Keys and presses", "description": "What a show does with a host's keys and clicks: keys it names fire triggers, a press on a pressable layer fires its trigger where the layer is now, a hidden or clipped-away layer is not pressed, a press on nothing pressable, or Enter, fires the show's own anywhere trigger, and a press can open a web page as well as fire. Click and type on the page; the driver stands in by firing the same triggers.", "thumbnail_at": 3.2 },
+        { "path": "features/input/pointer", "title": "Pointer", "description": "A show that follows the mouse or a finger through three variables the player keeps up to date: eyes whose pupils look at the pointer, a grid whose tile under the pointer lights, and a crosshair with the pointer's x, y and whether it is over the canvas. Until a pointer comes, show values of the same names wander, so the show is alive before anyone touches it.", "thumbnail_at": 4.0 },
         { "path": "features/events/show_events", "title": "Show events", "description": "Triggers the show fires itself come back to the host as events; watch the log.", "thumbnail_at": 3.9 }
       ]
     }

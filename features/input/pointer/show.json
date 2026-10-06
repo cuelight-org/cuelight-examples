@@ -1,0 +1,232 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json",
+  "format": 1,
+  "name": "pointer",
+  "size": [640, 360],
+  "background": "#0E1116",
+  "input": {"pointer": {"x": "pointer_x", "y": "pointer_y", "over": "pointer_over"}},
+  "values": {
+    "pointer_x": {"timelines": [{"name": "wander", "autoplay": true, "loop": true, "keys": [
+      {"t": 0, "v": 150}, {"t": 2, "v": 430, "ease": "quad_in_out"}, {"t": 4, "v": 590, "ease": "quad_in_out"},
+      {"t": 6, "v": 330, "ease": "quad_in_out"}, {"t": 8, "v": 150, "ease": "quad_in_out"}]}]},
+    "pointer_y": {"timelines": [{"name": "wander", "autoplay": true, "loop": true, "keys": [
+      {"t": 0, "v": 170}, {"t": 2.5, "v": 270, "ease": "quad_in_out"}, {"t": 5, "v": 170, "ease": "quad_in_out"}]}]}
+  },
+  "layers": [
+    {
+      "name": "title",
+      "type": "digits",
+      "digits": 7,
+      "size": [98, 20],
+      "x": 24,
+      "y": 18,
+      "text": "POINTER",
+      "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}
+    },
+    {
+      "name": "intro",
+      "type": "digits",
+      "digits": 30,
+      "size": [300, 12],
+      "x": 24,
+      "y": 50,
+      "text": "MOVE THE POINTER OVER THE SHOW",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "eyes_label",
+      "type": "digits",
+      "digits": 4,
+      "size": [40, 12],
+      "x": 72,
+      "y": 86,
+      "text": "EYES",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {"name": "face", "type": "shape", "x": 150, "y": 196, "shape": {"circle": [0, 0, 78]}, "fill": "#1B2230"},
+    {"name": "mouth", "type": "shape", "x": 130, "y": 234, "shape": {"rect": [0, 0, 40, 4]}, "fill": "#8B96A5"},
+    {"name": "eye_left", "type": "shape", "x": 118, "y": 180, "shape": {"circle": [0, 0, 22]}, "fill": "#E6EDF3"},
+    {"name": "eye_right", "type": "shape", "x": 182, "y": 180, "shape": {"circle": [0, 0, 22]}, "fill": "#E6EDF3"},
+    {
+      "name": "pupil_left",
+      "type": "shape",
+      "x": 118,
+      "y": 180,
+      "shape": {"circle": [0, 0, 9]},
+      "fill": "#0E1116",
+      "bindings": [
+        {"property": "x", "variable": "pointer_x", "transition": {"duration": 0.12, "ease": "quad_out"},
+         "curve": [{"t": -82, "v": 107}, {"t": 118, "v": 118, "ease": "quad_in"}, {"t": 318, "v": 129, "ease": "quad_out"}]},
+        {"property": "y", "variable": "pointer_y", "transition": {"duration": 0.12, "ease": "quad_out"},
+         "curve": [{"t": -20, "v": 171}, {"t": 180, "v": 180, "ease": "quad_in"}, {"t": 380, "v": 189, "ease": "quad_out"}]}
+      ]
+    },
+    {
+      "name": "pupil_right",
+      "type": "shape",
+      "x": 182,
+      "y": 180,
+      "shape": {"circle": [0, 0, 9]},
+      "fill": "#0E1116",
+      "bindings": [
+        {"property": "x", "variable": "pointer_x", "transition": {"duration": 0.12, "ease": "quad_out"},
+         "curve": [{"t": -18, "v": 171}, {"t": 182, "v": 182, "ease": "quad_in"}, {"t": 382, "v": 193, "ease": "quad_out"}]},
+        {"property": "y", "variable": "pointer_y", "transition": {"duration": 0.12, "ease": "quad_out"},
+         "curve": [{"t": -20, "v": 171}, {"t": 180, "v": 180, "ease": "quad_in"}, {"t": 380, "v": 189, "ease": "quad_out"}]}
+      ]
+    },
+    {
+      "name": "hover_label",
+      "type": "digits",
+      "digits": 5,
+      "size": [50, 12],
+      "x": 368,
+      "y": 86,
+      "text": "HOVER",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {"name": "tile_00", "type": "shape", "x": 368, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
+    {"name": "tile_01", "type": "shape", "x": 432, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
+    {"name": "tile_02", "type": "shape", "x": 496, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
+    {"name": "tile_03", "type": "shape", "x": 560, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
+    {"name": "tile_10", "type": "shape", "x": 368, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
+    {"name": "tile_11", "type": "shape", "x": 432, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
+    {"name": "tile_12", "type": "shape", "x": 496, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
+    {"name": "tile_13", "type": "shape", "x": 560, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
+    {"name": "tile_20", "type": "shape", "x": 368, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
+    {"name": "tile_21", "type": "shape", "x": 432, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
+    {"name": "tile_22", "type": "shape", "x": 496, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
+    {"name": "tile_23", "type": "shape", "x": 560, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#1B2230"},
+    {
+      "name": "hover", "type": "group",
+      "bindings": [{"property": "opacity", "variable": "pointer_over", "map": {"false": 0}, "transition": {"duration": 0.2}}],
+      "children": [
+        {
+          "name": "row_0", "type": "group",
+          "bindings": [{"property": "opacity", "variable": "pointer_y", "transition": {"duration": 0.2}, "curve": [{"t": 103, "v": 0}, {"t": 104, "v": 1, "ease": "step"}, {"t": 160, "v": 1}, {"t": 161, "v": 0, "ease": "step"}]}],
+          "children": [
+            {
+              "name": "lit_00", "type": "shape", "x": 368, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
+              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 367, "v": 0}, {"t": 368, "v": 1, "ease": "step"}, {"t": 424, "v": 1}, {"t": 425, "v": 0, "ease": "step"}]}]
+            },
+            {
+              "name": "lit_01", "type": "shape", "x": 432, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
+              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 431, "v": 0}, {"t": 432, "v": 1, "ease": "step"}, {"t": 488, "v": 1}, {"t": 489, "v": 0, "ease": "step"}]}]
+            },
+            {
+              "name": "lit_02", "type": "shape", "x": 496, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
+              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 495, "v": 0}, {"t": 496, "v": 1, "ease": "step"}, {"t": 552, "v": 1}, {"t": 553, "v": 0, "ease": "step"}]}]
+            },
+            {
+              "name": "lit_03", "type": "shape", "x": 560, "y": 104, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
+              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 559, "v": 0}, {"t": 560, "v": 1, "ease": "step"}, {"t": 616, "v": 1}, {"t": 617, "v": 0, "ease": "step"}]}]
+            }
+          ]
+        },
+        {
+          "name": "row_1", "type": "group",
+          "bindings": [{"property": "opacity", "variable": "pointer_y", "transition": {"duration": 0.2}, "curve": [{"t": 167, "v": 0}, {"t": 168, "v": 1, "ease": "step"}, {"t": 224, "v": 1}, {"t": 225, "v": 0, "ease": "step"}]}],
+          "children": [
+            {
+              "name": "lit_10", "type": "shape", "x": 368, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
+              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 367, "v": 0}, {"t": 368, "v": 1, "ease": "step"}, {"t": 424, "v": 1}, {"t": 425, "v": 0, "ease": "step"}]}]
+            },
+            {
+              "name": "lit_11", "type": "shape", "x": 432, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
+              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 431, "v": 0}, {"t": 432, "v": 1, "ease": "step"}, {"t": 488, "v": 1}, {"t": 489, "v": 0, "ease": "step"}]}]
+            },
+            {
+              "name": "lit_12", "type": "shape", "x": 496, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
+              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 495, "v": 0}, {"t": 496, "v": 1, "ease": "step"}, {"t": 552, "v": 1}, {"t": 553, "v": 0, "ease": "step"}]}]
+            },
+            {
+              "name": "lit_13", "type": "shape", "x": 560, "y": 168, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
+              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 559, "v": 0}, {"t": 560, "v": 1, "ease": "step"}, {"t": 616, "v": 1}, {"t": 617, "v": 0, "ease": "step"}]}]
+            }
+          ]
+        },
+        {
+          "name": "row_2", "type": "group",
+          "bindings": [{"property": "opacity", "variable": "pointer_y", "transition": {"duration": 0.2}, "curve": [{"t": 231, "v": 0}, {"t": 232, "v": 1, "ease": "step"}, {"t": 288, "v": 1}, {"t": 289, "v": 0, "ease": "step"}]}],
+          "children": [
+            {
+              "name": "lit_20", "type": "shape", "x": 368, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
+              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 367, "v": 0}, {"t": 368, "v": 1, "ease": "step"}, {"t": 424, "v": 1}, {"t": 425, "v": 0, "ease": "step"}]}]
+            },
+            {
+              "name": "lit_21", "type": "shape", "x": 432, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
+              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 431, "v": 0}, {"t": 432, "v": 1, "ease": "step"}, {"t": 488, "v": 1}, {"t": 489, "v": 0, "ease": "step"}]}]
+            },
+            {
+              "name": "lit_22", "type": "shape", "x": 496, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
+              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 495, "v": 0}, {"t": 496, "v": 1, "ease": "step"}, {"t": 552, "v": 1}, {"t": 553, "v": 0, "ease": "step"}]}]
+            },
+            {
+              "name": "lit_23", "type": "shape", "x": 560, "y": 232, "shape": {"rect": [0, 0, 56, 56], "radius": 6}, "fill": "#FFB000",
+              "bindings": [{"property": "opacity", "variable": "pointer_x", "transition": {"duration": 0.2}, "curve": [{"t": 559, "v": 0}, {"t": 560, "v": 1, "ease": "step"}, {"t": 616, "v": 1}, {"t": 617, "v": 0, "ease": "step"}]}]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "readout_x",
+      "type": "digits",
+      "digits": 5,
+      "size": [50, 12],
+      "x": 24,
+      "y": 322,
+      "text": "X ---",
+      "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}},
+      "bindings": [{"property": "text", "variable": "pointer_x", "decimals": 0, "min_digits": 3, "prefix": "X "}]
+    },
+    {
+      "name": "readout_y",
+      "type": "digits",
+      "digits": 5,
+      "size": [50, 12],
+      "x": 90,
+      "y": 322,
+      "text": "Y ---",
+      "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}},
+      "bindings": [{"property": "text", "variable": "pointer_y", "decimals": 0, "min_digits": 3, "prefix": "Y "}]
+    },
+    {
+      "name": "over_lamp", "type": "shape", "x": 166, "y": 328, "shape": {"circle": [0, 0, 6]}, "fill": "#FFB000", "opacity": 0.15,
+      "bindings": [{"property": "opacity", "variable": "pointer_over", "map": {"true": 1}, "transition": {"duration": 0.2}}]
+    },
+    {
+      "name": "over_label",
+      "type": "digits",
+      "digits": 4,
+      "size": [40, 12],
+      "x": 178,
+      "y": 322,
+      "text": "OVER",
+      "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}
+    },
+    {
+      "name": "wandering",
+      "type": "digits",
+      "digits": 31,
+      "size": [310, 12],
+      "x": 236,
+      "y": 322,
+      "text": "WANDERING UNTIL A POINTER COMES",
+      "display": {"segments": {"style": "alpha14", "fill": "#3EC9F0"}},
+      "bindings": [{"property": "visible", "variable": "pointer_over", "map": {"true": 0, "false": 0}}]
+    },
+    {
+      "name": "cross_x", "type": "shape", "x": 150, "y": 0, "shape": {"rect": [-0.5, 0, 1, 360]}, "fill": "#FFB000", "opacity": 0.35,
+      "bindings": [{"property": "x", "variable": "pointer_x"}]
+    },
+    {
+      "name": "cross_y", "type": "shape", "x": 0, "y": 170, "shape": {"rect": [0, -0.5, 640, 1]}, "fill": "#FFB000", "opacity": 0.35,
+      "bindings": [{"property": "y", "variable": "pointer_y"}]
+    },
+    {
+      "name": "cross_dot", "type": "shape", "x": 150, "y": 170, "shape": {"circle": [0, 0, 4]}, "fill": "#FFB000",
+      "bindings": [{"property": "x", "variable": "pointer_x"}, {"property": "y", "variable": "pointer_y"}]
+    }
+  ]
+}
