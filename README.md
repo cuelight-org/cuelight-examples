@@ -36,6 +36,13 @@ Shows are self-contained: every asset is committed, so only assets whose
 license allows redistribution get in. `tools/` holds the scripts that
 generated assets, such as bitmap fonts rasterized from OFL TrueType fonts.
 
+Anything drawn (scenery, characters, props, ornaments) is SVG artwork,
+as a designer would hand it over, and what in it moves is a `part`. A
+shape stays in `show.json` when the show defines it: geometry computed
+from the show's own numbers (a shadow cone, a gauge's arc), a simple
+shape that is pressed, hovered or bound piece by piece, and a `rect` or
+`circle` wherever one will do.
+
 ## Running a show
 
 From a [cuelight](https://github.com/cuelight-org/cuelight) checkout next to

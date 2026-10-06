@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Write the artwork of eclipse: the corona.
+"""Write the artwork of eclipse: the corona, the ground and the continent.
 
     tools/eclipse_art.py demos/eclipse/assets
 
@@ -8,6 +8,11 @@ moon: long streamers near the equator, short plumes at the poles and fine
 rays everywhere, falling off with the distance from the limb. It is drawn
 with `screen` over the dark sky. The skies and the glows are gradients in
 the show itself.
+
+ground.svg is the land at the foot of the sky window with a tree on the
+left hill and two people on the right one, looking up, in silhouette.
+continent.svg is the land on the edge of the Earth in the side view,
+drawn past the Earth's edge, which the show clips away.
 
 Needs numpy and Pillow.
 """
@@ -61,10 +66,50 @@ def corona(size=560):
     return Image.fromarray(np.dstack([rgb, alpha]).round().astype(np.uint8), "RGBA")
 
 
+# The ground's picture: as wide as the sky window, its bottom on the
+# window's (tools/eclipse_show.py places it there).
+GROUND_W, GROUND_H = 600, 180
+
+
+def svg(body, width, height):
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" '
+            f'width="{width}" height="{height}">\n{body}\n</svg>\n')
+
+
+def ground():
+    b = GROUND_H  # the window's bottom edge
+    land = (f"M 0 {b - 70} C 60 {b - 84} 120 {b - 92} 190 {b - 80} "
+            f"C 260 {b - 68} 300 {b - 62} 360 {b - 72} C 430 {b - 84} 520 {b - 96} {GROUND_W} {b - 78} "
+            f"V {b} H 0 Z")
+    tree = (f"M 96 {b - 84} V {b - 110} "
+            f"C 70 {b - 112} 66 {b - 142} 84 {b - 150} C 84 {b - 172} 112 {b - 176} 118 {b - 158} "
+            f"C 138 {b - 156} 140 {b - 124} 120 {b - 112} C 112 {b - 108} 104 {b - 108} 102 {b - 110} V {b - 84} Z")
+
+    def person(x, base, height, lean):
+        head = height * 0.16
+        top = base - height
+        body = (f"M {x - height * 0.13} {base} L {x - height * 0.11 + lean * 0.5} {top + head * 2.2} "
+                f"Q {x + lean * 0.5} {top + head * 1.7} {x + height * 0.11 + lean * 0.5} {top + head * 2.2} "
+                f"L {x + height * 0.13} {base} Z")
+        return (f'<circle cx="{round(x + lean, 1)}" cy="{round(top + head, 1)}" r="{round(head, 1)}" fill="#151924"/>'
+                f'<path d="{body}" fill="#151924"/>')
+
+    return svg(f'<path d="{land}" fill="#1B2230"/><path d="{tree}" fill="#1B2230"/>'
+               + person(452, b - 82, 34, -3) + person(476, b - 84, 28, -2), GROUND_W, GROUND_H)
+
+
+# The continent's picture: its left edge on the Earth's, which the show
+# places 128 px left of the Earth's centre and 52 px above it.
+def continent():
+    return svg('<path d="M 2 12 C 18 2 32 22 24 42 C 16 62 32 82 18 112 L 2 112 Z" fill="#9DB98A"/>', 34, 114)
+
+
 def main():
     out = Path(sys.argv[1])
     out.mkdir(parents=True, exist_ok=True)
     corona().save(out / "corona.png")
+    (out / "ground.svg").write_text(ground())
+    (out / "continent.svg").write_text(continent())
 
 
 if __name__ == "__main__":
