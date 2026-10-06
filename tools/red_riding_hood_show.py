@@ -62,6 +62,10 @@ class Measure:
     def height(self, size):
         return (self.ascent - self.descent) * size / self.upem
 
+    def baseline(self, size):
+        """From the top of the line box down to the baseline."""
+        return self.ascent * size / self.upem
+
 
 BODY = Measure("IMFellEnglish-Regular")
 CAP = Measure("IMFellFrenchCanon-Regular")
@@ -497,18 +501,37 @@ def lay_out(lines, drop_cap=True):
             w = BODY.width(run, BODY_SIZE)
             if marked:
                 h = BODY.height(BODY_SIZE)
-                layers.append(text(f"word_{i}_{j}", x + w / 2, y + h / 2, "word", run, anchor="center"))
+                name = f"word_{i}_{j}"
+                layers.append(text(name, x + w / 2, y + h / 2, "word", run, anchor="center"))
+                layers.append(underline(name, x, y + BODY.baseline(BODY_SIZE) + 6, w))
             else:
                 layers.append(text(f"line_{i}_{j}", x, y, "body", run))
             x += w
     return layers
 
 
+def underline(word, x, y, width):
+    """A line drawn in from the left under a red word while the pointer
+    is on it, so a reader sees it can be pressed."""
+    return {"name": f"{word}_underline", "type": "shape", "x": r(x), "y": r(y), "anchor": "left",
+            "shape": {"rect": [0, 0, r(width), 2.5], "radius": 1.25}, "fill": RED, "scale_x": 0,
+            "bindings": [hovering("scale_x", word, 1, 0, 0.25)]}
+
+
+def hovering(prop, names, on, off, duration):
+    """A binding of `prop` that is `on` while one of the pressable layers
+    `names` is under the pointer, and eases back to `off` when it leaves."""
+    names = [names] if isinstance(names, str) else names
+    return {"property": prop, "variable": "hovered",
+            "map": {n: on for n in names}, "default": off,
+            "transition": {"duration": duration, "ease": "quad_out"}}
+
+
 def pulse(layers, trigger):
     """The red word jumps a little when its trigger fires, and a press on
     it fires that trigger."""
     for layer in layers:
-        if layer["font"] == "word":
+        if layer.get("font") == "word":
             layer["press"] = {"trigger": trigger}
             layer["timelines"] = [tl("pulse", "scale", [(0, 1), (0.18, 1.3, "quad_out"), (0.6, 1, "back_out")],
                                      trigger=trigger)]
@@ -609,9 +632,10 @@ def page_turns(before, after):
     """A dog-ear at the bottom outer corner of each page turns it: the
     right one forward, the left one back. The corner is folded over
     along its diagonal, showing the page beneath and the back of the
-    flap, and it breathes a little so a young reader finds it. A hand
-    that misses the fold by a bit still lands on it: an unseen square
-    around the corner presses too. Nowhere else on the page does."""
+    flap, and it breathes a little so a young reader finds it; under the
+    pointer it lifts further. A hand that misses the fold by a bit still
+    lands on it: an unseen square around the corner presses too.
+    Nowhere else on the page does."""
     x0, y0, x1, y1 = BOOK
     S = 52          # the fold, in pixels along each edge
     REACH = 120     # how far off the fold a press still counts
@@ -620,18 +644,24 @@ def page_turns(before, after):
                             "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}}
 
     def ear(name, trigger, x, facing):
-        return group(name, x, y1, [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-REACH, -REACH, REACH, REACH]},
+        # The pressable pieces carry the corner's name, so the variable
+        # saying what is under the pointer tells the two corners apart.
+        pressable = [f"{name}_reach", f"{name}_beneath", f"{name}_flap"]
+        fold = group(f"{name}_fold", 0, 0, [
+            {"name": pressable[0], "type": "shape", "shape": {"rect": [-REACH, -REACH, REACH, REACH]},
              "fill": "#00000000", "press": {"trigger": trigger}},
-            {"name": "beneath", "type": "shape", "shape": {"path": f"M 0 {-S} L {-S} 0 L 0 0 Z"},
+            {"name": pressable[1], "type": "shape", "shape": {"path": f"M 0 {-S} L {-S} 0 L 0 0 Z"},
              "fill": beneath, "press": {"trigger": trigger}},
-            {"name": "shadow", "type": "shape", "shape": {"path": f"M 0 {-S} L {-S} 0 L {-S} {-S} Z"},
+            {"name": f"{name}_shadow", "type": "shape", "shape": {"path": f"M 0 {-S} L {-S} 0 L {-S} {-S} Z"},
              "fill": "#00000030", "x": 3, "y": 3},
-            {"name": "flap", "type": "shape", "shape": {"path": f"M 0 {-S} L {-S} 0 L {-S} {-S} Z"},
+            {"name": pressable[2], "type": "shape", "shape": {"path": f"M 0 {-S} L {-S} 0 L {-S} {-S} Z"},
              "fill": flap_fill, "stroke": {"color": "#B9A67F", "width": 1}, "press": {"trigger": trigger}},
-        ], scale_x=facing, timelines=[{"name": "breathe", "autoplay": True, "loop": True, "tracks": [
+        ], timelines=[{"name": "breathe", "autoplay": True, "loop": True, "tracks": [
             {"property": "scale", "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"},
                                             {"t": 2.4, "v": 1, "ease": "quad_in_out"}]}]}])
+        # Under the pointer the fold lifts further, ready to be turned.
+        return group(name, x, y1, [fold], scale_x=facing,
+                     bindings=[hovering("scale", pressable, 1.2, 1, 0.2)])
 
     out = []
     if before:
@@ -724,6 +754,8 @@ def show():
         "input": {
             "keys": {"ArrowRight": "next", "PageDown": "next", " ": "next",
                      "ArrowLeft": "prev", "PageUp": "prev", "Home": "cover"},
+            # What is under the pointer: a corner lifts, a red word is underlined.
+            "pointer": {"under": "hovered"},
         },
         "layers": book,
         "scenes": scenes,

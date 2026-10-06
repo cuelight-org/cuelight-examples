@@ -13,7 +13,10 @@
     "running": {"file": "IMFellEnglish-Italic", "size": 18, "color": "#7A6A58"},
     "folio": {"file": "IMFellEnglish-Regular", "size": 18, "color": "#7A6A58"}
   },
-  "input": {"keys": {"ArrowRight": "next", "PageDown": "next", " ": "next", "ArrowLeft": "prev", "PageUp": "prev", "Home": "cover"}},
+  "input": {
+    "keys": {"ArrowRight": "next", "PageDown": "next", " ": "next", "ArrowLeft": "prev", "PageUp": "prev", "Home": "cover"},
+    "pointer": {"under": "hovered"}
+  },
   "layers": [
     {"name": "table", "type": "image", "image": "table", "size": [1280, 720]},
     {"name": "shadow", "type": "shape", "x": 78, "y": 60, "shape": {"rect": [0, 0, 1140, 632]}, "fill": "#00000070"},
@@ -480,30 +483,59 @@
           "x": 1210,
           "y": 680,
           "scale_x": 1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_forward_reach": 1.2, "ear_forward_beneath": 1.2, "ear_forward_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "next"}
+              "name": "ear_forward_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_forward_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "next"}
+                },
+                {
+                  "name": "ear_forward_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "next"}
+                },
+                {"name": "ear_forward_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_forward_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "next"}
+                }
+              ]
             }
           ]
         },
@@ -574,6 +606,25 @@
                       "keys": [{"t": 0, "v": 1}, {"t": 0.18, "v": 1.3, "ease": "quad_out"}, {"t": 0.6, "v": 1, "ease": "back_out"}]
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "name": "word_2_1_underline",
+              "type": "shape",
+              "x": 308.51,
+              "y": 320.21,
+              "anchor": "left",
+              "shape": {"rect": [0, 0, 148.85, 2.5], "radius": 1.25},
+              "fill": "#A8322A",
+              "scale_x": 0,
+              "bindings": [
+                {
+                  "property": "scale_x",
+                  "variable": "hovered",
+                  "map": {"word_2_1": 1},
+                  "default": 0,
+                  "transition": {"duration": 0.25, "ease": "quad_out"}
                 }
               ]
             },
@@ -990,30 +1041,59 @@
           "x": 70,
           "y": 680,
           "scale_x": -1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_back_reach": 1.2, "ear_back_beneath": 1.2, "ear_back_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "prev"}
+              "name": "ear_back_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_back_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "prev"}
+                },
+                {
+                  "name": "ear_back_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "prev"}
+                },
+                {"name": "ear_back_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_back_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "prev"}
+                }
+              ]
             }
           ]
         },
@@ -1023,30 +1103,59 @@
           "x": 1210,
           "y": 680,
           "scale_x": 1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_forward_reach": 1.2, "ear_forward_beneath": 1.2, "ear_forward_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "next"}
+              "name": "ear_forward_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_forward_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "next"}
+                },
+                {
+                  "name": "ear_forward_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "next"}
+                },
+                {"name": "ear_forward_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_forward_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "next"}
+                }
+              ]
             }
           ]
         },
@@ -1116,6 +1225,25 @@
                       "keys": [{"t": 0, "v": 1}, {"t": 0.18, "v": 1.3, "ease": "quad_out"}, {"t": 0.6, "v": 1, "ease": "back_out"}]
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "name": "word_1_1_underline",
+              "type": "shape",
+              "x": 423.1,
+              "y": 256.21,
+              "anchor": "left",
+              "shape": {"rect": [0, 0, 106.23, 2.5], "radius": 1.25},
+              "fill": "#A8322A",
+              "scale_x": 0,
+              "bindings": [
+                {
+                  "property": "scale_x",
+                  "variable": "hovered",
+                  "map": {"word_1_1": 1},
+                  "default": 0,
+                  "transition": {"duration": 0.25, "ease": "quad_out"}
                 }
               ]
             },
@@ -1482,30 +1610,59 @@
           "x": 70,
           "y": 680,
           "scale_x": -1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_back_reach": 1.2, "ear_back_beneath": 1.2, "ear_back_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "prev"}
+              "name": "ear_back_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_back_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "prev"}
+                },
+                {
+                  "name": "ear_back_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "prev"}
+                },
+                {"name": "ear_back_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_back_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "prev"}
+                }
+              ]
             }
           ]
         },
@@ -1515,30 +1672,59 @@
           "x": 1210,
           "y": 680,
           "scale_x": 1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_forward_reach": 1.2, "ear_forward_beneath": 1.2, "ear_forward_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "next"}
+              "name": "ear_forward_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_forward_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "next"}
+                },
+                {
+                  "name": "ear_forward_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "next"}
+                },
+                {"name": "ear_forward_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_forward_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "next"}
+                }
+              ]
             }
           ]
         },
@@ -1608,6 +1794,25 @@
                       "keys": [{"t": 0, "v": 1}, {"t": 0.18, "v": 1.3, "ease": "quad_out"}, {"t": 0.6, "v": 1, "ease": "back_out"}]
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "name": "word_1_1_underline",
+              "type": "shape",
+              "x": 355.54,
+              "y": 256.21,
+              "anchor": "left",
+              "shape": {"rect": [0, 0, 73.3, 2.5], "radius": 1.25},
+              "fill": "#A8322A",
+              "scale_x": 0,
+              "bindings": [
+                {
+                  "property": "scale_x",
+                  "variable": "hovered",
+                  "map": {"word_1_1": 1},
+                  "default": 0,
+                  "transition": {"duration": 0.25, "ease": "quad_out"}
                 }
               ]
             },
@@ -1925,30 +2130,59 @@
           "x": 70,
           "y": 680,
           "scale_x": -1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_back_reach": 1.2, "ear_back_beneath": 1.2, "ear_back_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "prev"}
+              "name": "ear_back_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_back_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "prev"}
+                },
+                {
+                  "name": "ear_back_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "prev"}
+                },
+                {"name": "ear_back_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_back_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "prev"}
+                }
+              ]
             }
           ]
         },
@@ -1958,30 +2192,59 @@
           "x": 1210,
           "y": 680,
           "scale_x": 1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_forward_reach": 1.2, "ear_forward_beneath": 1.2, "ear_forward_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "next"}
+              "name": "ear_forward_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_forward_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "next"}
+                },
+                {
+                  "name": "ear_forward_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "next"}
+                },
+                {"name": "ear_forward_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_forward_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "next"}
+                }
+              ]
             }
           ]
         },
@@ -2051,6 +2314,25 @@
                       "keys": [{"t": 0, "v": 1}, {"t": 0.18, "v": 1.3, "ease": "quad_out"}, {"t": 0.6, "v": 1, "ease": "back_out"}]
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "name": "word_2_1_underline",
+              "type": "shape",
+              "x": 322.03,
+              "y": 320.21,
+              "anchor": "left",
+              "shape": {"rect": [0, 0, 120.41, 2.5], "radius": 1.25},
+              "fill": "#A8322A",
+              "scale_x": 0,
+              "bindings": [
+                {
+                  "property": "scale_x",
+                  "variable": "hovered",
+                  "map": {"word_2_1": 1},
+                  "default": 0,
+                  "transition": {"duration": 0.25, "ease": "quad_out"}
                 }
               ]
             },
@@ -2910,30 +3192,59 @@
           "x": 70,
           "y": 680,
           "scale_x": -1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_back_reach": 1.2, "ear_back_beneath": 1.2, "ear_back_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "prev"}
+              "name": "ear_back_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_back_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "prev"}
+                },
+                {
+                  "name": "ear_back_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "prev"}
+                },
+                {"name": "ear_back_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_back_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "prev"}
+                }
+              ]
             }
           ]
         },
@@ -2943,30 +3254,59 @@
           "x": 1210,
           "y": 680,
           "scale_x": 1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_forward_reach": 1.2, "ear_forward_beneath": 1.2, "ear_forward_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "next"}
+              "name": "ear_forward_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_forward_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "next"}
+                },
+                {
+                  "name": "ear_forward_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "next"}
+                },
+                {"name": "ear_forward_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_forward_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "next"}
+                }
+              ]
             }
           ]
         },
@@ -3036,6 +3376,25 @@
                       "keys": [{"t": 0, "v": 1}, {"t": 0.18, "v": 1.3, "ease": "quad_out"}, {"t": 0.6, "v": 1, "ease": "back_out"}]
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "name": "word_2_0_underline",
+              "type": "shape",
+              "x": 124,
+              "y": 320.21,
+              "anchor": "left",
+              "shape": {"rect": [0, 0, 155.84, 2.5], "radius": 1.25},
+              "fill": "#A8322A",
+              "scale_x": 0,
+              "bindings": [
+                {
+                  "property": "scale_x",
+                  "variable": "hovered",
+                  "map": {"word_2_0": 1},
+                  "default": 0,
+                  "transition": {"duration": 0.25, "ease": "quad_out"}
                 }
               ]
             },
@@ -3340,30 +3699,59 @@
           "x": 70,
           "y": 680,
           "scale_x": -1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_back_reach": 1.2, "ear_back_beneath": 1.2, "ear_back_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "prev"}
+              "name": "ear_back_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_back_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "prev"}
+                },
+                {
+                  "name": "ear_back_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "prev"}
+                },
+                {"name": "ear_back_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_back_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "prev"}
+                }
+              ]
             }
           ]
         },
@@ -3373,30 +3761,59 @@
           "x": 1210,
           "y": 680,
           "scale_x": 1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_forward_reach": 1.2, "ear_forward_beneath": 1.2, "ear_forward_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "next"}
+              "name": "ear_forward_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_forward_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "next"}
+                },
+                {
+                  "name": "ear_forward_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "next"}
+                },
+                {"name": "ear_forward_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_forward_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "next"}
+                }
+              ]
             }
           ]
         },
@@ -3464,6 +3881,25 @@
                       "keys": [{"t": 0, "v": 1}, {"t": 0.18, "v": 1.3, "ease": "quad_out"}, {"t": 0.6, "v": 1, "ease": "back_out"}]
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "name": "word_0_1_underline",
+              "type": "shape",
+              "x": 468.18,
+              "y": 192.21,
+              "anchor": "left",
+              "shape": {"rect": [0, 0, 70.47, 2.5], "radius": 1.25},
+              "fill": "#A8322A",
+              "scale_x": 0,
+              "bindings": [
+                {
+                  "property": "scale_x",
+                  "variable": "hovered",
+                  "map": {"word_0_1": 1},
+                  "default": 0,
+                  "transition": {"duration": 0.25, "ease": "quad_out"}
                 }
               ]
             },
@@ -3750,30 +4186,59 @@
           "x": 70,
           "y": 680,
           "scale_x": -1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_back_reach": 1.2, "ear_back_beneath": 1.2, "ear_back_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "prev"}
+              "name": "ear_back_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_back_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "prev"}
+                },
+                {
+                  "name": "ear_back_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "prev"}
+                },
+                {"name": "ear_back_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_back_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "prev"}
+                }
+              ]
             }
           ]
         },
@@ -3783,30 +4248,59 @@
           "x": 1210,
           "y": 680,
           "scale_x": 1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_forward_reach": 1.2, "ear_forward_beneath": 1.2, "ear_forward_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "next"}
+              "name": "ear_forward_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_forward_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "next"}
+                },
+                {
+                  "name": "ear_forward_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "next"}
+                },
+                {"name": "ear_forward_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_forward_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "next"}
+                }
+              ]
             }
           ]
         },
@@ -3874,6 +4368,25 @@
                       "keys": [{"t": 0, "v": 1}, {"t": 0.18, "v": 1.3, "ease": "quad_out"}, {"t": 0.6, "v": 1, "ease": "back_out"}]
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "name": "word_0_1_underline",
+              "type": "shape",
+              "x": 468.18,
+              "y": 192.21,
+              "anchor": "left",
+              "shape": {"rect": [0, 0, 85.47, 2.5], "radius": 1.25},
+              "fill": "#A8322A",
+              "scale_x": 0,
+              "bindings": [
+                {
+                  "property": "scale_x",
+                  "variable": "hovered",
+                  "map": {"word_0_1": 1},
+                  "default": 0,
+                  "transition": {"duration": 0.25, "ease": "quad_out"}
                 }
               ]
             },
@@ -4166,30 +4679,59 @@
           "x": 70,
           "y": 680,
           "scale_x": -1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_back_reach": 1.2, "ear_back_beneath": 1.2, "ear_back_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "prev"}
+              "name": "ear_back_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_back_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "prev"}
+                },
+                {
+                  "name": "ear_back_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "prev"}
+                },
+                {"name": "ear_back_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_back_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "prev"}
+                }
+              ]
             }
           ]
         },
@@ -4199,30 +4741,59 @@
           "x": 1210,
           "y": 680,
           "scale_x": 1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_forward_reach": 1.2, "ear_forward_beneath": 1.2, "ear_forward_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "next"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "next"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "next"}
+              "name": "ear_forward_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_forward_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "next"}
+                },
+                {
+                  "name": "ear_forward_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "next"}
+                },
+                {"name": "ear_forward_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_forward_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "next"}
+                }
+              ]
             }
           ]
         },
@@ -4292,6 +4863,25 @@
                       "keys": [{"t": 0, "v": 1}, {"t": 0.18, "v": 1.3, "ease": "quad_out"}, {"t": 0.6, "v": 1, "ease": "back_out"}]
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "name": "word_4_1_underline",
+              "type": "shape",
+              "x": 322.36,
+              "y": 448.21,
+              "anchor": "left",
+              "shape": {"rect": [0, 0, 74.22, 2.5], "radius": 1.25},
+              "fill": "#A8322A",
+              "scale_x": 0,
+              "bindings": [
+                {
+                  "property": "scale_x",
+                  "variable": "hovered",
+                  "map": {"word_4_1": 1},
+                  "default": 0,
+                  "transition": {"duration": 0.25, "ease": "quad_out"}
                 }
               ]
             },
@@ -4769,30 +5359,59 @@
           "x": 70,
           "y": 680,
           "scale_x": -1,
-          "timelines": [
+          "bindings": [
             {
-              "name": "breathe",
-              "autoplay": true,
-              "loop": true,
-              "tracks": [
-                {
-                  "property": "scale",
-                  "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
-                }
-              ]
+              "property": "scale",
+              "variable": "hovered",
+              "map": {"ear_back_reach": 1.2, "ear_back_beneath": 1.2, "ear_back_flap": 1.2},
+              "default": 1,
+              "transition": {"duration": 0.2, "ease": "quad_out"}
             }
           ],
           "children": [
-            {"name": "reach", "type": "shape", "shape": {"rect": [-120, -120, 120, 120]}, "fill": "#00000000", "press": {"trigger": "prev"}},
-            {"name": "beneath", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"}, "fill": "#E3D4B0", "press": {"trigger": "prev"}},
-            {"name": "shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
             {
-              "name": "flap",
-              "type": "shape",
-              "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
-              "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
-              "stroke": {"color": "#B9A67F", "width": 1},
-              "press": {"trigger": "prev"}
+              "name": "ear_back_fold",
+              "type": "group",
+              "x": 0,
+              "y": 0,
+              "timelines": [
+                {
+                  "name": "breathe",
+                  "autoplay": true,
+                  "loop": true,
+                  "tracks": [
+                    {
+                      "property": "scale",
+                      "keys": [{"t": 0, "v": 1}, {"t": 1.2, "v": 1.1, "ease": "quad_in_out"}, {"t": 2.4, "v": 1, "ease": "quad_in_out"}]
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "name": "ear_back_reach",
+                  "type": "shape",
+                  "shape": {"rect": [-120, -120, 120, 120]},
+                  "fill": "#00000000",
+                  "press": {"trigger": "prev"}
+                },
+                {
+                  "name": "ear_back_beneath",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L 0 0 Z"},
+                  "fill": "#E3D4B0",
+                  "press": {"trigger": "prev"}
+                },
+                {"name": "ear_back_shadow", "type": "shape", "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"}, "fill": "#00000030", "x": 3, "y": 3},
+                {
+                  "name": "ear_back_flap",
+                  "type": "shape",
+                  "shape": {"path": "M 0 -52 L -52 0 L -52 -52 Z"},
+                  "fill": {"linear": {"from": [-26.0, -26.0], "to": [-52, -52], "stops": [{"at": 0, "color": "#EFE4C8"}, {"at": 1, "color": "#FBF5E4"}]}},
+                  "stroke": {"color": "#B9A67F", "width": 1},
+                  "press": {"trigger": "prev"}
+                }
+              ]
             }
           ]
         },
