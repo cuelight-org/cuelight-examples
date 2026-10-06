@@ -11,7 +11,7 @@
     "button": {"file": "Oxanium-Bold", "size": 24, "color": "#2A1B05"},
     "banner": {"file": "Oxanium-Bold", "size": 72, "color": "#FBE8A6"}
   },
-  "input": {"keys": {" ": "spin", "Enter": "spin"}},
+  "input": {"keys": {" ": "spin", "Enter": "spin"}, "pointer": {"under": "hovered"}},
   "variables": {
     "reel_1": "C", "reel_2": "C", "reel_3": "C",
     "credits": "00250", "bet": 5, "win": "0000"
@@ -130,8 +130,18 @@
         ]}
       ],
       "children": [
+        {
+          "name": "glow", "type": "shape", "shape": {"circle": [0, 0, 72]}, "opacity": 0,
+          "fill": {"radial": {"center": [0, 0], "radius": 72,
+                              "stops": [{"at": 0.55, "color": "#FFD36AA0"}, {"at": 1, "color": "#FFD36A00"}]}},
+          "bindings": [{"property": "opacity", "variable": "hovered", "map": {"button": 1}, "default": 0, "transition": {"duration": 0.2}}]
+        },
         {"name": "rim", "type": "shape", "shape": {"circle": [0, 0, 46]}, "fill": "#8A5A16"},
         {"name": "face", "type": "shape", "shape": {"circle": [0, -3, 42]}, "fill": "#E9A93B"},
+        {
+          "name": "lit", "type": "shape", "shape": {"circle": [0, -3, 42]}, "fill": "#FFF1C2", "opacity": 0,
+          "bindings": [{"property": "opacity", "variable": "hovered", "map": {"button": 0.4}, "default": 0, "transition": {"duration": 0.2}}]
+        },
         {"name": "text", "type": "text", "text": "SPIN", "font": "button", "x": -60, "y": -18, "size": [120, 30], "align": "center"}
       ]
     },
