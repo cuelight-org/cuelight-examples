@@ -86,15 +86,7 @@
           "children": [
             {"name": "title_1", "type": "text", "x": 70, "y": 170, "font": "title", "text": "Little Red", "size": [570, 90], "align": "center"},
             {"name": "title_2", "type": "text", "x": 70, "y": 262, "font": "title", "text": "Riding Hood", "size": [570, 90], "align": "center"},
-            {
-              "name": "flourish",
-              "type": "shape",
-              "x": 355,
-              "y": 382,
-              "shape": {"path": "M -120 0 C -80 -18 -40 18 0 0 C 40 -18 80 18 120 0 M -8 0 L 0 -8 L 8 0 L 0 8 Z"},
-              "fill": "#A8322A",
-              "stroke": {"color": "#2B211C", "width": 1.5}
-            },
+            {"name": "flourish", "type": "vector", "vector": "flourish", "x": 233, "y": 370},
             {
               "name": "subtitle",
               "type": "text",
@@ -349,56 +341,7 @@
             }
           ]
         },
-        {
-          "name": "rule_outer",
-          "type": "shape",
-          "shape": {"path": "M 680 86 H 1170 V 626 H 680 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 2}
-        },
-        {
-          "name": "rule_inner",
-          "type": "shape",
-          "shape": {"path": "M 686 92 H 1164 V 620 H 686 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 1}
-        },
-        {
-          "name": "corner_0",
-          "type": "shape",
-          "x": 680,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_1",
-          "type": "shape",
-          "x": 1170,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_2",
-          "type": "shape",
-          "x": 680,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_3",
-          "type": "shape",
-          "x": 1170,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
+        {"name": "frame", "type": "vector", "vector": "frame", "x": 672, "y": 78},
         {
           "name": "leaf",
           "type": "group",
@@ -907,56 +850,7 @@
             }
           ]
         },
-        {
-          "name": "rule_outer",
-          "type": "shape",
-          "shape": {"path": "M 680 86 H 1170 V 626 H 680 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 2}
-        },
-        {
-          "name": "rule_inner",
-          "type": "shape",
-          "shape": {"path": "M 686 92 H 1164 V 620 H 686 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 1}
-        },
-        {
-          "name": "corner_0",
-          "type": "shape",
-          "x": 680,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_1",
-          "type": "shape",
-          "x": 1170,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_2",
-          "type": "shape",
-          "x": 680,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_3",
-          "type": "shape",
-          "x": 1170,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
+        {"name": "frame", "type": "vector", "vector": "frame", "x": 672, "y": 78},
         {
           "name": "leaf",
           "type": "group",
@@ -1476,56 +1370,7 @@
             }
           ]
         },
-        {
-          "name": "rule_outer",
-          "type": "shape",
-          "shape": {"path": "M 680 86 H 1170 V 626 H 680 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 2}
-        },
-        {
-          "name": "rule_inner",
-          "type": "shape",
-          "shape": {"path": "M 686 92 H 1164 V 620 H 686 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 1}
-        },
-        {
-          "name": "corner_0",
-          "type": "shape",
-          "x": 680,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_1",
-          "type": "shape",
-          "x": 1170,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_2",
-          "type": "shape",
-          "x": 680,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_3",
-          "type": "shape",
-          "x": 1170,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
+        {"name": "frame", "type": "vector", "vector": "frame", "x": 672, "y": 78},
         {
           "name": "leaf",
           "type": "group",
@@ -1996,56 +1841,7 @@
             {"name": "bush", "type": "vector", "vector": "bush", "x": -20, "y": 440, "scale": 0.9}
           ]
         },
-        {
-          "name": "rule_outer",
-          "type": "shape",
-          "shape": {"path": "M 680 86 H 1170 V 626 H 680 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 2}
-        },
-        {
-          "name": "rule_inner",
-          "type": "shape",
-          "shape": {"path": "M 686 92 H 1164 V 620 H 686 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 1}
-        },
-        {
-          "name": "corner_0",
-          "type": "shape",
-          "x": 680,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_1",
-          "type": "shape",
-          "x": 1170,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_2",
-          "type": "shape",
-          "x": 680,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_3",
-          "type": "shape",
-          "x": 1170,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
+        {"name": "frame", "type": "vector", "vector": "frame", "x": 672, "y": 78},
         {
           "name": "leaf",
           "type": "group",
@@ -3058,56 +2854,7 @@
             }
           ]
         },
-        {
-          "name": "rule_outer",
-          "type": "shape",
-          "shape": {"path": "M 680 86 H 1170 V 626 H 680 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 2}
-        },
-        {
-          "name": "rule_inner",
-          "type": "shape",
-          "shape": {"path": "M 686 92 H 1164 V 620 H 686 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 1}
-        },
-        {
-          "name": "corner_0",
-          "type": "shape",
-          "x": 680,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_1",
-          "type": "shape",
-          "x": 1170,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_2",
-          "type": "shape",
-          "x": 680,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_3",
-          "type": "shape",
-          "x": 1170,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
+        {"name": "frame", "type": "vector", "vector": "frame", "x": 672, "y": 78},
         {
           "name": "leaf",
           "type": "group",
@@ -3495,25 +3242,28 @@
                 }
               ]
             },
-            {"name": "bed", "type": "vector", "vector": "bed", "x": 140, "y": 240, "scale": 1.0},
             {
-              "name": "hump",
-              "type": "shape",
-              "x": 310,
-              "y": 346,
+              "name": "bed",
+              "type": "image",
+              "image": "bed",
+              "x": 140,
+              "y": 240,
               "scale": 1.0,
-              "shape": {"path": "M -90 4 C -60 -30 40 -34 90 4 Z"},
-              "fill": "#A8322A",
-              "stroke": {"color": "#2B211C", "width": 2.5},
-              "timelines": [
+              "parts": [
                 {
-                  "name": "breathe",
-                  "autoplay": true,
-                  "loop": true,
-                  "tracks": [
+                  "id": "hump",
+                  "pivot": [170, 106],
+                  "timelines": [
                     {
-                      "property": "scale_y",
-                      "keys": [{"t": 0, "v": 1}, {"t": 1.5, "v": 1.12, "ease": "quad_in_out"}, {"t": 3, "v": 1, "ease": "quad_in_out"}]
+                      "name": "breathe",
+                      "autoplay": true,
+                      "loop": true,
+                      "tracks": [
+                        {
+                          "property": "scale_y",
+                          "keys": [{"t": 0, "v": 1}, {"t": 1.5, "v": 1.12, "ease": "quad_in_out"}, {"t": 3, "v": 1, "ease": "quad_in_out"}]
+                        }
+                      ]
                     }
                   ]
                 }
@@ -3565,56 +3315,7 @@
             }
           ]
         },
-        {
-          "name": "rule_outer",
-          "type": "shape",
-          "shape": {"path": "M 680 86 H 1170 V 626 H 680 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 2}
-        },
-        {
-          "name": "rule_inner",
-          "type": "shape",
-          "shape": {"path": "M 686 92 H 1164 V 620 H 686 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 1}
-        },
-        {
-          "name": "corner_0",
-          "type": "shape",
-          "x": 680,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_1",
-          "type": "shape",
-          "x": 1170,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_2",
-          "type": "shape",
-          "x": 680,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_3",
-          "type": "shape",
-          "x": 1170,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
+        {"name": "frame", "type": "vector", "vector": "frame", "x": 672, "y": 78},
         {
           "name": "leaf",
           "type": "group",
@@ -3925,25 +3626,28 @@
           "children": [
             {"name": "backdrop", "type": "vector", "vector": "bg_room", "x": 0, "y": 0},
             {"name": "window", "type": "vector", "vector": "window_front", "x": 0, "y": 0},
-            {"name": "bed", "type": "vector", "vector": "bed", "x": -30, "y": 210, "scale": 1.5},
             {
-              "name": "hump",
-              "type": "shape",
-              "x": 225,
-              "y": 369,
+              "name": "bed",
+              "type": "image",
+              "image": "bed",
+              "x": -30,
+              "y": 210,
               "scale": 1.5,
-              "shape": {"path": "M -90 4 C -60 -30 40 -34 90 4 Z"},
-              "fill": "#A8322A",
-              "stroke": {"color": "#2B211C", "width": 2.5},
-              "timelines": [
+              "parts": [
                 {
-                  "name": "breathe",
-                  "autoplay": true,
-                  "loop": true,
-                  "tracks": [
+                  "id": "hump",
+                  "pivot": [170, 106],
+                  "timelines": [
                     {
-                      "property": "scale_y",
-                      "keys": [{"t": 0, "v": 1}, {"t": 1.5, "v": 1.12, "ease": "quad_in_out"}, {"t": 3, "v": 1, "ease": "quad_in_out"}]
+                      "name": "breathe",
+                      "autoplay": true,
+                      "loop": true,
+                      "tracks": [
+                        {
+                          "property": "scale_y",
+                          "keys": [{"t": 0, "v": 1}, {"t": 1.5, "v": 1.12, "ease": "quad_in_out"}, {"t": 3, "v": 1, "ease": "quad_in_out"}]
+                        }
+                      ]
                     }
                   ]
                 }
@@ -4052,56 +3756,7 @@
             }
           ]
         },
-        {
-          "name": "rule_outer",
-          "type": "shape",
-          "shape": {"path": "M 680 86 H 1170 V 626 H 680 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 2}
-        },
-        {
-          "name": "rule_inner",
-          "type": "shape",
-          "shape": {"path": "M 686 92 H 1164 V 620 H 686 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 1}
-        },
-        {
-          "name": "corner_0",
-          "type": "shape",
-          "x": 680,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_1",
-          "type": "shape",
-          "x": 1170,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_2",
-          "type": "shape",
-          "x": 680,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_3",
-          "type": "shape",
-          "x": 1170,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
+        {"name": "frame", "type": "vector", "vector": "frame", "x": 672, "y": 78},
         {
           "name": "leaf",
           "type": "group",
@@ -4412,25 +4067,28 @@
           "children": [
             {"name": "backdrop", "type": "vector", "vector": "bg_room", "x": 0, "y": 0},
             {"name": "window", "type": "vector", "vector": "window_front", "x": 0, "y": 0},
-            {"name": "bed", "type": "vector", "vector": "bed", "x": -30, "y": 210, "scale": 1.5},
             {
-              "name": "hump",
-              "type": "shape",
-              "x": 225,
-              "y": 369,
+              "name": "bed",
+              "type": "image",
+              "image": "bed",
+              "x": -30,
+              "y": 210,
               "scale": 1.5,
-              "shape": {"path": "M -90 4 C -60 -30 40 -34 90 4 Z"},
-              "fill": "#A8322A",
-              "stroke": {"color": "#2B211C", "width": 2.5},
-              "timelines": [
+              "parts": [
                 {
-                  "name": "breathe",
-                  "autoplay": true,
-                  "loop": true,
-                  "tracks": [
+                  "id": "hump",
+                  "pivot": [170, 106],
+                  "timelines": [
                     {
-                      "property": "scale_y",
-                      "keys": [{"t": 0, "v": 1}, {"t": 1.5, "v": 1.12, "ease": "quad_in_out"}, {"t": 3, "v": 1, "ease": "quad_in_out"}]
+                      "name": "breathe",
+                      "autoplay": true,
+                      "loop": true,
+                      "tracks": [
+                        {
+                          "property": "scale_y",
+                          "keys": [{"t": 0, "v": 1}, {"t": 1.5, "v": 1.12, "ease": "quad_in_out"}, {"t": 3, "v": 1, "ease": "quad_in_out"}]
+                        }
+                      ]
                     }
                   ]
                 }
@@ -4545,56 +4203,7 @@
             }
           ]
         },
-        {
-          "name": "rule_outer",
-          "type": "shape",
-          "shape": {"path": "M 680 86 H 1170 V 626 H 680 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 2}
-        },
-        {
-          "name": "rule_inner",
-          "type": "shape",
-          "shape": {"path": "M 686 92 H 1164 V 620 H 686 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 1}
-        },
-        {
-          "name": "corner_0",
-          "type": "shape",
-          "x": 680,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_1",
-          "type": "shape",
-          "x": 1170,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_2",
-          "type": "shape",
-          "x": 680,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_3",
-          "type": "shape",
-          "x": 1170,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
+        {"name": "frame", "type": "vector", "vector": "frame", "x": 672, "y": 78},
         {
           "name": "leaf",
           "type": "group",
@@ -4887,15 +4496,7 @@
             },
             {"name": "line_4_2", "type": "text", "x": 396.58, "y": 406, "font": "body", "text": "."},
             {"name": "the_end", "type": "text", "x": 70, "y": 470, "font": "subtitle", "text": "The End", "size": [570, 40], "align": "center"},
-            {
-              "name": "end_flourish",
-              "type": "shape",
-              "x": 355,
-              "y": 524,
-              "shape": {"path": "M -60 0 C -40 -10 -20 10 0 0 C 20 -10 40 10 60 0 M -5 0 L 0 -5 L 5 0 L 0 5 Z"},
-              "fill": "#A8322A",
-              "stroke": {"color": "#2B211C", "width": 1.2}
-            }
+            {"name": "end_flourish", "type": "vector", "vector": "flourish_end", "x": 293, "y": 515}
           ]
         },
         {
@@ -5020,123 +4621,96 @@
               ]
             },
             {"name": "window", "type": "vector", "vector": "window_front", "x": 0, "y": 0},
+            {"name": "table", "type": "vector", "vector": "side_table", "x": 108, "y": 378},
             {
-              "name": "table",
-              "type": "shape",
-              "x": 110,
-              "y": 380,
-              "shape": {"path": "M 0 0 L 170 0 L 170 12 L 0 12 Z M 16 12 L 28 12 L 28 110 L 16 110 Z M 142 12 L 154 12 L 154 110 L 142 110 Z"},
-              "fill": "#8A6440",
-              "stroke": {"color": "#2B211C", "width": 2.5}
-            },
-            {"name": "cake", "type": "vector", "vector": "cake", "x": 128, "y": 312},
-            {
-              "name": "candle_0",
-              "type": "shape",
-              "x": 165,
-              "y": 334,
-              "shape": {"rect": [0, 0, 6, 20]},
-              "fill": "#F4ECDA",
-              "stroke": {"color": "#2B211C", "width": 1.5}
-            },
-            {
-              "name": "flame_0",
-              "type": "shape",
-              "x": 168,
-              "y": 332,
-              "anchor": "bottom",
-              "shape": {"path": "M 0 -14 Q 6 -4 0 0 Q -6 -4 0 -14 Z"},
-              "fill": "#F2B640",
-              "timelines": [
+              "name": "cake",
+              "type": "image",
+              "image": "cake",
+              "x": 128,
+              "y": 282,
+              "parts": [
                 {
-                  "name": "flicker",
-                  "autoplay": true,
-                  "loop": true,
-                  "tracks": [
+                  "id": "flame_0",
+                  "pivot": [40, 50],
+                  "timelines": [
                     {
-                      "property": "scale_y",
-                      "keys": [{"t": 0, "v": 0.85}, {"t": 0.25, "v": 1.15, "ease": "quad_in_out"}, {"t": 0.5, "v": 0.85, "ease": "quad_in_out"}]
+                      "name": "flicker",
+                      "autoplay": true,
+                      "loop": true,
+                      "tracks": [
+                        {
+                          "property": "scale_y",
+                          "keys": [{"t": 0, "v": 0.85}, {"t": 0.25, "v": 1.15, "ease": "quad_in_out"}, {"t": 0.5, "v": 0.85, "ease": "quad_in_out"}]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "flare",
+                      "trigger": "tap_cake",
+                      "tracks": [
+                        {
+                          "property": "scale",
+                          "keys": [{"t": 0, "v": 1}, {"t": 0.2, "v": 2, "ease": "back_out"}, {"t": 1.2, "v": 2}, {"t": 1.6, "v": 1}]
+                        }
+                      ]
                     }
                   ]
                 },
                 {
-                  "name": "flare",
-                  "trigger": "tap_cake",
-                  "tracks": [{"property": "scale", "keys": [{"t": 0, "v": 1}, {"t": 0.2, "v": 2, "ease": "back_out"}, {"t": 1.2, "v": 2}, {"t": 1.6, "v": 1}]}]
-                }
-              ]
-            },
-            {
-              "name": "candle_1",
-              "type": "shape",
-              "x": 185,
-              "y": 334,
-              "shape": {"rect": [0, 0, 6, 20]},
-              "fill": "#F4ECDA",
-              "stroke": {"color": "#2B211C", "width": 1.5}
-            },
-            {
-              "name": "flame_1",
-              "type": "shape",
-              "x": 188,
-              "y": 332,
-              "anchor": "bottom",
-              "shape": {"path": "M 0 -14 Q 6 -4 0 0 Q -6 -4 0 -14 Z"},
-              "fill": "#F2B640",
-              "timelines": [
-                {
-                  "name": "flicker",
-                  "autoplay": true,
-                  "loop": true,
-                  "tracks": [
+                  "id": "flame_1",
+                  "pivot": [60, 50],
+                  "timelines": [
                     {
-                      "property": "scale_y",
-                      "keys": [{"t": 0, "v": 0.85}, {"t": 0.315, "v": 1.15, "ease": "quad_in_out"}, {"t": 0.63, "v": 0.85, "ease": "quad_in_out"}]
+                      "name": "flicker",
+                      "autoplay": true,
+                      "loop": true,
+                      "tracks": [
+                        {
+                          "property": "scale_y",
+                          "keys": [{"t": 0, "v": 0.85}, {"t": 0.315, "v": 1.15, "ease": "quad_in_out"}, {"t": 0.63, "v": 0.85, "ease": "quad_in_out"}]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "flare",
+                      "trigger": "tap_cake",
+                      "delay": 0.1,
+                      "tracks": [
+                        {
+                          "property": "scale",
+                          "keys": [{"t": 0, "v": 1}, {"t": 0.2, "v": 2, "ease": "back_out"}, {"t": 1.2, "v": 2}, {"t": 1.6, "v": 1}]
+                        }
+                      ]
                     }
                   ]
                 },
                 {
-                  "name": "flare",
-                  "trigger": "tap_cake",
-                  "delay": 0.1,
-                  "tracks": [{"property": "scale", "keys": [{"t": 0, "v": 1}, {"t": 0.2, "v": 2, "ease": "back_out"}, {"t": 1.2, "v": 2}, {"t": 1.6, "v": 1}]}]
-                }
-              ]
-            },
-            {
-              "name": "candle_2",
-              "type": "shape",
-              "x": 205,
-              "y": 334,
-              "shape": {"rect": [0, 0, 6, 20]},
-              "fill": "#F4ECDA",
-              "stroke": {"color": "#2B211C", "width": 1.5}
-            },
-            {
-              "name": "flame_2",
-              "type": "shape",
-              "x": 208,
-              "y": 332,
-              "anchor": "bottom",
-              "shape": {"path": "M 0 -14 Q 6 -4 0 0 Q -6 -4 0 -14 Z"},
-              "fill": "#F2B640",
-              "timelines": [
-                {
-                  "name": "flicker",
-                  "autoplay": true,
-                  "loop": true,
-                  "tracks": [
+                  "id": "flame_2",
+                  "pivot": [80, 50],
+                  "timelines": [
                     {
-                      "property": "scale_y",
-                      "keys": [{"t": 0, "v": 0.85}, {"t": 0.38, "v": 1.15, "ease": "quad_in_out"}, {"t": 0.76, "v": 0.85, "ease": "quad_in_out"}]
+                      "name": "flicker",
+                      "autoplay": true,
+                      "loop": true,
+                      "tracks": [
+                        {
+                          "property": "scale_y",
+                          "keys": [{"t": 0, "v": 0.85}, {"t": 0.38, "v": 1.15, "ease": "quad_in_out"}, {"t": 0.76, "v": 0.85, "ease": "quad_in_out"}]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "flare",
+                      "trigger": "tap_cake",
+                      "delay": 0.2,
+                      "tracks": [
+                        {
+                          "property": "scale",
+                          "keys": [{"t": 0, "v": 1}, {"t": 0.2, "v": 2, "ease": "back_out"}, {"t": 1.2, "v": 2}, {"t": 1.6, "v": 1}]
+                        }
+                      ]
                     }
                   ]
-                },
-                {
-                  "name": "flare",
-                  "trigger": "tap_cake",
-                  "delay": 0.2,
-                  "tracks": [{"property": "scale", "keys": [{"t": 0, "v": 1}, {"t": 0.2, "v": 2, "ease": "back_out"}, {"t": 1.2, "v": 2}, {"t": 1.6, "v": 1}]}]
                 }
               ]
             },
@@ -5225,56 +4799,7 @@
             }
           ]
         },
-        {
-          "name": "rule_outer",
-          "type": "shape",
-          "shape": {"path": "M 680 86 H 1170 V 626 H 680 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 2}
-        },
-        {
-          "name": "rule_inner",
-          "type": "shape",
-          "shape": {"path": "M 686 92 H 1164 V 620 H 686 Z"},
-          "fill": "#00000000",
-          "stroke": {"color": "#2B211C", "width": 1}
-        },
-        {
-          "name": "corner_0",
-          "type": "shape",
-          "x": 680,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_1",
-          "type": "shape",
-          "x": 1170,
-          "y": 86,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_2",
-          "type": "shape",
-          "x": 680,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
-        {
-          "name": "corner_3",
-          "type": "shape",
-          "x": 1170,
-          "y": 626,
-          "shape": {"path": "M 0 -8 L 8 0 L 0 8 L -8 0 Z"},
-          "fill": "#A8322A",
-          "stroke": {"color": "#2B211C", "width": 1.5}
-        },
+        {"name": "frame", "type": "vector", "vector": "frame", "x": 672, "y": 78},
         {
           "name": "leaf",
           "type": "group",
