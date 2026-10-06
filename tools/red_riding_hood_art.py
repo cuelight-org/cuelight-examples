@@ -88,16 +88,6 @@ def g(body, x=0, y=0, scale=None, id=None):
     return f'<g{ident} transform="translate({x} {y}){scaled}">{body}</g>'
 
 
-def ring(cx, cy, r, width, fill=INK):
-    """A circle's outline as a filled ring, which scales with the part it
-    is in (a stroke keeps its width)."""
-    outer, inner = r + width / 2, r - width / 2
-    return (f'<path d="M {cx + outer} {cy} A {outer} {outer} 0 1 0 {cx - outer} {cy} '
-            f'A {outer} {outer} 0 1 0 {cx + outer} {cy} Z '
-            f'M {cx + inner} {cy} A {inner} {inner} 0 1 1 {cx - inner} {cy} '
-            f'A {inner} {inner} 0 1 1 {cx + inner} {cy} Z" fill="{fill}" fill-rule="evenodd"/>')
-
-
 # -- Red ---------------------------------------------------------------------
 
 def red_body():
@@ -289,7 +279,7 @@ def nightcap():
 
 def wolf_eye():
     """The eye, centred on (0, 0), looking towards the snout."""
-    return c(0, 0, 6.5, "#F2D27A", None) + ring(0, 0, 6.5, 1.8) + c(-1.8, 0, 3, INK, None)
+    return c(0, 0, 6.5, "#F2D27A", INK, 1.8) + c(-1.8, 0, 3, INK, None)
 
 
 WOLF_FEET = (80, 220)  # in wolf.svg: the bottom left corner of its body
