@@ -54,8 +54,6 @@ The weather is made up; the city is real.
 
 ## What would make it better
 
-- Gradients in SVGs: an icon's gradient still paints as its first stop,
-  so the icons are flat.
 - Layer templates or repeaters: the five forecast slots and the eight
   bars are the same block with another number in the variable names,
   which is why the document was first written by a script.
