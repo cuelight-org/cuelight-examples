@@ -30,6 +30,10 @@ four cells side by side: standing, squashing, standing and blinking.
 bricks.png is an 8x8 brick tile for the same show. Both are drawn pixel
 by pixel, with no antialiasing, so nearest sampling keeps every pixel.
 
+landscape.png is a 240x120 dusk for features/images/fit, twice as wide
+as it is high: a square grid over the sky and a round sun in the
+middle, so a stretched picture shows at a glance.
+
 For features/images/asset_paths, two skies both called sky.png, a day in
 art/day/ and a night in art/night/, which the show names by
 path, and moon.png in its assets/, which it names by stem.
@@ -218,6 +222,28 @@ def tile(size=48):
     return image.resize((size, size), Image.LANCZOS)
 
 
+def landscape(size=(240, 120)):
+    """A dusk for features/images/fit: sky to sunset, a square grid, a
+    round sun in the middle and a hill along the bottom."""
+    w, h = size
+    image = Image.new("RGBA", (w * SS, h * SS))
+    draw = ImageDraw.Draw(image)
+    top, bottom = (38, 84, 140), (232, 140, 96)
+    for y in range(h * SS):
+        t = y / (h * SS - 1)
+        color = tuple(round(a + (b - a) * t) for a, b in zip(top, bottom))
+        draw.line([(0, y), (w * SS, y)], fill=color + (255,))
+    for x in range(0, w + 1, 20):
+        draw.line([(x * SS, 0), (x * SS, h * SS)], fill=(255, 255, 255, 255), width=SS)
+    for y in range(0, h + 1, 20):
+        draw.line([(0, y * SS), (w * SS, y * SS)], fill=(255, 255, 255, 255), width=SS)
+    cx, cy, r = w / 2 * SS, h / 2 * SS, 34 * SS
+    draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(255, 214, 92, 255), outline=(255, 255, 255, 255), width=2 * SS)
+    hill = [(0, h), (0, 96), (60, 82), (130, 94), (200, 78), (240, 88), (240, h)]
+    draw.polygon([(x * SS, y * SS) for x, y in hill], fill=(28, 44, 52, 255))
+    return image.resize(size, Image.LANCZOS)
+
+
 def critter_frame(squash=0, blink=False):
     """One 16x16 cell of the slime: a dome on little feet, outlined,
     with a highlight and two eyes. squash lowers the top and widens it."""
@@ -304,6 +330,7 @@ def main():
         ("features/images/asset_paths/assets/moon.png", moon()),
         ("features/images/sampling/assets/critter.png", critter_sheet()),
         ("features/images/sampling/assets/bricks.png", bricks()),
+        ("features/images/fit/assets/landscape.png", landscape()),
     ]:
         out = ROOT / path
         out.parent.mkdir(parents=True, exist_ok=True)

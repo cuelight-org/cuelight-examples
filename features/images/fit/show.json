@@ -1,0 +1,45 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json",
+  "format": 1, "name": "fit", "size": [640, 360], "background": "#0E1116",
+  "layers": [
+    {"name": "title", "type": "digits", "digits": 9, "size": [122, 20], "x": 20, "y": 16, "text": "IMAGE FIT", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+
+    {"name": "note", "type": "digits", "digits": 49, "size": [400, 12], "x": 20, "y": 44, "text": "A WIDE PICTURE IN A SQUARE BOX AND IN A WIDER ONE", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+
+    {
+      "name": "fill", "type": "group",
+      "children": [
+        {"name": "square", "type": "image", "image": "landscape", "x": 50, "y": 78, "size": [120, 120]},
+        {"name": "square_frame", "type": "shape", "shape": {"rect": [49, 77, 122, 122]}, "fill": "#00000000", "stroke": {"color": "#3A4452", "width": 1}},
+        {"name": "wide", "type": "image", "image": "landscape", "x": 20, "y": 216, "size": [180, 60]},
+        {"name": "wide_frame", "type": "shape", "shape": {"rect": [19, 215, 182, 62]}, "fill": "#00000000", "stroke": {"color": "#3A4452", "width": 1}},
+        {"name": "label", "type": "digits", "digits": 4, "size": [38, 14], "x": 20, "y": 292, "text": "FILL", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+        {"name": "says", "type": "digits", "digits": 20, "size": [136, 10], "x": 20, "y": 314, "text": "STRETCHED TO THE BOX", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}}
+      ]
+    },
+
+    {
+      "name": "contain", "type": "group",
+      "children": [
+        {"name": "square", "type": "image", "image": "landscape", "x": 263, "y": 78, "size": [120, 120], "fit": "contain"},
+        {"name": "square_frame", "type": "shape", "shape": {"rect": [262, 77, 122, 122]}, "fill": "#00000000", "stroke": {"color": "#3A4452", "width": 1}},
+        {"name": "wide", "type": "image", "image": "landscape", "x": 233, "y": 216, "size": [180, 60], "fit": "contain"},
+        {"name": "wide_frame", "type": "shape", "shape": {"rect": [232, 215, 182, 62]}, "fill": "#00000000", "stroke": {"color": "#3A4452", "width": 1}},
+        {"name": "label", "type": "digits", "digits": 7, "size": [67, 14], "x": 233, "y": 292, "text": "CONTAIN", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+        {"name": "says", "type": "digits", "digits": 16, "size": [109, 10], "x": 233, "y": 314, "text": "WHOLE WITH BANDS", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}}
+      ]
+    },
+
+    {
+      "name": "cover", "type": "group",
+      "children": [
+        {"name": "square", "type": "image", "image": "landscape", "x": 476, "y": 78, "size": [120, 120], "fit": "cover"},
+        {"name": "square_frame", "type": "shape", "shape": {"rect": [475, 77, 122, 122]}, "fill": "#00000000", "stroke": {"color": "#3A4452", "width": 1}},
+        {"name": "wide", "type": "image", "image": "landscape", "x": 446, "y": 216, "size": [180, 60], "fit": "cover"},
+        {"name": "wide_frame", "type": "shape", "shape": {"rect": [445, 215, 182, 62]}, "fill": "#00000000", "stroke": {"color": "#3A4452", "width": 1}},
+        {"name": "label", "type": "digits", "digits": 5, "size": [48, 14], "x": 446, "y": 292, "text": "COVER", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+        {"name": "says", "type": "digits", "digits": 18, "size": [122, 10], "x": 446, "y": 314, "text": "FILLED AND CROPPED", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}}
+      ]
+    }
+  ]
+}
