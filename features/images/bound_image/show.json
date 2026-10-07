@@ -1,0 +1,56 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json",
+  "format": 1, "name": "bound_image", "size": [640, 360], "background": "#0E1116",
+  "variables": {"player": 1, "picture": "ada", "art": 1, "mix": 1, "phase": ""},
+  "layers": [
+    {"name": "title", "type": "digits", "digits": 11, "size": [150, 20], "x": 16, "y": 14, "text": "BOUND IMAGE", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+
+    {"name": "note", "type": "digits", "digits": 51, "size": [416, 12], "x": 16, "y": 42, "text": "THE PICTURE AN IMAGE LAYER SHOWS FOLLOWS A VARIABLE", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+
+    {
+      "name": "mapped", "type": "group", "x": 24, "y": 66,
+      "children": [
+        {"name": "frame", "type": "shape", "shape": {"rect": [-2, -2, 68, 68], "radius": 34}, "fill": "#161B24"},
+        {"name": "picture", "type": "image", "image": "ada", "size": [64, 64], "bindings": [{"property": "image", "variable": "player", "map": {"1": "ada", "2": "bo", "3": "cy"}}]},
+        {"name": "value", "type": "digits", "digits": 6, "size": [65, 16], "x": 96, "y": 24, "text": "      ", "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}}, "bindings": [{"property": "text", "variable": "player"}]},
+        {"name": "caption_1", "type": "digits", "digits": 6, "size": [49, 12], "x": 260, "y": 18, "text": "MAPPED", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+        {"name": "caption_2", "type": "digits", "digits": 31, "size": [253, 12], "x": 260, "y": 38, "text": "PLAYER 1 2 OR 3 PICKS AN AVATAR", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}}
+      ]
+    },
+
+    {
+      "name": "direct", "type": "group", "x": 24, "y": 136,
+      "children": [
+        {"name": "frame", "type": "shape", "shape": {"rect": [-2, -2, 68, 68], "radius": 34}, "fill": "#161B24"},
+        {"name": "picture", "type": "image", "image": "ada", "size": [64, 64], "bindings": [{"property": "image", "variable": "picture"}]},
+        {"name": "value", "type": "digits", "digits": 6, "size": [65, 16], "x": 96, "y": 24, "text": "      ", "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}}, "bindings": [{"property": "text", "variable": "picture"}]},
+        {"name": "caption_1", "type": "digits", "digits": 6, "size": [49, 12], "x": 260, "y": 18, "text": "DIRECT", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+        {"name": "caption_2", "type": "digits", "digits": 30, "size": [245, 12], "x": 260, "y": 38, "text": "THE VARIABLE NAMES THE PICTURE", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}}
+      ]
+    },
+
+    {
+      "name": "vector", "type": "group", "x": 24, "y": 206,
+      "children": [
+        {"name": "frame", "type": "shape", "shape": {"rect": [-2, -2, 68, 68], "radius": 34}, "fill": "#161B24"},
+        {"name": "art", "type": "vector", "vector": "star", "size": [64, 64], "bindings": [{"property": "image", "variable": "art", "map": {"1": "star", "2": "bolt", "3": "drop"}}]},
+        {"name": "value", "type": "digits", "digits": 6, "size": [65, 16], "x": 96, "y": 24, "text": "      ", "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}}, "bindings": [{"property": "text", "variable": "art"}]},
+        {"name": "caption_1", "type": "digits", "digits": 11, "size": [90, 12], "x": 260, "y": 18, "text": "SVG ARTWORK", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+        {"name": "caption_2", "type": "digits", "digits": 36, "size": [294, 12], "x": 260, "y": 38, "text": "A VECTOR LAYER SWITCHES THE SAME WAY", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}}
+      ]
+    },
+
+    {
+      "name": "mixed", "type": "group", "x": 24, "y": 276,
+      "children": [
+        {"name": "frame", "type": "shape", "shape": {"rect": [-2, -2, 68, 68], "radius": 34}, "fill": "#161B24"},
+        {"name": "art", "type": "image", "image": "cy", "size": [64, 64], "bindings": [{"property": "image", "variable": "mix", "map": {"1": "cy", "2": "drop"}}]},
+        {"name": "value", "type": "digits", "digits": 6, "size": [65, 16], "x": 96, "y": 24, "text": "      ", "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}}, "bindings": [{"property": "text", "variable": "mix"}]},
+        {"name": "caption_1", "type": "digits", "digits": 5, "size": [41, 12], "x": 260, "y": 18, "text": "MIXED", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+        {"name": "caption_2", "type": "digits", "digits": 22, "size": [180, 12], "x": 260, "y": 38, "text": "SVG AND PNG IN ONE MAP", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}}
+      ]
+    },
+
+    {"name": "phase", "type": "digits", "digits": 48, "size": [326, 10], "x": 16, "y": 346, "text": "                                                ", "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}}, "bindings": [{"property": "text", "variable": "phase"}]}
+  ]
+}
