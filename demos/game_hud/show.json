@@ -594,6 +594,7 @@
                   "y": -63,
                   "size": [16, 16],
                   "anchor": "center",
+                  "box": "cap",
                   "font": "compass",
                   "bindings": [{"property": "rotation", "variable": "heading", "transition": {"duration": 0.25}}]
                 }
