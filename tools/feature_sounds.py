@@ -34,6 +34,10 @@ an announcement chime, ding-dong-ding, 1.8 seconds.
 For bound_sound, three sounds of 1.2 seconds that are nothing alike:
 up.ogg is a whistle gliding up an octave, down.ogg a buzzy reed tone
 falling an octave, bells.ogg a bell struck twice.
+
+For pan, hum.ogg is a second of a 440 Hz buzz with a slow pulse that
+loops without a seam, to follow as it moves between the speakers, and
+ping.ogg a short bell at C6, to hear one place at a time.
 """
 
 import math
@@ -305,6 +309,19 @@ def tick():
     return [0.9 * v / peak for v in out]
 
 
+def hum(frequency=440.0, seconds=1.0, pulse=4.0):
+    """A buzz with a few partials and a slow pulse, whole cycles of both
+    in its length, so it loops without a seam."""
+    total = int(RATE * seconds)
+    out = []
+    for i in range(total):
+        t = i / RATE
+        swell = 0.75 + 0.25 * math.cos(2 * math.pi * pulse * t)
+        wave = sum(math.sin(2 * math.pi * n * frequency * t) / n for n in (1, 2, 3, 4))
+        out.append(0.3 * swell * wave)
+    return out
+
+
 def main():
     root = Path(__file__).resolve().parent.parent / "features" / "sound"
     examples = {
@@ -321,6 +338,7 @@ def main():
             ("knock2", knock(659.25, 2)),
             ("knock3", knock(783.99, 3)),
         ],
+        "pan": [("hum", hum()), ("ping", bell(1046.5, strikes=(0.0,), seconds=0.5))],
         "when_while": [
             ("chime", bell(strikes=(0.0,), seconds=0.9)),
             ("warn", buzz(700, 350, seconds=0.5)),

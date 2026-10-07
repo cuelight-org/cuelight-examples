@@ -1,0 +1,28 @@
+{
+  "loop": true,
+  "steps": [
+    {"set": {"side": "", "phase": "A TIMELINE MOVES THE HUM"}},
+    {"trigger": "sweep"},
+    {"wait": 4.0},
+    {"trigger": "hush"},
+    {"wait": 0.6},
+    {"set": {"phase": "A VARIABLE PLACES EACH PING"}},
+    {"set": {"side": -1}},
+    {"trigger": "ping"},
+    {"wait": 0.7},
+    {"set": {"side": 0}},
+    {"trigger": "ping"},
+    {"wait": 0.7},
+    {"set": {"side": 1}},
+    {"trigger": "ping"},
+    {"wait": 0.7},
+    {"set": {"side": 0}},
+    {"trigger": "ping"},
+    {"wait": 0.7},
+    {"set": {"side": -1}},
+    {"trigger": "ping"},
+    {"wait": 0.7},
+    {"set": {"side": "", "phase": ""}},
+    {"wait": 0.8}
+  ]
+}

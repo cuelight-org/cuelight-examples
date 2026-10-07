@@ -124,7 +124,8 @@
         { "path": "features/sound/rest", "title": "Rest", "description": "A switch that chatters, firing its trigger every 30 ms, into three sounds: one with no rest that buzzes, and two that play at most once every 100 and 400 ms, the rest dropped.", "thumbnail_at": 1.2 },
         { "path": "features/sound/ducking", "title": "Ducking", "description": "A music bed that steps back while an announcement plays on another bus: not at all, hard and fast, or soft and slow, one at a time over the same chime.", "thumbnail_at": 12.0 },
         { "path": "features/sound/when_while", "title": "Sound when and while", "description": "Audio layers that play on a variable condition instead of a trigger: a chime when the warnings count becomes 2, one warn per opening of the door while it is open, a siren that loops while the mode is tilt and stops mid-loop when it is not, and a chime on a threshold or on a trigger, whichever comes.", "thumbnail_at": 4.6 },
-        { "path": "features/sound/bound_sound", "title": "Bound sound", "description": "One audio layer whose sound follows a value: with restart a new tune cuts the one playing, with queue it waits its turn, a loop keeps looping whatever it is pointed at, and a value its map does not list changes nothing.", "thumbnail_at": 5.0 }
+        { "path": "features/sound/bound_sound", "title": "Bound sound", "description": "One audio layer whose sound follows a value: with restart a new tune cuts the one playing, with queue it waits its turn, a loop keeps looping whatever it is pointed at, and a value its map does not list changes nothing.", "thumbnail_at": 5.0 },
+        { "path": "features/sound/pan", "title": "Pan", "description": "A sound placed between the speakers: a timeline moves a hum from left to right and back with a dot, and a variable places each ping left, in the middle or right.", "thumbnail_at": 1.0 }
       ]
     },
     {

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json",
+  "format": 1, "name": "pan", "size": [640, 360], "background": "#0E1116",
+  "variables": {"side": 0, "phase": ""},
+  "layers": [
+    {"name": "title", "type": "digits", "digits": 3, "size": [41, 20], "x": 16, "y": 14, "text": "PAN", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+
+    {"name": "note", "type": "digits", "digits": 54, "size": [441, 12], "x": 16, "y": 42, "text": "A SOUND PLACED BETWEEN THE SPEAKERS FROM LEFT TO RIGHT", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+
+    {
+      "name": "animated", "type": "group", "y": 78,
+      "children": [
+        {"name": "label", "type": "digits", "digits": 8, "size": [76, 14], "x": 24, "y": 0, "text": "ANIMATED", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+        {"name": "says", "type": "digits", "digits": 44, "size": [299, 10], "x": 24, "y": 22, "text": "A TIMELINE MOVES THE HUM AND THE DOT WITH IT", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+        {"name": "hum", "type": "audio", "sound": "hum", "loop": true, "trigger": "sweep", "stop": "hush", "gain": 0.5, "pan": -1, "timelines": [{"name": "sweep", "trigger": "sweep", "tracks": [{"property": "pan", "keys": [{"t": 0, "v": -1}, {"t": 2, "v": 1, "ease": "quad_in_out"}, {"t": 4, "v": -1, "ease": "quad_in_out"}]}]}]},
+        {"name": "track", "type": "shape", "shape": {"rect": [60, 63, 520, 2]}, "fill": "#232A35"},
+        {"name": "left", "type": "digits", "digits": 1, "size": [10, 14], "x": 36, "y": 57, "text": "L", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+        {"name": "right", "type": "digits", "digits": 1, "size": [10, 14], "x": 594, "y": 57, "text": "R", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+        {"name": "dot", "type": "shape", "shape": {"circle": [0, 64, 10]}, "x": 60, "fill": "#FFB000", "timelines": [{"name": "sweep", "trigger": "sweep", "tracks": [{"property": "x", "keys": [{"t": 0, "v": 60}, {"t": 2, "v": 580, "ease": "quad_in_out"}, {"t": 4, "v": 60, "ease": "quad_in_out"}]}]}]}
+      ]
+    },
+
+    {
+      "name": "bound", "type": "group", "y": 196,
+      "children": [
+        {"name": "label", "type": "digits", "digits": 5, "size": [48, 14], "x": 24, "y": 0, "text": "BOUND", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+        {"name": "says", "type": "digits", "digits": 55, "size": [374, 10], "x": 24, "y": 22, "text": "A VARIABLE PLACES EACH PING LEFT IN THE MIDDLE OR RIGHT", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+        {"name": "ping", "type": "audio", "sound": "ping", "trigger": "ping", "gain": 0.6, "bindings": [{"property": "pan", "variable": "side"}]},
+        {"name": "track", "type": "shape", "shape": {"rect": [60, 63, 520, 2]}, "fill": "#232A35"},
+        {"name": "lamp_left", "type": "shape", "shape": {"circle": [60, 64, 12]}, "fill": "#3EC9F0", "opacity": 0.15, "bindings": [{"property": "opacity", "variable": "side", "map": {"-1": 1}, "default": 0.15}]},
+        {"name": "word_left", "type": "digits", "digits": 4, "size": [27, 10], "x": 46, "y": 86, "text": "LEFT", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+        {"name": "lamp_middle", "type": "shape", "shape": {"circle": [320, 64, 12]}, "fill": "#3EC9F0", "opacity": 0.15, "bindings": [{"property": "opacity", "variable": "side", "map": {"0": 1}, "default": 0.15}]},
+        {"name": "word_middle", "type": "digits", "digits": 6, "size": [41, 10], "x": 300, "y": 86, "text": "MIDDLE", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+        {"name": "lamp_right", "type": "shape", "shape": {"circle": [580, 64, 12]}, "fill": "#3EC9F0", "opacity": 0.15, "bindings": [{"property": "opacity", "variable": "side", "map": {"1": 1}, "default": 0.15}]},
+        {"name": "word_right", "type": "digits", "digits": 5, "size": [34, 10], "x": 563, "y": 86, "text": "RIGHT", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}}
+      ]
+    },
+
+    {"name": "phase", "type": "digits", "digits": 44, "size": [419, 14], "x": 16, "y": 330, "text": "                                            ", "display": {"segments": {"style": "alpha14", "fill": "#FFB000"}}, "bindings": [{"property": "text", "variable": "phase"}]}
+  ]
+}
