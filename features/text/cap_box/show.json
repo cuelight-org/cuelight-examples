@@ -1,0 +1,34 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cuelight-org/cuelight/main/crates/cuelight-core/schemas/show.schema.json",
+  "format": 1, "name": "cap_box", "size": [640, 360], "background": "#0E1116",
+  "fonts": {"big": {"file": "Oxanium-Bold", "size": 64, "color": "#E6EDF3"}},
+  "layers": [
+    {"name": "title", "type": "digits", "digits": 7, "size": [95, 20], "x": 20, "y": 16, "text": "CAP BOX", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+
+    {"name": "note", "type": "digits", "digits": 41, "size": [335, 12], "x": 20, "y": 44, "text": "TEXT BOXED BY ITS LINE OR BY ITS CAPITALS", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}},
+
+    {
+      "name": "line", "type": "group",
+      "children": [
+        {"name": "word", "type": "text", "x": 170, "y": 135, "anchor": "center", "font": "big", "text": "SPIN", "timelines": [{"name": "spin", "autoplay": true, "loop": true, "tracks": [{"property": "rotation", "keys": [{"t": 0, "v": 0}, {"t": 4, "v": 360}]}]}]},
+        {"name": "pivot", "type": "shape", "shape": {"circle": [170, 135, 3]}, "fill": "#FFB000"},
+        {"name": "guide", "type": "shape", "shape": {"rect": [60, 227, 220, 1]}, "fill": "#FFB000"},
+        {"name": "top", "type": "text", "x": 170, "y": 228, "anchor": "top", "font": "big", "text": "TOP"},
+        {"name": "label", "type": "digits", "digits": 8, "size": [76, 14], "x": 60, "y": 300, "text": "LINE BOX", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+        {"name": "says", "type": "digits", "digits": 22, "size": [150, 10], "x": 60, "y": 322, "text": "FROM ASCENT TO DESCENT", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}}
+      ]
+    },
+
+    {
+      "name": "cap", "type": "group",
+      "children": [
+        {"name": "word", "type": "text", "x": 470, "y": 135, "anchor": "center", "font": "big", "text": "SPIN", "timelines": [{"name": "spin", "autoplay": true, "loop": true, "tracks": [{"property": "rotation", "keys": [{"t": 0, "v": 0}, {"t": 4, "v": 360}]}]}], "box": "cap"},
+        {"name": "pivot", "type": "shape", "shape": {"circle": [470, 135, 3]}, "fill": "#FFB000"},
+        {"name": "guide", "type": "shape", "shape": {"rect": [360, 227, 220, 1]}, "fill": "#FFB000"},
+        {"name": "top", "type": "text", "x": 470, "y": 228, "anchor": "top", "font": "big", "text": "TOP", "box": "cap"},
+        {"name": "label", "type": "digits", "digits": 7, "size": [67, 14], "x": 360, "y": 300, "text": "CAP BOX", "display": {"segments": {"style": "alpha14", "fill": "#E6EDF3"}}},
+        {"name": "says", "type": "digits", "digits": 28, "size": [190, 10], "x": 360, "y": 322, "text": "FROM CAPITAL TOP TO BASELINE", "display": {"segments": {"style": "alpha14", "fill": "#8B96A5"}}}
+      ]
+    }
+  ]
+}
