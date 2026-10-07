@@ -17,7 +17,7 @@ cargo run -p cuelight-player -- ../cuelight-examples/features/timelines/easing
 | [bindings](bindings/) | `scale_offset`, `text_format`, `map_default`, `font`, `transitions`, `visible_threshold_debounce`, `curves` |
 | [timelines](timelines/) | `easing`, `delay_repeat_loop`, `carry`, `on_end`, `trigger_lists`, `precedence`, `hold`, `values` |
 | [scenes](scenes/) | `scenes` |
-| [sound](sound/) | `audio_layers`, `pick`, `rest`, `ducking`, `bound_sound` |
+| [sound](sound/) | `audio_layers`, `pick`, `rest`, `ducking`, `bound_sound`, `pan` |
 | [video](video/) | `video_layer`, `retrigger`, `pick`, `masked`, `one_clip_many_plays` |
 | [output](output/) | `modes`, `scaling`, `edges`, `dots`, `overflow` |
 | [input](input/) | `keys_and_presses`, `pointer` |
@@ -53,6 +53,7 @@ is what the website's gallery is built from.
 | `critter.png`, `bricks.png` | `images/sampling` | drawn pixel by pixel by `tools/feature_assets.py`: a 16x16 slime in four sprite-sheet cells and an 8x8 brick tile | same as this repository |
 | `music.ogg`, `zap.ogg`, `thunder.ogg`, `jingle.ogg` | `sound/audio_layers` | synthesized from sines and noise by [`tools/feature_sounds.py`](../tools/feature_sounds.py) | same as this repository |
 | `knock1.ogg`, `knock2.ogg`, `knock3.ogg` | `sound/pick` | synthesized by `tools/feature_sounds.py`: three takes of one knock | same as this repository |
+| `hum.ogg`, `ping.ogg` | `sound/pan` | synthesized by `tools/feature_sounds.py`: a looping 440 Hz buzz and a short bell | same as this repository |
 | `tick.ogg` | `sound/rest` | synthesized by `tools/feature_sounds.py`: a switch's 25 ms click | same as this repository |
 | `bed.ogg`, `callout.ogg` | `sound/ducking` | synthesized by `tools/feature_sounds.py`: a looping bed of arpeggios above 300 Hz and an announcement chime | same as this repository |
 | `up.ogg`, `down.ogg`, `bells.ogg` | `sound/bound_sound` | synthesized by `tools/feature_sounds.py`: three short tunes that loop without a seam | same as this repository |
