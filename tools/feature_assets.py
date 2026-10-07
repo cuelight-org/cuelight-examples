@@ -34,6 +34,10 @@ landscape.png is a 240x120 dusk for features/images/fit, twice as wide
 as it is high: a square grid over the sky and a round sun in the
 middle, so a stretched picture shows at a glance.
 
+ada.png, bo.png and cy.png are 96x96 player avatars for
+features/images/bound_image: an owl, a robot and a cat, each on a disc
+of its own colour, so the picture a variable picks is told at a glance.
+
 For features/images/asset_paths, two skies both called sky.png, a day in
 art/day/ and a night in art/night/, which the show names by
 path, and moon.png in its assets/, which it names by stem.
@@ -244,6 +248,52 @@ def landscape(size=(240, 120)):
     return image.resize(size, Image.LANCZOS)
 
 
+def avatar(kind, back, ink, size=96):
+    """A player's avatar for features/images/bound_image, on a disc of
+    `back` in `ink`: an owl, a robot or a cat, so each
+    picture is told apart by its shape, not only its colour."""
+    s = size * SS
+    u = s / 96
+    figure = Image.new("RGBA", (s, s), back + (255,))
+    d = ImageDraw.Draw(figure)
+    ink = ink + (255,)
+    eye = back + (255,)
+    if kind == "owl":
+        # A round body with ear tufts, big eyes and a beak.
+        d.polygon([(30 * u, 30 * u), (34 * u, 12 * u), (44 * u, 26 * u)], fill=ink)
+        d.polygon([(66 * u, 30 * u), (62 * u, 12 * u), (52 * u, 26 * u)], fill=ink)
+        d.ellipse([22 * u, 20 * u, 74 * u, 112 * u], fill=ink)
+        for cx in (37, 59):
+            d.ellipse([(cx - 11) * u, 30 * u, (cx + 11) * u, 52 * u], fill=eye)
+            d.ellipse([(cx - 5) * u, 36 * u, (cx + 5) * u, 46 * u], fill=ink)
+        d.polygon([(43 * u, 52 * u), (53 * u, 52 * u), (48 * u, 62 * u)], fill=(255, 214, 92, 255))
+    elif kind == "robot":
+        d.line([48 * u, 14 * u, 48 * u, 26 * u], fill=ink, width=round(3 * u))
+        d.ellipse([43 * u, 8 * u, 53 * u, 18 * u], fill=ink)
+        d.rounded_rectangle([26 * u, 26 * u, 70 * u, 62 * u], radius=6 * u, fill=ink)
+        d.rectangle([34 * u, 38 * u, 42 * u, 46 * u], fill=eye)
+        d.rectangle([54 * u, 38 * u, 62 * u, 46 * u], fill=eye)
+        d.rectangle([38 * u, 52 * u, 58 * u, 55 * u], fill=eye)
+        d.rectangle([20 * u, 68 * u, 76 * u, 110 * u], fill=ink)
+    else:
+        d.polygon([(26 * u, 46 * u), (30 * u, 16 * u), (46 * u, 32 * u)], fill=ink)
+        d.polygon([(70 * u, 46 * u), (66 * u, 16 * u), (50 * u, 32 * u)], fill=ink)
+        d.ellipse([24 * u, 26 * u, 72 * u, 70 * u], fill=ink)
+        d.ellipse([34 * u, 40 * u, 42 * u, 48 * u], fill=eye)
+        d.ellipse([54 * u, 40 * u, 62 * u, 48 * u], fill=eye)
+        d.polygon([(45 * u, 54 * u), (51 * u, 54 * u), (48 * u, 58 * u)], fill=eye)
+        for y in (56, 60):
+            d.line([12 * u, y * u, 34 * u, (y - 2) * u], fill=ink, width=round(1.5 * u))
+            d.line([62 * u, (y - 2) * u, 84 * u, y * u], fill=ink, width=round(1.5 * u))
+        d.ellipse([28 * u, 70 * u, 68 * u, 112 * u], fill=ink)
+    # Cut to the disc.
+    mask = Image.new("L", (s, s), 0)
+    ImageDraw.Draw(mask).ellipse([0, 0, s - 1, s - 1], fill=255)
+    image = Image.new("RGBA", (s, s), (0, 0, 0, 0))
+    image.paste(figure, (0, 0), mask)
+    return image.resize((size, size), Image.LANCZOS)
+
+
 def critter_frame(squash=0, blink=False):
     """One 16x16 cell of the slime: a dome on little feet, outlined,
     with a highlight and two eyes. squash lowers the top and widens it."""
@@ -331,6 +381,9 @@ def main():
         ("features/images/sampling/assets/critter.png", critter_sheet()),
         ("features/images/sampling/assets/bricks.png", bricks()),
         ("features/images/fit/assets/landscape.png", landscape()),
+        ("features/images/bound_image/assets/ada.png", avatar("owl", (255, 176, 0), (122, 46, 0))),
+        ("features/images/bound_image/assets/bo.png", avatar("robot", (62, 201, 240), (14, 60, 82))),
+        ("features/images/bound_image/assets/cy.png", avatar("cat", (74, 222, 128), (20, 83, 45))),
     ]:
         out = ROOT / path
         out.parent.mkdir(parents=True, exist_ok=True)
