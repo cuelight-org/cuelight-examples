@@ -198,10 +198,26 @@
       ]
     },
     {
-      "name": "relay",
+      "name": "relay_left",
       "type": "audio",
       "sound": "click",
-      "trigger": ["turn_left", "turn_right", "hazard"],
+      "trigger": "turn_left",
+      "repeat": 4,
+      "pan": -0.89
+    },
+    {
+      "name": "relay_right",
+      "type": "audio",
+      "sound": "click",
+      "trigger": "turn_right",
+      "repeat": 4,
+      "pan": 0.89
+    },
+    {
+      "name": "relay_hazard",
+      "type": "audio",
+      "sound": "click",
+      "trigger": "hazard",
       "repeat": 4
     },
     { "name": "gear_label", "type": "text", "font": "heading_dim", "text": "GEAR", "x": 250, "y": 200, "anchor": "bottom" },

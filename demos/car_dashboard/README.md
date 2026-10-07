@@ -14,7 +14,7 @@ that looks like. No scenes, only shapes, text and one click.
 | Sport mode | `mode` is a text variable: a mapped `font` binding turns the speed red, a mapped `opacity` binding shows the label |
 | Warning lamps | group `opacity` bound to a 0/1 variable, from dim to lit |
 | Ignition | the `ignition` trigger plays timelines that sweep the rev bar and light every lamp; a running timeline overrides a binding and hands the property back when it ends |
-| Turn signals, hazard | both arrows are one SVG, `arrow.svg`, the right one mirrored with `scale_x` -1; each has one blink timeline with `repeat` and a list of triggers, `["turn_left", "hazard"]`, and an `audio` layer clicks like the relay on the same triggers, with the same `repeat`. The arrows are dim when off, like the lamps |
+| Turn signals, hazard | both arrows are one SVG, `arrow.svg`, the right one mirrored with `scale_x` -1; each has one blink timeline with `repeat` and a list of triggers, `["turn_left", "hazard"]`, and a relay click, an `audio` layer with the same `repeat`, comes from the side that blinks: `pan` puts each where its arrow is, and the hazard's in the middle. The arrows are dim when off, like the lamps |
 
 Everything the show uses is in cuelight `main`, including outline fonts:
 the text is drawn from the TrueType outlines and the player renders at
