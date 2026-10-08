@@ -19,7 +19,7 @@
   },
   "layers": [
     {"name": "table", "type": "image", "image": "table", "size": [1280, 720]},
-    {"name": "shadow", "type": "shape", "x": 78, "y": 60, "shape": {"rect": [0, 0, 1140, 632]}, "fill": "#00000070"},
+    {"name": "shadow", "type": "shape", "x": 64, "y": 48, "shape": {"rect": [0, 0, 1168, 654]}, "fill": "#00000070"},
     {
       "name": "cover_board",
       "type": "shape",
